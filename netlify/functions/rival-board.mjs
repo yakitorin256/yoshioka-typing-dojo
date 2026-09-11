@@ -105,5 +105,5 @@ export default async (req) => {
 };
 
 export const config = {
-  path: "/api/rival-board-v2"
+  path: "/api/rival-board"
 };
