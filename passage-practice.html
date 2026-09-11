@@ -1,0 +1,668 @@
+<title>茶帯 型稽古</title>
+<meta name="description" content="吉岡小タイピング道場・茶帯（長文道場）のタイピング練習アプリ。1年生から6年生までの国語教材の文章をローマ字で最後まで正確に打ちぬく持久力を鍛える型稽古">
+<style>
+  :root{
+    --bg:#F7F2E8;
+    --bg-alt:#FBF7EF;
+    --card:#FFFDF9;
+    --ink:#29251F;
+    --ink-soft:#6E6355;
+    --accent:#BE3A34;
+    --accent-dark:#9C2C27;
+    --accent-ink:#FFFDF9;
+    --belt-yellow:#C99A1E;
+    --belt-green:#4C8B5D;
+    --belt-blue:#3A6EA5;
+    --belt-brown:#8B5A2B;
+    --belt-black:#29251F;
+    --gold-fill:#C99A1E;
+    --line:#DED0B4;
+    --shadow:rgba(60,44,20,0.14);
+    --focus:#2B5FB0;
+    --good:#4C8B5D;
+    --bad:#BE3A34;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+      --ink:#F2EBDB; --ink-soft:#B7A98E;
+      --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+      --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#C99566; --belt-black:#F2EBDB;
+      --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+      --good:#68AD7F; --bad:#E2564E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+    --ink:#F2EBDB; --ink-soft:#B7A98E;
+    --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+    --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#C99566; --belt-black:#F2EBDB;
+    --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+    --good:#68AD7F; --bad:#E2564E;
+  }
+
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0; min-height:100vh;
+    background:var(--bg); color:var(--ink);
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Meiryo',serif;
+    font-weight:700; text-wrap:balance; margin:0;
+  }
+  .mono{font-family:Consolas,'SF Mono',Menlo,monospace; font-variant-numeric:tabular-nums;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:4px;}
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:820px; margin:0 auto; padding:22px 24px 0;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.9rem; color:var(--ink-soft); text-decoration:none;
+    border-bottom:1px dashed var(--ink-soft); padding-bottom:2px;
+  }
+  .back-link:hover{color:var(--belt-brown); border-color:var(--belt-brown);}
+  .stage-badge{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.04em;
+    color:var(--belt-brown); border:1px solid var(--belt-brown);
+    border-radius:999px; padding:5px 14px;
+  }
+
+  main{max-width:820px; margin:0 auto; padding:28px 24px 60px;}
+
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:40px 36px; box-shadow:0 10px 28px var(--shadow);
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.8rem; font-weight:700; letter-spacing:0.1em;
+    color:var(--belt-brown);
+    background:color-mix(in srgb, var(--belt-brown) 16%, transparent);
+    border:1px solid var(--belt-brown);
+    padding:5px 14px; border-radius:2px; margin-bottom:18px;
+  }
+  .panel h1{font-size:1.7rem; margin-bottom:14px;}
+  .panel > p.lead{color:var(--ink-soft); font-size:1rem; max-width:52ch; margin:0 auto 8px;}
+  .text-block{text-align:left;}
+  .ime-note{
+    margin:20px auto 0; max-width:52ch; font-size:0.85rem; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:8px; padding:10px 16px;
+  }
+  .source-note{
+    margin:14px auto 0; max-width:52ch; font-size:0.78rem; color:var(--ink-soft);
+    background:var(--bg-alt); border-radius:8px; padding:10px 16px;
+  }
+
+  .picker-hint{
+    color:var(--ink-soft); font-size:0.85rem; max-width:52ch; margin:20px auto 0;
+    border:1px solid var(--belt-brown); border-radius:8px; padding:10px 16px;
+  }
+  .unit-preview{list-style:none; margin:14px auto 0; padding:0; max-width:520px; text-align:left; display:grid; gap:6px;}
+  .unit-preview li{
+    display:flex; gap:12px; align-items:baseline; font-size:0.86rem; color:var(--ink-soft);
+    cursor:pointer; padding:6px 8px; border-radius:6px; border:1px solid transparent;
+    transition:background 0.15s ease, border-color 0.15s ease;
+  }
+  .unit-preview li:hover, .unit-preview li:focus-visible{background:var(--card); border-color:var(--belt-brown);}
+  .unit-preview .grade{color:var(--card); background:var(--belt-brown); font-weight:700; font-size:0.72rem; border-radius:4px; padding:2px 7px; flex-shrink:0; font-family:Consolas,'SF Mono',Menlo,monospace;}
+  .unit-preview .unit{color:var(--ink); font-weight:700;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+    padding:13px 28px; border-radius:6px; border:1px solid transparent;
+    font-weight:700; font-size:1rem; cursor:pointer;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif;
+    background:var(--belt-brown); color:var(--accent-ink);
+    box-shadow:0 4px 0 color-mix(in srgb, var(--belt-brown) 70%, black);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 6px 0 color-mix(in srgb, var(--belt-brown) 70%, black);}
+  .btn:active{transform:translateY(1px); box-shadow:0 2px 0 color-mix(in srgb, var(--belt-brown) 70%, black);}
+  .btn-quiet{
+    background:transparent; color:var(--ink-soft); box-shadow:none;
+    border:1px solid var(--line); font-family:'Yu Gothic',sans-serif; font-weight:700;
+  }
+  .btn-quiet:hover{border-color:var(--belt-brown); color:var(--belt-brown); transform:none; box-shadow:none;}
+
+  /* ---- practice ---- */
+  #practice{display:none;}
+  .progress-line{display:flex; align-items:center; gap:14px; justify-content:center; margin-bottom:6px;}
+  .progress-line .mono{font-size:0.85rem; color:var(--ink-soft);}
+  .progress-track{width:220px; height:8px; border-radius:999px; background:var(--bg-alt); border:1px solid var(--line); overflow:hidden;}
+  .progress-fill{height:100%; background:var(--belt-brown); border-radius:999px; transition:width 0.25s ease;}
+
+  .source-label{margin-top:22px;}
+  .source-label .grade-tag{
+    display:inline-block; font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:0.72rem;
+    color:var(--card); background:var(--belt-brown); border-radius:4px; padding:3px 9px; margin-bottom:8px;
+  }
+  .source-label .unit{font-size:1.05rem; font-weight:700; display:block;}
+  .source-label .author{font-size:0.8rem; color:var(--ink-soft); display:block; margin-top:2px;}
+
+  .passage{
+    margin:18px 0; padding:20px 20px 22px; border-radius:10px;
+    background:var(--bg-alt); border:1px solid var(--line);
+    text-align:left;
+  }
+  .romaji-line{
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-size:1.35rem;
+    line-height:1.5; display:flex; flex-wrap:wrap; align-items:flex-end; row-gap:20px;
+  }
+  .rt-group{display:inline-flex; flex-direction:column; align-items:flex-start;}
+  .jp-part{
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+    font-size:0.88rem; color:var(--ink-soft);
+    letter-spacing:0.02em; margin-bottom:3px; white-space:nowrap;
+  }
+  .romaji-part{display:flex;}
+  .ch{color:var(--ink-soft); opacity:0.5; border-bottom:2px solid transparent; padding:0 1px;}
+  .ch.space{padding:0 5px;}
+  .ch.done{color:var(--good); opacity:1;}
+  .ch.current{color:var(--ink); opacity:1; border-bottom-color:var(--belt-brown); background:color-mix(in srgb, var(--belt-brown) 12%, transparent); border-radius:3px;}
+  .ch.wrong{background:color-mix(in srgb, var(--bad) 25%, transparent); border-radius:3px;}
+
+  .miss-note{min-height:1.4em; font-size:0.85rem; color:var(--bad); margin-top:4px;}
+
+  .cite-card{
+    display:none; margin-top:18px; padding:18px 20px; border-radius:10px;
+    background:color-mix(in srgb, var(--belt-brown) 10%, var(--card)); border:1px dashed var(--belt-brown);
+    text-align:left;
+  }
+  .cite-card.show{display:block;}
+  .cite-card .jp{font-weight:700; margin-bottom:4px; font-size:1.05rem;}
+  .cite-card p{margin:0; font-size:0.82rem; color:var(--ink-soft);}
+  .cite-card .btn{margin-top:14px; display:flex; margin-left:auto; margin-right:auto;}
+  .key-hint{margin-top:10px; font-size:0.76rem; color:var(--ink-soft); text-align:center;}
+
+  /* ---- result ---- */
+  #result{display:none;}
+  .stamp{
+    width:96px; height:96px; border-radius:50%; margin:6px auto 18px;
+    display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--good); transform:rotate(-6deg);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:1.6rem; color:var(--good);
+  }
+  .stamp.fail{border-color:var(--belt-brown); color:var(--belt-brown);}
+  .stat-row{display:flex; gap:16px; justify-content:center; margin:18px 0 6px; flex-wrap:wrap;}
+  .stat-box{border:1px solid var(--line); border-radius:8px; padding:14px 22px; background:var(--bg-alt); min-width:130px;}
+  .stat-box .mono{font-size:0.72rem; color:var(--ink-soft); display:block; letter-spacing:0.04em;}
+  .stat-box .stat-val{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:1.7rem; color:var(--ink);}
+  .result-msg{color:var(--ink-soft); margin-top:6px; max-width:46ch; margin-left:auto; margin-right:auto;}
+  .result-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  @media (max-width:560px){
+    .panel{padding:30px 18px;}
+    .passage{padding:16px 14px;}
+    .romaji-line{font-size:1.05rem;}
+  }
+</style>
+
+<div class="topbar">
+  <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
+  <span class="stage-badge">茶帯 — 長文道場</span>
+</div>
+
+<main>
+  <div class="panel" id="intro">
+    <span class="eyebrow">型稽古 5</span>
+    <h1>文章を打ちきる力</h1>
+    <p class="lead text-block">　1年生から6年生までの国語の教材文から、連続する文章をローマ字で最後まで正確に打ちぬこう。学年が上がるにつれて、文の数も少しずつ増えて、じっくりになっていくよ。とちゅうで止まらず打ちきる持久力が、茶帯の型。</p>
+
+    <p class="picker-hint text-block">　下の一覧から好きな教材を選ぶと、そこから型稽古がはじまるよ。終えたら、つづけて次の教材に進めるよ。</p>
+    <ul class="unit-preview" id="unitPreview">
+      <li data-index="0"><span class="grade">1年</span><span class="unit">とんこととん</span>（ぶしかえつこ）</li>
+      <li data-index="1"><span class="grade">1年</span><span class="unit">おおきなかぶ</span>（うちだりさこ　やく）</li>
+      <li data-index="2"><span class="grade">2年</span><span class="unit">ニャーゴ</span>（みやにしたつや）</li>
+      <li data-index="3"><span class="grade">2年</span><span class="unit">お手紙</span>（アーノルド・ローベル）</li>
+      <li data-index="4"><span class="grade">3年</span><span class="unit">サーカスのライオン</span>（川村たかし）</li>
+      <li data-index="5"><span class="grade">3年</span><span class="unit">モチモチの木</span>（斎藤隆介）</li>
+      <li data-index="6"><span class="grade">3年</span><span class="unit">せっちゃくざいの今と昔</span>（早川典子）</li>
+      <li data-index="7"><span class="grade">4年</span><span class="unit">こわれた千の楽器</span>（野呂昶）</li>
+      <li data-index="8"><span class="grade">4年</span><span class="unit">ごんぎつね</span>（新美南吉）</li>
+      <li data-index="9"><span class="grade">4年</span><span class="unit">ヤドカリとイソギンチャク</span>（武田正倫）</li>
+      <li data-index="10"><span class="grade">5年</span><span class="unit">おにぎり石の伝説</span>（戸森しるこ）</li>
+      <li data-index="11"><span class="grade">5年</span><span class="unit">大造じいさんとがん</span>（椋鳩十）</li>
+      <li data-index="12"><span class="grade">5年</span><span class="unit">注文の多い料理店</span>（宮沢賢治）</li>
+      <li data-index="13"><span class="grade">6年</span><span class="unit">イースター島にはなぜ森林がないのか</span>（鷲谷いづみ）</li>
+      <li data-index="14"><span class="grade">6年</span><span class="unit">風切るつばさ</span>（木村裕一）</li>
+      <li data-index="15"><span class="grade">6年</span><span class="unit">海のいのち</span>（立松和平）</li>
+      <li data-index="16"><span class="grade">6年</span><span class="unit">君たちに伝えたいこと</span>（日野原重明）</li>
+    </ul>
+
+    <p class="source-note text-block">　出典：東京書籍の国語教科書（1〜6年）各単元より連続する文章を抜粋。学年・単元名・著者は文章ごとに明示しています。</p>
+    <p class="ime-note text-block">　はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。「、」は，キー、「。」は．キー、「「」」は［　］キーで打つよ（青帯で練習したのと同じキーだよ）。まちがえても、正しいキーを打つまで先には進まないよ。</p>
+    <button class="btn" id="startBtn">さいしょから型稽古をはじめる →</button>
+  </div>
+
+  <div class="panel" id="practice">
+    <div class="progress-line">
+      <span class="mono" id="progressText">1 / 17 文章</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="source-label">
+      <span class="grade-tag" id="gradeTag"></span>
+      <span class="unit" id="unitLabel"></span>
+      <span class="author" id="authorLabel"></span>
+    </div>
+    <div class="passage">
+      <div class="romaji-line" id="passageEl"></div>
+    </div>
+    <div class="miss-note" id="missNote">&nbsp;</div>
+
+    <div class="cite-card" id="citeCard">
+      <div class="jp" id="citeJp"></div>
+      <p id="citeSource"></p>
+      <button class="btn" id="continueBtn">つぎの文へ →</button>
+      <div class="key-hint">クリック、またはスペースキー／Enterキーで次へ</div>
+    </div>
+  </div>
+
+  <div class="panel" id="result">
+    <div class="stamp" id="stamp">合格</div>
+    <h1 id="resultTitle">茶帯 合格！</h1>
+    <p class="result-msg text-block" id="resultMsg">　1年生から6年生までの文章を、最後まで打ちぬいた。つぎは黒帯「昇段試験」で、これまでの成果を試そう。</p>
+    <div class="stat-row">
+      <div class="stat-box"><span class="mono">速さ</span><span class="stat-val" id="statSpeed">0<span style="font-size:0.6em;font-weight:400;"> 文字/分</span></span></div>
+      <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
+    </div>
+    <div class="result-actions">
+      <a class="btn" id="nextStageLink" style="display:none" href="exam-practice.html">黒帯にチャレンジする →</a>
+      <button class="btn btn-quiet" id="retryBtn">もう一度練習する</button>
+      <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
+    </div>
+    <div class="key-hint">←→キーで選択、スペース／Enterキーで決定</div>
+  </div>
+</main>
+
+<script>
+(function(){
+  // 、。「」are typed too, on the same keys taught in 青帯: , . [ ]
+  var PUNCT_MAP = {'、':',', '。':'.', '「':'[', '」':']'};
+  var KEY_LABELS = {',':'， （読点）', '.':'。 （句点）', '[':'「', ']':'」'};
+  // Shown to the child as the real punctuation, even though ,./[/] is the key that produces them.
+  var DISPLAY_CHAR_MAP = {'[':'「', ']':'」', ',':'、', '.':'。'};
+
+  function makePassage(grade, unit, author, clauses){
+    var parts = clauses.map(function(c){
+      var jpFull = c[0];
+      var core = jpFull;
+      var leading = '';
+      if (core.charAt(0) === '「'){ leading = '「'; core = core.slice(1); }
+      var trailing = '';
+      while (core.length && PUNCT_MAP[core.charAt(core.length-1)] && core.charAt(core.length-1) !== '「'){
+        trailing = core.charAt(core.length-1) + trailing;
+        core = core.slice(0, -1);
+      }
+      var romaji = (leading ? PUNCT_MAP[leading] : '') + c[1] +
+        trailing.split('').map(function(ch){ return PUNCT_MAP[ch]; }).join('');
+      return {jp: jpFull, romaji: romaji};
+    });
+    return {
+      grade: grade, unit: unit, author: author,
+      jp: clauses.map(function(c){ return c[0]; }).join(''),
+      romaji: parts.map(function(p){ return p.romaji; }).join(''),
+      parts: parts
+    };
+  }
+
+  var PASSAGES = [
+    makePassage('1年生','とんこととん','ぶしかえつこ', [
+      ['ねずみが、','nezumiga'], ['さんぽからかえってきました。','sanpokarakaettekimashita']
+    ]),
+    makePassage('1年生','おおきなかぶ','うちだりさこ', [
+      ['うんとこしょ、','untokosho'], ['どっこいしょ。','dokkoisho']
+    ]),
+    makePassage('2年生','ニャーゴ','みやにしたつや', [
+      ['「あれれ、','arere'], ['だれもいないよ。」','daremoinaiyo'],
+      ['「それじゃあ、','sorejaa'], ['ぼくたちはももをとりに行こうか。」','bokutachiwamomowotoriniikouka']
+    ]),
+    makePassage('2年生','お手紙','アーノルド・ローベル', [
+      ['がまくんは、','gamakunwa'], ['げんかんの前にすわっていました。','genkannomaenisuwatteimashita'],
+      ['かえるくんがやってきて、','kaerukungayattekite'], ['言いました。','iimashita']
+    ]),
+    makePassage('3年生','サーカスのライオン','川村たかし', [
+      ['町外れの広場に、','machihazurenohirobani'], ['サーカスがやってきた。','saakasugayattekita'],
+      ['ライオンやとらもいれば、','raionyatoramoireba'], ['お化け屋しきもある。','obakeyashikimoaru'],
+      ['ひさしぶりのことなので、','hisashiburinokotonanode'], ['見物人がぞくぞくとやってきた。','kenbutsuningazokuzokutoyattekita']
+    ]),
+    makePassage('3年生','モチモチの木','斎藤隆介', [
+      ['自分で自分を弱虫だなんて思うな。','jibundejibunwoyowamushidananteomouna'],
+      ['人間、','ningen'], ['やさしささえあれば、','yasashisasaeareba'], ['やらなきゃならねえことは、','yaranakyanaraneekotowa'], ['きっとやるもんだ。','kittoyarumonda'],
+      ['それを見て他人がびっくらするわけよ。','sorewomitetaningabikkurasuruwakeyo']
+    ]),
+    makePassage('3年生','せっちゃくざいの今と昔','早川典子', [
+      ['みなさんは、','minasanwa'], ['のりを持っていますか。','norimotteimasuka'],
+      ['工作で紙をはり合わせるときに使うことも多いと思います。','kousakudekamiwohariawaserutokinitsukaukotomoooitoomoimasu'],
+      ['のりのように物と物とをくっつけるはたらきをするものを、','norinoyounimonotomonotowokuttsukeruhatarakiwosurumonowo'], ['せっちゃくざいといいます。','secchakuzaitoiimasu']
+    ]),
+    makePassage('4年生','こわれた千の楽器','野呂昶', [
+      ['すると、','suruto'], ['どこからか音楽が流れてきました。','dokokarakaongakuganagaretekimashita'],
+      ['「なんときれいな音。','nantokireinaoto'], ['だれがえんそうしているんだろう。」','daregaensoushiteirundarou']
+    ]),
+    makePassage('4年生','ごんぎつね','新美南吉', [
+      ['「ごん、','gon'], ['おまえだったのか。','omaedattanoka'],
+      ['いつも、','itsumo'], ['くりをくれたのは。」','kuriwokuretanowa'],
+      ['ごんは、','gonwa'], ['ぐったりと目をつぶったまま、','guttaritomewotsubuttamama'], ['うなずきました。','unazukimashita']
+    ]),
+    makePassage('4年生','ヤドカリとイソギンチャク','武田正倫', [
+      ['観察してみると、','kansatsushitemiruto'], ['ソメンヤドカリは、','somenyadokariwa'],
+      ['たいてい二つから四つのベニヒモイソギンチャクを、','taiteifutatsukarayottsunobenihimoisoginchakuwo'], ['貝がらの上につけています。','kaigaranouenitsuketeimasu'],
+      ['中には、','nakaniwa'], ['九つものイソギンチャクをつけていたヤドカリの例も記録されています。','kokonotsumonoisoginchakuwotsuketeitayadokarinoreimokirokusareteimasu'],
+      ['このようなヤドカリのすがたは、','konoyounayadokarinosugatawa'], ['いかにも重そうに見えます。','ikanimoomosounimiemasu']
+    ]),
+    makePassage('5年生','おにぎり石の伝説','戸森しるこ', [
+      ['始まりは、','hajimariwa'], ['こんな一言だった。','konnahitokotodatta'],
+      ['「この石、','konoishi'], ['何だかおにぎりみたい。」','nandakaonigirimitai'],
+      ['だれが最初にそう言ったのかはわすれてしまったけれど、','daregasaishonisouittanokahawasureteshimattakeredo'],
+      ['その一言がきっかけで、','sonohitokotogakikkakede'], ['空前のおにぎり石ブームは始まった。','kuuzennoonigiriishibuumuwahajimatta']
+    ]),
+    makePassage('5年生','大造じいさんとがん','椋鳩十', [
+      ['今年も、','kotoshimo'], ['残雪は、','zansetsuwa'], ['がんの群れを率いて、','gannomurewohikiite'], ['ぬま地にやってきました。','numachiniyattekimashita'],
+      ['残雪というのは、','zansetsutoiunowa'], ['一羽のがんにつけられた名前です。','ichiwanogannitsukeraretanamaedesu'],
+      ['左右のつばさに、','sayuunotsubasani'], ['一か所ずつ、','ikkashozutsu'], ['真っ白な交じり毛を持っていたので、','masshironamajirigewomotteitanode'],
+      ['かりゅうどたちから、','karyuudotachikara'], ['そうよばれていました。','souyobareteimashita']
+    ]),
+    makePassage('5年生','注文の多い料理店','宮沢賢治', [
+      ['実にぼくは、','jitsunibokuwa'], ['二千四百円の損害だ。','nisenyonhyakuennosongaida'],
+      ['と、','to'], ['一人のしんしが、','hitorinoshinshiga'], ['その犬のまぶたを、','sonoinunomabutawo'], ['ちょっと返してみて言いました。','chottokaeshitemiteiimashita'],
+      ['「ぼくは二千八百円の損害だ。」','bokuwanisenhappyakuennosongaida']
+    ]),
+    makePassage('6年生','イースター島にはなぜ森林がないのか','鷲谷いづみ', [
+      ['モアイ像は、','moaizouwa'], ['西暦一〇〇〇年から一六〇〇年ごろの間に作られたとされている。','seirekisennenkarasenroppyakunengoronoaidanitsukuraretatosareteiru'],
+      ['祖先を敬うためにモアイ像を作った人々は、','sosenwouyamautamenimoaizouwotsukuttahitobitowa'],
+      ['数世代後の子孫の悲惨な暮らしを想像することができなかったのだろうか。','suusedaigonoshisonnohisannakurashiwosouzousurukotogadekinakattanodarouka'],
+      ['祖先を敬う文化はさまざまな民族に共通であるが、','sosenwouyamaubunkawasamazamanaminzokunikyoutsuudearuga'],
+      ['数世代後の子孫の幸せを願う文化は、','suusedaigonoshisonnoshiawasewonegaubunkawa'],
+      ['それほど一般的ではないのかもしれない。','sorehodoippantekidewanainokamoshirenai']
+    ]),
+    makePassage('6年生','風切るつばさ','木村裕一', [
+      ['ツルの群れはパニックになる。','tsurunomurewapanikkuninaru'],
+      ['気がつくと、','kigatsukuto'], ['一羽の仲間の命が失われていた。','ichiwanonakamanoinochigaushinawareteita'],
+      ['その一羽は、','sonoichiwawa'], ['まだ幼い鳥だった。','madaosanaitoridatta']
+    ]),
+    makePassage('6年生','海のいのち','立松和平', [
+      ['二メートルもある大物をしとめても、','nimeetorumoaruoomonowoshitometemo'], ['父は自まんすることもなく言うのだった。','chichiwajimansurukotomonakuiunodatta'],
+      ['「海のめぐみだからなあ。」','uminomegumidakaranaa'],
+      ['不漁の日が十日間続いても、','furyounohigatookakantsuzuitemo'], ['父は何も変わらなかった。','chichiwananimokawaranakatta']
+    ]),
+    makePassage('6年生','君たちに伝えたいこと','日野原重明', [
+      ['さて、','sate'], ['君のおよそ八倍長く生きている私から、','kiminooyosohachibainagakuikiteiruwatashikara'], ['君に「寿命」の話をすることにしましょう。','kiminijumyounohanashiwosurukotonishimashou'],
+      ['「寿命」とは何かな。','jumyoutowananikana'],
+      ['寿命とは、','jumyoutowa'], ['生きている人の命の長さのことなんです。','ikiteiruhitonoinochinonagasanokotonandesu']
+    ])
+  ];
+
+  var intro = document.getElementById('intro');
+  var practice = document.getElementById('practice');
+  var result = document.getElementById('result');
+  var progressText = document.getElementById('progressText');
+  var progressFill = document.getElementById('progressFill');
+  var gradeTag = document.getElementById('gradeTag');
+  var unitLabel = document.getElementById('unitLabel');
+  var authorLabel = document.getElementById('authorLabel');
+  var passageEl = document.getElementById('passageEl');
+  var missNote = document.getElementById('missNote');
+  var citeCard = document.getElementById('citeCard');
+  var citeJp = document.getElementById('citeJp');
+  var citeSource = document.getElementById('citeSource');
+
+  var passageIdx, charIdx, charEls;
+  var totalCorrect, totalMistakes, activeMs, segmentStart, inputLocked;
+  var audioCtx = null;
+
+  // Accept common romaji spelling variants (Hepburn / Kunrei-shiki) at the same keystroke position.
+  // e.g. "sho"/"syo", "cha"/"tya", "fu"/"hu", "ji"/"zi" all represent the same kana.
+  var ROMAJI_SUBS = [
+    {canon:'sh', alt:'sy'},
+    {canon:'ch', alt:'ty'},
+    {canon:'fu', alt:'hu'},
+    {canon:'ji', alt:'zi'},
+    {canon:'tsu', alt:'tu'}
+  ];
+  var pendingAlt = null;
+
+  function findSub(romaji, idx){
+    for (var i=0; i<ROMAJI_SUBS.length; i++){
+      var s = ROMAJI_SUBS[i];
+      if (romaji.substr(idx, s.canon.length) === s.canon) return s;
+    }
+    return null;
+  }
+
+  function beep(freq, dur){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = 0.08;
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.stop(audioCtx.currentTime + dur);
+    }catch(e){}
+  }
+
+  function renderPassage(){
+    var p = PASSAGES[passageIdx];
+    gradeTag.textContent = p.grade;
+    unitLabel.textContent = '「' + p.unit + '」';
+    authorLabel.textContent = p.author;
+    passageEl.innerHTML = '';
+    charEls = [];
+    p.parts.forEach(function(token){
+      var container;
+      if (token.jp){
+        var group = document.createElement('span');
+        group.className = 'rt-group';
+        var jpEl = document.createElement('span');
+        jpEl.className = 'jp-part';
+        jpEl.textContent = token.jp;
+        var romajiRow = document.createElement('span');
+        romajiRow.className = 'romaji-part';
+        group.appendChild(jpEl);
+        group.appendChild(romajiRow);
+        passageEl.appendChild(group);
+        container = romajiRow;
+      } else {
+        container = passageEl;
+      }
+      for (var i=0; i<token.romaji.length; i++){
+        var ch = token.romaji[i];
+        var span = document.createElement('span');
+        span.className = 'ch' + (ch === ' ' ? ' space' : '');
+        span.textContent = DISPLAY_CHAR_MAP[ch] || ch;
+        container.appendChild(span);
+        charEls.push(span);
+      }
+    });
+    charIdx = 0;
+    pendingAlt = null;
+    inputLocked = false;
+    missNote.innerHTML = '&nbsp;';
+    citeCard.classList.remove('show');
+    if (charIdx < charEls.length) charEls[charIdx].classList.add('current');
+    updateProgress();
+    segmentStart = performance.now();
+  }
+
+  function updateProgress(){
+    progressText.textContent = (passageIdx+1) + ' / ' + PASSAGES.length + ' 文章';
+    progressFill.style.width = Math.round(passageIdx/PASSAGES.length*100) + '%';
+  }
+
+  function startPractice(startIdx){
+    passageIdx = startIdx || 0; totalCorrect = 0; totalMistakes = 0; activeMs = 0;
+    intro.style.display = 'none';
+    result.style.display = 'none';
+    practice.style.display = 'block';
+    renderPassage();
+  }
+
+  function handleKey(key){
+    if (inputLocked) return;
+    var p = PASSAGES[passageIdx];
+    var expected = p.romaji[charIdx];
+    var sub = findSub(p.romaji, charIdx);
+    var ok = (key === expected);
+    var advance = 1;
+
+    if (!ok && pendingAlt && pendingAlt.idx === charIdx && key === pendingAlt.altChar){
+      ok = true;
+      advance = pendingAlt.skip;
+    }
+    if (!ok && sub && key === sub.alt[0]){
+      ok = true;
+    }
+
+    if (ok){
+      for (var k = 0; k < advance; k++){
+        charEls[charIdx + k].classList.remove('current','wrong');
+        charEls[charIdx + k].classList.add('done');
+      }
+      totalCorrect += advance;
+      beep(key === ' ' ? 520 : 780, 0.06);
+      pendingAlt = (advance === 1 && sub && sub.alt[1] !== sub.canon[1])
+        ? {idx: charIdx+1, altChar: sub.alt[1], skip: sub.canon.length - 1}
+        : null;
+      charIdx += advance;
+      missNote.innerHTML = '&nbsp;';
+      if (charIdx >= p.romaji.length){
+        finishPassage();
+      } else {
+        charEls[charIdx].classList.add('current');
+      }
+    } else {
+      totalMistakes++;
+      var el = charEls[charIdx];
+      el.classList.add('wrong');
+      setTimeout(function(){ el.classList.remove('wrong'); }, 220);
+      beep(180, 0.1);
+      missNote.textContent = 'おしい！「' + (KEY_LABELS[expected] || expected) + '」を打とう';
+    }
+  }
+
+  function getVisibleResultBtns(){
+    return Array.prototype.slice.call(document.querySelectorAll('.result-actions .btn')).filter(function(el){
+      return el.offsetParent !== null;
+    });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (result.style.display !== 'none'){
+      var btns = getVisibleResultBtns();
+      if (btns.length === 0) return;
+      var idxBtn = btns.indexOf(document.activeElement);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+        e.preventDefault();
+        btns[idxBtn === -1 ? 0 : (idxBtn + 1) % btns.length].focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+        e.preventDefault();
+        btns[idxBtn === -1 ? btns.length - 1 : (idxBtn - 1 + btns.length) % btns.length].focus();
+      } else if ((e.key === ' ' || e.key === 'Enter') && idxBtn !== -1){
+        e.preventDefault();
+        btns[idxBtn].click();
+      }
+      return;
+    }
+    if (practice.style.display !== 'block') return;
+    if (inputLocked){
+      if (citeCard.classList.contains('show') && (e.key === ' ' || e.key === 'Enter')){
+        e.preventDefault();
+        goToNextPassage();
+      }
+      return;
+    }
+    if (e.key === ' '){ e.preventDefault(); return; }
+    if (e.key.length === 1 && /[a-zA-Z,.\[\]]/.test(e.key)){
+      e.preventDefault();
+      handleKey(e.key.toLowerCase());
+    }
+  });
+
+  function finishPassage(){
+    inputLocked = true;
+    activeMs += performance.now() - segmentStart;
+    var p = PASSAGES[passageIdx];
+    citeJp.textContent = p.jp;
+    citeSource.textContent = p.grade + '「' + p.unit + '」' + p.author + '（東京書籍）より';
+    citeCard.classList.add('show');
+  }
+
+  function goToNextPassage(){
+    passageIdx++;
+    if (passageIdx >= PASSAGES.length){
+      updateProgress();
+      finishAll();
+    } else {
+      renderPassage();
+    }
+  }
+  document.getElementById('continueBtn').addEventListener('click', goToNextPassage);
+
+  function finishAll(){
+    practice.style.display = 'none';
+    result.style.display = 'block';
+    var elapsedSec = Math.max(activeMs / 1000, 1);
+    var speed = Math.round(totalCorrect / elapsedSec * 60);
+    var accuracy = Math.round(totalCorrect / (totalCorrect + totalMistakes) * 100);
+    document.getElementById('statSpeed').innerHTML = speed + '<span style="font-size:0.6em;font-weight:400;"> 文字/分</span>';
+    document.getElementById('statAccuracy').innerHTML = accuracy + '<span style="font-size:0.6em;font-weight:400;">%</span>';
+    var stamp = document.getElementById('stamp');
+    var title = document.getElementById('resultTitle');
+    var msg = document.getElementById('resultMsg');
+    var nextLink = document.getElementById('nextStageLink');
+    if (accuracy >= 70){
+      stamp.className = 'stamp'; stamp.textContent = '合格';
+      title.textContent = '茶帯 合格！';
+      msg.textContent = '　1年生から6年生までの文章を、最後まで打ちぬいた。つぎは黒帯「昇段試験」で、これまでの成果を試そう。';
+      nextLink.style.display = 'inline-flex';
+    } else {
+      nextLink.style.display = 'none';
+      stamp.className = 'stamp fail'; stamp.textContent = 'もう一歩';
+      title.textContent = 'もう一歩！';
+      msg.textContent = '　あわてなくて大丈夫。ゆっくりでも、最後まで打ちきることを意識してもう一度チャレンジしてみよう。';
+    }
+    var firstBtn = getVisibleResultBtns()[0];
+    if (firstBtn) firstBtn.focus();
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function(){
+    try{ if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){}
+    startPractice(0);
+  });
+  document.querySelectorAll('#unitPreview li').forEach(function(li){
+    li.tabIndex = 0;
+    li.setAttribute('role', 'button');
+    var idx = parseInt(li.dataset.index, 10);
+    li.setAttribute('aria-label', li.textContent + 'からはじめる');
+    li.addEventListener('click', function(){
+      try{ if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){}
+      startPractice(idx);
+    });
+    li.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        try{ if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e2){}
+        startPractice(idx);
+      }
+    });
+  });
+  document.getElementById('retryBtn').addEventListener('click', function(){
+    result.style.display = 'none';
+    startPractice();
+  });
+})();
+</script>

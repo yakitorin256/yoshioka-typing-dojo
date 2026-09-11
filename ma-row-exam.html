@@ -1,0 +1,924 @@
+<title>隕石タイピング ま行 しゅうりょうテスト</title>
+<meta name="description" content="吉岡小タイピング道場・ま行しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめもの総まとめ。文字が書かれた隕石が落ちてくる前に正しくローマ字で打って砕く、隕石タイピングゲーム">
+<style>
+  :root{
+    --bg:#F7F2E8;
+    --bg-alt:#FBF7EF;
+    --card:#FFFDF9;
+    --ink:#29251F;
+    --ink-soft:#6E6355;
+    --accent:#BE3A34;
+    --accent-dark:#9C2C27;
+    --accent-ink:#FFFDF9;
+    --belt-yellow:#C99A1E;
+    --belt-green:#4C8B5D;
+    --belt-blue:#3A6EA5;
+    --belt-brown:#8B5A2B;
+    --belt-black:#29251F;
+    --belt-intro:#C9695A;
+    --gold-fill:#C99A1E;
+    --line:#DED0B4;
+    --shadow:rgba(60,44,20,0.14);
+    --focus:#2B5FB0;
+    --good:#4C8B5D;
+    --bad:#BE3A34;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+      --ink:#F2EBDB; --ink-soft:#B7A98E;
+      --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+      --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+      --belt-intro:#E08575;
+      --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+      --good:#68AD7F; --bad:#E2564E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+    --ink:#F2EBDB; --ink-soft:#B7A98E;
+    --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+    --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+    --belt-intro:#E08575;
+    --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+    --good:#68AD7F; --bad:#E2564E;
+  }
+
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0; min-height:100vh;
+    background:var(--bg); color:var(--ink);
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Meiryo',serif;
+    font-weight:700; text-wrap:balance; margin:0;
+  }
+  .mono{font-family:Consolas,'SF Mono',Menlo,monospace; font-variant-numeric:tabular-nums;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:4px;}
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:760px; margin:0 auto; padding:22px 24px 0;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.9rem; color:var(--ink-soft); text-decoration:none;
+    border-bottom:1px dashed var(--ink-soft); padding-bottom:2px;
+  }
+  .back-link:hover{color:var(--accent); border-color:var(--accent);}
+  .stage-badge{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.04em;
+    color:var(--belt-intro); border:1px solid var(--belt-intro);
+    border-radius:999px; padding:5px 14px;
+  }
+
+  main{max-width:760px; margin:0 auto; padding:28px 24px 60px;}
+
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:40px 36px; box-shadow:0 10px 28px var(--shadow);
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.98rem; font-weight:700; letter-spacing:0.1em;
+    color:var(--belt-intro);
+    background:color-mix(in srgb, var(--belt-intro) 14%, transparent);
+    border:1px solid var(--belt-intro);
+    padding:6px 16px; border-radius:2px; margin-bottom:18px;
+  }
+  .panel h1{font-size:1.6rem; margin-bottom:14px;}
+  .panel > p.lead{color:var(--ink-soft); font-size:1rem; max-width:46ch; margin:0 auto 8px;}
+  .rule-list{
+    text-align:left; max-width:46ch; margin:18px auto 0;
+    list-style:none; padding:0; display:grid; gap:10px;
+  }
+  .rule-list li{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:0.9rem; color:var(--ink-soft);
+  }
+  .rule-num{
+    flex-shrink:0; width:22px; height:22px; border-radius:50%;
+    background:var(--belt-intro); color:var(--accent-ink);
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:0.76rem;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .ime-note{
+    margin:20px auto 0; max-width:46ch; font-size:0.85rem; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:8px; padding:10px 16px;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+    padding:13px 28px; border-radius:6px; border:1px solid transparent;
+    font-weight:700; font-size:1rem; cursor:pointer;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif;
+    background:var(--belt-intro); color:var(--accent-ink);
+    box-shadow:0 4px 0 color-mix(in srgb, var(--belt-intro) 70%, black);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 6px 0 color-mix(in srgb, var(--belt-intro) 70%, black);}
+  .btn:active{transform:translateY(1px); box-shadow:0 2px 0 color-mix(in srgb, var(--belt-intro) 70%, black);}
+  .btn-quiet{
+    background:transparent; color:var(--ink-soft); box-shadow:none;
+    border:1px solid var(--line); font-family:'Yu Gothic',sans-serif; font-weight:700;
+  }
+  .btn-quiet:hover{border-color:var(--belt-intro); color:var(--belt-intro); transform:none; box-shadow:none;}
+  .key-hint{margin-top:10px; font-size:0.76rem; color:var(--ink-soft); text-align:center;}
+
+  ruby{ruby-align:center;}
+  rt{
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+    font-weight:500; font-size:0.5em; letter-spacing:0; opacity:0.85;
+  }
+
+  /* ---- game screen ---- */
+  #game{display:none; padding:28px 20px 34px;}
+  .progress-line{display:flex; align-items:center; gap:14px; justify-content:center; margin-bottom:16px;}
+  .progress-line .mono{font-size:0.85rem; color:var(--ink-soft);}
+  .progress-track{width:200px; height:8px; border-radius:999px; background:var(--bg-alt); border:1px solid var(--line); overflow:hidden;}
+  .progress-fill{height:100%; background:var(--belt-intro); border-radius:999px; transition:width 0.25s ease;}
+
+  .canvas-wrap{
+    max-width:640px; margin:0 auto; border-radius:14px; overflow:hidden;
+    box-shadow:0 10px 26px var(--shadow); line-height:0;
+  }
+  #gameCanvas{display:block; width:100%; height:auto; touch-action:none;}
+
+  .roma-hint{
+    margin:16px auto 0; font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700;
+    font-size:1.7rem; letter-spacing:0.05em; color:var(--ink-soft); min-height:1.3em;
+  }
+  .roma-hint .roma-done{color:var(--good);}
+  .word-meaning-hint{font-size:0.85rem; color:var(--ink-soft); margin-top:2px; min-height:1.3em;}
+  .miss-note{min-height:1.4em; font-size:0.85rem; color:var(--bad); margin-top:6px;}
+
+  /* ---- result ---- */
+  #result{display:none;}
+  .stamp{
+    width:96px; height:96px; border-radius:50%; margin:6px auto 18px;
+    display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--good); transform:rotate(-6deg);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:1.5rem;
+    color:var(--good);
+  }
+  .stamp.fail{border-color:var(--bad); color:var(--bad);}
+  .stat-row{display:flex; gap:16px; justify-content:center; margin:18px 0 6px; flex-wrap:wrap;}
+  .stat-box{border:1px solid var(--line); border-radius:8px; padding:14px 22px; background:var(--bg-alt); min-width:130px;}
+  .stat-box .mono{font-size:0.72rem; color:var(--ink-soft); display:block; letter-spacing:0.04em;}
+  .stat-box .stat-val{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:1.7rem; color:var(--ink);}
+  .result-msg{color:var(--ink-soft); margin-top:6px; max-width:42ch; margin-left:auto; margin-right:auto;}
+  .result-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{max-width:760px; margin:0 auto; padding:0 24px 40px; text-align:center;}
+  footer p{font-size:0.78rem; color:var(--ink-soft);}
+
+  @media (max-width:520px){
+    .panel{padding:30px 20px;}
+    #game{padding:22px 10px 26px;}
+    .roma-hint{font-size:1.3rem;}
+  }
+</style>
+
+<div class="topbar">
+  <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
+  <span class="stage-badge">ま行 しゅうりょうテスト</span>
+</div>
+
+<main>
+  <div class="panel" id="intro">
+    <span class="eyebrow">ま行 しゅうりょうテスト</span>
+    <h1><ruby>隕石<rt>いんせき</rt></ruby>タイピング　ま行 しゅうりょうテスト</h1>
+    <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」の修了テスト。ぜんぶで30問、クリアしたら「やゆよ」にすすめるよ。</p>
+    <ol class="rule-list">
+      <li><span class="rule-num">1</span>単音10問と、ことば20問。あわせて30問。</li>
+      <li><span class="rule-num">2</span>文字が書かれた隕石が、上から落ちてくる。</li>
+      <li><span class="rule-num">3</span>ローマ字で正しく打つと、隕石はこなごなに砕ける。</li>
+      <li><span class="rule-num">4</span>隕石が下の基地にとどいてしまったら、ゲームオーバー。</li>
+      <li><span class="rule-num">5</span>隕石のスピードは、だんだん速くなっていくよ。</li>
+    </ol>
+    <p class="ime-note" style="text-align:left;">　はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。</p>
+    <p class="ime-note" style="text-align:left;">　※「ち」だけは、「TI」のほかに「CHI」と打ってもOK。</p>
+    <p class="ime-note" style="text-align:left;">　※「ふ」だけは、「HU」のほかに「FU」と打ってもOK。</p>
+    <button class="btn" id="startBtn">テストをはじめる →</button>
+    <div class="key-hint">クリック、またはスペースキー／Enterキーではじめる</div>
+  </div>
+
+  <div class="panel" id="game">
+    <div class="progress-line">
+      <span class="mono" id="progressText">もんだい 0 / 30</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div class="canvas-wrap"><canvas id="gameCanvas" width="640" height="420"></canvas></div>
+    <div class="roma-hint" id="romaHint">&nbsp;</div>
+    <div class="word-meaning-hint" id="wordMeaningHint">&nbsp;</div>
+    <div class="miss-note" id="missNote">&nbsp;</div>
+  </div>
+
+  <div class="panel" id="result">
+    <div class="stamp" id="stamp">合格</div>
+    <h1 id="resultTitle">しゅうりょう合格！</h1>
+    <p class="result-msg" id="resultMsg">30問ぜんぶクリア！つぎは白帯「ホームポジションの間」にチャレンジしよう。</p>
+    <div class="stat-row" id="statRow">
+      <div class="stat-box"><span class="mono">かかった時間</span><span class="stat-val" id="statTime">0<span style="font-size:0.6em;font-weight:400;"> 秒</span></span></div>
+      <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
+    </div>
+    <div class="result-actions">
+      <a class="btn" id="nextStageLink" style="display:none" href="ya-row-practice.html">やゆよへすすむ →</a>
+      <button class="btn btn-quiet" id="retryBtn">もう一度ちょうせんする</button>
+      <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
+    </div>
+    <div class="key-hint">←→キーで選択、スペース／Enterキーで決定</div>
+  </div>
+</main>
+
+<footer><p>吉岡小タイピング道場</p></footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- vocabulary: あ行・か行・さ行・た行・な行・は行・ま行, the material トレーニング1〜7 covered ----
+  var byMoraCodes = {
+    'あ':['KeyA'], 'い':['KeyI'], 'う':['KeyU'], 'え':['KeyE'], 'お':['KeyO'],
+    'か':['KeyK','KeyA'], 'き':['KeyK','KeyI'], 'く':['KeyK','KeyU'], 'け':['KeyK','KeyE'], 'こ':['KeyK','KeyO'],
+    'さ':['KeyS','KeyA'], 'し':['KeyS','KeyI'], 'す':['KeyS','KeyU'], 'せ':['KeyS','KeyE'], 'そ':['KeyS','KeyO'],
+    'た':['KeyT','KeyA'], 'ち':['KeyT','KeyI'], 'つ':['KeyT','KeyU'], 'て':['KeyT','KeyE'], 'と':['KeyT','KeyO'],
+    'な':['KeyN','KeyA'], 'に':['KeyN','KeyI'], 'ぬ':['KeyN','KeyU'], 'ね':['KeyN','KeyE'], 'の':['KeyN','KeyO'],
+    'は':['KeyH','KeyA'], 'ひ':['KeyH','KeyI'], 'ふ':['KeyH','KeyU'], 'へ':['KeyH','KeyE'], 'ほ':['KeyH','KeyO'],
+    'ま':['KeyM','KeyA'], 'み':['KeyM','KeyI'], 'む':['KeyM','KeyU'], 'め':['KeyM','KeyE'], 'も':['KeyM','KeyO']
+  };
+  var byCode = {
+    KeyA:{roma:'a'}, KeyI:{roma:'i'}, KeyU:{roma:'u'}, KeyE:{roma:'e'}, KeyO:{roma:'o'},
+    KeyK:{roma:'k'}, KeyS:{roma:'s'}, KeyT:{roma:'t'}, KeyN:{roma:'n'}, KeyH:{roma:'h'}, KeyM:{roma:'m'},
+    KeyC:{roma:'c'}, KeyF:{roma:'f'}
+  };
+  // 「ち」だけ、教える「TI」に加えて実際のIMEでもおなじみの「CHI」も受け付ける。
+  var CHI_ALT_CODES = ['KeyC', 'KeyH', 'KeyI'];
+  // 「ふ」だけ、教える「HU」に加えて実際のIMEでもおなじみの「FU」も受け付ける。
+  var FU_ALT_CODES = ['KeyF', 'KeyU'];
+  var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も'];
+  var WORDS = [
+    {kana:'あたま', meaning:'頭'},
+    {kana:'なまえ', meaning:'名前'},
+    {kana:'しま', meaning:'島'},
+    {kana:'まち', meaning:'町'},
+    {kana:'まつ', meaning:'待つ'},
+    {kana:'さむい', meaning:'寒い'},
+    {kana:'たたみ', meaning:'畳'},
+    {kana:'かみ', meaning:'紙'},
+    {kana:'すみ', meaning:'隅'},
+    {kana:'なみ', meaning:'波'},
+    {kana:'あまい', meaning:'甘い'},
+    {kana:'たのしみ', meaning:'楽しみ'},
+    {kana:'みなと', meaning:'港'},
+    {kana:'きもの', meaning:'着物'},
+    {kana:'すもう', meaning:'相撲'},
+    {kana:'いもうと', meaning:'妹'},
+    {kana:'まいにち', meaning:'毎日'},
+    {kana:'まめ', meaning:'豆'},
+    {kana:'あめ', meaning:'雨'},
+    {kana:'うみ', meaning:'海'}
+  ];
+
+  function shuffle(arr){
+    var pool = arr.slice();
+    for (var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i+1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    return pool;
+  }
+
+  function makeTarget(chars, meaning){
+    var codeLens = chars.map(function(c){ return byMoraCodes[c].length; });
+    var codes = [];
+    chars.forEach(function(c){ codes = codes.concat(byMoraCodes[c]); });
+    return {chars:chars, label:chars.join(''), meaning:meaning, codes:codes, codeLens:codeLens};
+  }
+
+  function buildSequence(){
+    var chars = shuffle(CHAR_POOL).slice(0, 10);
+    var words = shuffle(WORDS);
+    var seq = [];
+    chars.forEach(function(c){ seq.push(makeTarget([c], null)); });
+    words.forEach(function(w){ seq.push(makeTarget(w.kana.split(''), w.meaning)); });
+    return seq;
+  }
+
+  // ---- DOM ----
+  var intro = document.getElementById('intro');
+  var game = document.getElementById('game');
+  var result = document.getElementById('result');
+  var progressText = document.getElementById('progressText');
+  var progressFill = document.getElementById('progressFill');
+  var romaHint = document.getElementById('romaHint');
+  var wordMeaningHint = document.getElementById('wordMeaningHint');
+  var missNote = document.getElementById('missNote');
+  var canvas = document.getElementById('gameCanvas');
+  var ctx = canvas.getContext('2d');
+
+  var CW = canvas.width, CH = canvas.height;
+  var GROUND_Y = CH - 50;
+  var SPAWN_Y = -50;
+  var FALL_DIST = GROUND_Y - SPAWN_Y;
+
+  // duration (seconds) for one meteor's fall: an overall trend toward
+  // faster falls as the test progresses, PLUS random per-meteor variation
+  // so the pacing isn't perfectly predictable
+  var BASE_DURATION = 7.6;
+  var MIN_TREND_MULT = 0.42;
+  var MIN_DURATION = 2.4;
+
+  function durationForIndex(idx, total){
+    var t = total > 1 ? idx / (total - 1) : 0;
+    var trend = 1 - t * (1 - MIN_TREND_MULT);
+    var jitter = 0.78 + Math.random() * 0.5; // 0.78x – 1.28x
+    return Math.max(BASE_DURATION * trend * jitter, MIN_DURATION);
+  }
+  function speedForIndex(idx, total){
+    return FALL_DIST / durationForIndex(idx, total);
+  }
+
+  // ---- canvas DPI scaling ----
+  function fitCanvas(){
+    var ratio = window.devicePixelRatio || 1;
+    canvas.width = CW * ratio;
+    canvas.height = CH * ratio;
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  }
+  fitCanvas();
+
+  // ---- background: stars + drifting decorative meteors ----
+  var stars = [];
+  for (var si = 0; si < 46; si++){
+    stars.push({x:Math.random()*CW, y:Math.random()*CH, r:Math.random()*1.4+0.4, phase:Math.random()*Math.PI*2, speed:Math.random()*1.4+0.6});
+  }
+  function makeBgMeteor(){
+    return {x:Math.random()*CW, y:-20-Math.random()*200, r:6+Math.random()*7, speed:14+Math.random()*10};
+  }
+  var bgMeteors = [makeBgMeteor(), makeBgMeteor(), makeBgMeteor()];
+
+  // ---- state ----
+  var STATE_IDLE = 0, STATE_PLAYING = 1, STATE_TRANSITION = 2, STATE_GAMEOVER_ANIM = 3, STATE_DONE = 4;
+  var state = STATE_IDLE;
+  var sequence, targetIdx, codeIndex, meteor, particles = [], bursts = [], transitionTimer, pendingWin;
+  var missTotal, missedTargets, targetHadMiss, startTime, elapsedAtEnd;
+  var shakeTime = 0, flashTime = 0;
+  var audioCtx = null;
+  var rafId = null, lastT = null;
+
+  function beep(freq, dur, type){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = 0.09;
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.stop(audioCtx.currentTime + dur);
+    }catch(e){}
+  }
+  function boomSound(){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.5);
+      gain.gain.value = 0.14;
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.55);
+      osc.stop(audioCtx.currentTime + 0.55);
+    }catch(e){}
+  }
+  function fanfare(){
+    beep(880, 0.14);
+    setTimeout(function(){ beep(1100, 0.14); }, 140);
+    setTimeout(function(){ beep(1320, 0.22); }, 280);
+  }
+  function crackSound(){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(1500, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(420, audioCtx.currentTime + 0.13);
+      gain.gain.value = 0.12;
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+      osc.stop(audioCtx.currentTime + 0.15);
+    }catch(e){}
+  }
+
+  function updateProgress(){
+    progressText.textContent = 'もんだい ' + targetIdx + ' / ' + sequence.length;
+    progressFill.style.width = Math.round(targetIdx/sequence.length*100) + '%';
+  }
+
+  // Finds which character codeIndex currently falls inside, plus the offset
+  // within that character's own code span (0 = its very first key).
+  function charBoundaryInfo(target, ci){
+    var consumed = 0;
+    for (var i = 0; i < target.chars.length; i++){
+      var len = target.codeLens[i];
+      if (ci < consumed + len) return {charIndex: i, offset: ci - consumed};
+      consumed += len;
+    }
+    return null;
+  }
+
+  function renderRomaHint(){
+    var target = sequence[targetIdx];
+    if (!target){ romaHint.innerHTML = '&nbsp;'; wordMeaningHint.innerHTML = '&nbsp;'; return; }
+    var html = '';
+    var consumed = 0;
+    target.chars.forEach(function(c, i){
+      var len = target.codeLens[i];
+      var r = target.codes.slice(consumed, consumed + len).map(function(code){ return byCode[code].roma; }).join('');
+      if (codeIndex >= consumed + len){
+        html += '<span class="roma-done">' + r + '</span>';
+      } else if (codeIndex > consumed){
+        var doneLen = codeIndex - consumed;
+        html += '<span class="roma-done">' + r.slice(0, doneLen) + '</span>' + r.slice(doneLen);
+      } else {
+        html += r;
+      }
+      consumed += len;
+    });
+    romaHint.innerHTML = html;
+    wordMeaningHint.textContent = target.meaning ? ('（' + target.meaning + '）') : ' ';
+  }
+
+  // ---- meteor lifecycle ----
+  function spawnMeteor(){
+    var target = sequence[targetIdx];
+    codeIndex = 0;
+    targetHadMiss = false;
+    ctx.font = "bold 34px 'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif";
+    var textW = ctx.measureText(target.label).width;
+    var rx = Math.max(34, textW/2 + 16);
+    var ry = Math.max(30, rx * 0.8);
+    var margin = rx + 8;
+    meteor = {
+      x: margin + Math.random() * Math.max(1, (CW - margin*2)),
+      y: SPAWN_Y,
+      rx: rx, ry: ry,
+      label: target.label,
+      speed: speedForIndex(targetIdx, sequence.length),
+      wrongFlash: 0,
+      speckles: [
+        {a:Math.random()*Math.PI*2, d:0.4+Math.random()*0.3, r:rx*0.16},
+        {a:Math.random()*Math.PI*2, d:0.3+Math.random()*0.4, r:rx*0.12},
+        {a:Math.random()*Math.PI*2, d:0.5+Math.random()*0.3, r:rx*0.14}
+      ]
+    };
+    updateProgress();
+    renderRomaHint();
+    missNote.innerHTML = '&nbsp;';
+    state = STATE_PLAYING;
+  }
+
+  function shatterMeteor(){
+    if (!meteor) return;
+    var mx = meteor.x, my = meteor.y;
+    var baseR = Math.max(meteor.rx, meteor.ry);
+    crackSound();
+    shakeTime = Math.max(shakeTime, 0.18);
+    bursts.push({x:mx, y:my, maxR: baseR*2.6, life:0.32, maxLife:0.32, style:'ring', color:'#FFD27A'});
+    bursts.push({x:mx, y:my, maxR: baseR*0.85, life:0.14, maxLife:0.14, style:'flash', color:'#FFF6DC'});
+    for (var i = 0; i < 34; i++){
+      var ang = Math.random() * Math.PI * 2;
+      var spark = Math.random() < 0.4;
+      var spd = spark ? (150 + Math.random() * 260) : (60 + Math.random() * 220);
+      particles.push({
+        x: mx, y: my,
+        vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd - 60,
+        life: spark ? (0.22 + Math.random() * 0.16) : (0.5 + Math.random() * 0.4),
+        maxLife: spark ? (0.22 + Math.random() * 0.16) : (0.5 + Math.random() * 0.4),
+        size: spark ? (1.3 + Math.random() * 1.7) : (2.8 + Math.random() * 4.8),
+        color: spark ? '#FFE7A8' : (Math.random() < 0.5 ? '#C9695A' : '#DED0B4')
+      });
+    }
+    meteor = null;
+  }
+
+  function solveTarget(){
+    beep(1120, 0.14);
+    shatterMeteor();
+    targetIdx++;
+    state = STATE_TRANSITION;
+    if (targetIdx >= sequence.length){
+      pendingWin = true;
+      transitionTimer = 0.6;
+    } else {
+      pendingWin = false;
+      transitionTimer = 0.48;
+    }
+    updateProgress();
+    romaHint.innerHTML = '&nbsp;';
+    wordMeaningHint.innerHTML = '&nbsp;';
+  }
+
+  function handleAttempt(code){
+    if (state !== STATE_PLAYING || !meteor) return;
+    var target = sequence[targetIdx];
+    var expected = target.codes[codeIndex];
+    var matched = (code === expected);
+    var info = null;
+    if (!matched){
+      // 「ち」「ふ」の最初の1打だけ、教える形に加えてもう一方の入力（CHI／FU）も認める。
+      // 認めたらその場で target.codes をその打鍵ぶんに差し替える。
+      info = charBoundaryInfo(target, codeIndex);
+      if (info && info.offset === 0 && target.chars[info.charIndex] === 'ち' && code === 'KeyC'){
+        target.codes.splice.apply(target.codes, [codeIndex, 2].concat(CHI_ALT_CODES));
+        target.codeLens[info.charIndex] = 3;
+        matched = true;
+      } else if (info && info.offset === 0 && target.chars[info.charIndex] === 'ふ' && code === 'KeyF'){
+        target.codes.splice.apply(target.codes, [codeIndex, 2].concat(FU_ALT_CODES));
+        matched = true;
+      }
+    }
+    if (matched){
+      beep(880, 0.08);
+      codeIndex++;
+      renderRomaHint();
+      if (codeIndex >= target.codes.length){
+        solveTarget();
+      }
+    } else {
+      missTotal++;
+      if (!targetHadMiss){ missedTargets++; targetHadMiss = true; }
+      beep(180, 0.12);
+      meteor.wrongFlash = 0.18;
+      if (info && info.offset === 0 && target.chars[info.charIndex] === 'ち'){
+        missNote.textContent = 'おしい！「ち」は「T」か「C」から始まるよ';
+      } else if (info && info.offset === 0 && target.chars[info.charIndex] === 'ふ'){
+        missNote.textContent = 'おしい！「ふ」は「H」か「F」から始まるよ';
+      } else {
+        var wrongInfo = byCode[expected];
+        missNote.textContent = 'おしい！つぎは「' + wrongInfo.roma.toUpperCase() + '」だよ';
+      }
+    }
+  }
+
+  function triggerGameOver(){
+    state = STATE_GAMEOVER_ANIM;
+    boomSound();
+    shakeTime = 0.5;
+    flashTime = 0.35;
+    for (var i = 0; i < 22; i++){
+      var ang = Math.random() * Math.PI * 2;
+      var spd = 30 + Math.random() * 150;
+      particles.push({
+        x: meteor ? meteor.x : CW/2, y: meteor ? meteor.y : GROUND_Y,
+        vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd - 40,
+        life: 0.6 + Math.random() * 0.4, maxLife: 0.6 + Math.random() * 0.4,
+        size: 2 + Math.random() * 4,
+        color: Math.random() < 0.5 ? '#BE3A34' : '#C9695A'
+      });
+    }
+    meteor = null;
+    setTimeout(function(){ finish(false); }, 750);
+  }
+
+  // ---- main loop ----
+  function update(dt){
+    stars.forEach(function(s){ s.phase += dt * s.speed; });
+    bgMeteors.forEach(function(m){
+      m.y += m.speed * dt;
+      if (m.y - m.r > CH){ var nm = makeBgMeteor(); m.x = nm.x; m.y = nm.y; m.r = nm.r; m.speed = nm.speed; }
+    });
+
+    if (state === STATE_PLAYING && meteor){
+      meteor.y += meteor.speed * dt;
+      if (meteor.wrongFlash > 0) meteor.wrongFlash = Math.max(0, meteor.wrongFlash - dt);
+      if (meteor.y + meteor.ry >= GROUND_Y){
+        triggerGameOver();
+      }
+    } else if (state === STATE_TRANSITION){
+      transitionTimer -= dt;
+      if (transitionTimer <= 0){
+        if (pendingWin){ finish(true); }
+        else { spawnMeteor(); }
+      }
+    }
+
+    if (shakeTime > 0) shakeTime = Math.max(0, shakeTime - dt);
+    if (flashTime > 0) flashTime = Math.max(0, flashTime - dt);
+
+    for (var i = particles.length - 1; i >= 0; i--){
+      var p = particles[i];
+      p.life -= dt;
+      if (p.life <= 0){ particles.splice(i, 1); continue; }
+      p.x += p.vx * dt; p.y += p.vy * dt;
+      p.vy += 220 * dt;
+    }
+    for (var bi = bursts.length - 1; bi >= 0; bi--){
+      bursts[bi].life -= dt;
+      if (bursts[bi].life <= 0) bursts.splice(bi, 1);
+    }
+  }
+
+  // player's ship: an angular starfighter (swept wings, gold trim, twin
+  // thrusters)
+  function drawBase(cracked){
+    var bx = CW/2, by = GROUND_Y + 4;
+    ctx.save();
+    ctx.translate(bx, by);
+
+    var bodyColor = cracked ? '#4A423A' : '#7C8A99';
+    var outlineColor = cracked ? '#241E18' : '#1C2530';
+    var accentColor = cracked ? '#5A4030' : '#DDB13B';
+    var windowColor = cracked ? '#4A3F36' : '#DDB13B';
+    var windowShine = cracked ? '#5A4F46' : '#FFF3D0';
+
+    if (!cracked){
+      var flicker = 0.7 + Math.sin(Date.now() / 80) * 0.3;
+      [-10, 10].forEach(function(ex){
+        var glowGrad = ctx.createRadialGradient(ex, 4, 1, ex, 4, 10);
+        glowGrad.addColorStop(0, 'rgba(255,224,150,' + (0.85 * flicker).toFixed(2) + ')');
+        glowGrad.addColorStop(1, 'rgba(221,177,59,0)');
+        ctx.fillStyle = glowGrad;
+        ctx.beginPath();
+        ctx.arc(ex, 4, 10, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    ctx.fillStyle = bodyColor;
+    ctx.strokeStyle = outlineColor;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(5, -30); ctx.lineTo(30, -2); ctx.lineTo(24, 6); ctx.lineTo(8, -8); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-5, -30); ctx.lineTo(-30, -2); ctx.lineTo(-24, 6); ctx.lineTo(-8, -8); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+
+    ctx.strokeStyle = accentColor;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(20, -1); ctx.lineTo(28, -1); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-20, -1); ctx.lineTo(-28, -1); ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(0, -70);
+    ctx.lineTo(9, -30);
+    ctx.lineTo(9, 4);
+    ctx.lineTo(-9, 4);
+    ctx.lineTo(-9, -30);
+    ctx.closePath();
+    ctx.fillStyle = bodyColor;
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = outlineColor;
+    ctx.stroke();
+
+    ctx.strokeStyle = accentColor;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(0, -70); ctx.lineTo(0, -32);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(0, -42, 6, 0, Math.PI * 2);
+    ctx.fillStyle = windowColor;
+    ctx.fill();
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = outlineColor;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(-2, -44.4, 1.8, 0, Math.PI * 2);
+    ctx.fillStyle = windowShine;
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function render(){
+    ctx.save();
+    if (shakeTime > 0){
+      ctx.translate((Math.random()-0.5) * 10 * (shakeTime/0.5), (Math.random()-0.5) * 10 * (shakeTime/0.5));
+    }
+    var grad = ctx.createLinearGradient(0, 0, 0, CH);
+    grad.addColorStop(0, '#0b1330');
+    grad.addColorStop(1, '#1c1042');
+    ctx.fillStyle = grad;
+    ctx.fillRect(-20, -20, CW+40, CH+40);
+
+    stars.forEach(function(s){
+      var alpha = 0.4 + 0.6 * Math.abs(Math.sin(s.phase));
+      ctx.fillStyle = 'rgba(255,255,255,' + alpha.toFixed(2) + ')';
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+
+    bgMeteors.forEach(function(m){
+      ctx.fillStyle = 'rgba(140,110,90,0.55)';
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+
+    drawBase(state === STATE_GAMEOVER_ANIM || state === STATE_DONE && !meteor && missedTargetsFailed);
+
+    if (meteor){
+      ctx.save();
+      ctx.translate(meteor.x, meteor.y);
+      var fillColor = meteor.wrongFlash > 0 ? '#E2564E' : '#8B5A2B';
+      ctx.fillStyle = fillColor;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, meteor.rx, meteor.ry, 0, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(0,0,0,0.22)';
+      meteor.speckles.forEach(function(sp){
+        ctx.beginPath();
+        ctx.arc(Math.cos(sp.a)*meteor.rx*sp.d, Math.sin(sp.a)*meteor.ry*sp.d, sp.r, 0, Math.PI*2);
+        ctx.fill();
+      });
+      ctx.font = "bold 34px 'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif";
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = 'rgba(30,18,10,0.85)';
+      ctx.strokeText(meteor.label, 0, 2);
+      ctx.fillStyle = '#FBF7EF';
+      ctx.fillText(meteor.label, 0, 2);
+      ctx.restore();
+    }
+
+    bursts.forEach(function(b){
+      var t = 1 - Math.max(0, Math.min(1, b.life / b.maxLife));
+      if (b.style === 'flash'){
+        ctx.globalAlpha = Math.max(0, (1 - t) * 0.9);
+        ctx.fillStyle = b.color;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.maxR, 0, Math.PI*2);
+        ctx.fill();
+      } else {
+        ctx.globalAlpha = Math.max(0, (1 - t) * 0.85);
+        ctx.strokeStyle = b.color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.maxR * t, 0, Math.PI*2);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    });
+
+    particles.forEach(function(p){
+      var a = Math.max(0, p.life / p.maxLife);
+      ctx.globalAlpha = a;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    if (flashTime > 0){
+      ctx.fillStyle = 'rgba(226,86,78,' + (flashTime/0.35*0.45).toFixed(2) + ')';
+      ctx.fillRect(-20, -20, CW+40, CH+40);
+    }
+    ctx.restore();
+  }
+
+  var missedTargetsFailed = false;
+
+  function loop(t){
+    if (lastT === null) lastT = t;
+    var dt = Math.min((t - lastT) / 1000, 0.05);
+    lastT = t;
+    update(dt);
+    render();
+    if (state !== STATE_DONE){
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+    } else if (state !== STATE_DONE && game.style.display === 'block' && !rafId){
+      lastT = null;
+      rafId = requestAnimationFrame(loop);
+    }
+  });
+
+  function getVisibleResultBtns(){
+    return Array.prototype.slice.call(document.querySelectorAll('.result-actions .btn')).filter(function(el){
+      return el.offsetParent !== null;
+    });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (state === STATE_IDLE){
+      if (intro.style.display !== 'none' && (e.key === ' ' || e.key === 'Enter')){
+        e.preventDefault();
+        document.getElementById('startBtn').click();
+        return;
+      }
+      if (result.style.display !== 'none'){
+        var btns = getVisibleResultBtns();
+        if (btns.length === 0) return;
+        var idxBtn = btns.indexOf(document.activeElement);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+          e.preventDefault();
+          btns[idxBtn === -1 ? 0 : (idxBtn + 1) % btns.length].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+          e.preventDefault();
+          btns[idxBtn === -1 ? btns.length - 1 : (idxBtn - 1 + btns.length) % btns.length].focus();
+        } else if ((e.key === ' ' || e.key === 'Enter') && idxBtn !== -1){
+          e.preventDefault();
+          btns[idxBtn].click();
+        }
+      }
+      return;
+    }
+    if (state !== STATE_PLAYING) return;
+    if (byCode[e.code]){
+      e.preventDefault();
+      handleAttempt(e.code);
+    }
+  });
+
+  function startTest(){
+    sequence = buildSequence();
+    targetIdx = 0; particles = []; bursts = [];
+    missTotal = 0; missedTargets = 0; targetHadMiss = false;
+    missedTargetsFailed = false;
+    shakeTime = 0; flashTime = 0;
+    startTime = performance.now();
+    intro.style.display = 'none';
+    result.style.display = 'none';
+    game.style.display = 'block';
+    lastT = null;
+    spawnMeteor();
+    if (!rafId) rafId = requestAnimationFrame(loop);
+  }
+
+  function finish(win){
+    state = STATE_DONE;
+    if (rafId){ cancelAnimationFrame(rafId); rafId = null; }
+    game.style.display = 'none';
+    result.style.display = 'block';
+    elapsedAtEnd = Math.round((performance.now() - startTime) / 1000);
+    var attemptsForAcc = Math.max(sequence ? Math.min(targetIdx, sequence.length) : 0, 1) + missTotal;
+    var accuracy = Math.round(Math.max(targetIdx, 1) / Math.max(attemptsForAcc, 1) * 100);
+    document.getElementById('statTime').innerHTML = elapsedAtEnd + '<span style="font-size:0.6em;font-weight:400;"> 秒</span>';
+    document.getElementById('statAccuracy').innerHTML = accuracy + '<span style="font-size:0.6em;font-weight:400;">%</span>';
+    var stamp = document.getElementById('stamp');
+    var title = document.getElementById('resultTitle');
+    var msg = document.getElementById('resultMsg');
+    var nextLink = document.getElementById('nextStageLink');
+    var statRow = document.getElementById('statRow');
+    if (win){
+      fanfare();
+      stamp.className = 'stamp'; stamp.textContent = '合格';
+      title.textContent = 'しゅうりょう合格！';
+      msg.textContent = '30問ぜんぶクリア！あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも、しっかり身についたね。つぎは「やゆよ」の練習にチャレンジしよう。';
+      nextLink.style.display = 'inline-flex';
+      statRow.style.display = 'flex';
+    } else {
+      missedTargetsFailed = true;
+      stamp.className = 'stamp fail'; stamp.textContent = 'もう一歩';
+      title.textContent = '隕石が とどいてしまった…';
+      msg.textContent = 'ここまで ' + targetIdx + ' / ' + (sequence ? sequence.length : 30) + ' 問クリア。あわてなくて大丈夫、もう一度チャレンジしてみよう。';
+      nextLink.style.display = 'none';
+      statRow.style.display = 'none';
+    }
+    var firstBtn = getVisibleResultBtns()[0];
+    if (firstBtn) firstBtn.focus();
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function(){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }catch(e){}
+    startTest();
+  });
+  document.getElementById('retryBtn').addEventListener('click', function(){
+    result.style.display = 'none';
+    startTest();
+  });
+
+  // idle render so the panel isn't blank before start
+  render();
+})();
+</script>

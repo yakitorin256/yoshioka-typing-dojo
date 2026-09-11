@@ -1,0 +1,653 @@
+<title>緑帯 型稽古</title>
+<meta name="description" content="吉岡小タイピング道場・緑帯（リズムの間）のタイピング練習アプリ。白帯のホームポジションと黄帯の運指を合わせ、最後はヒントなしのミックス稽古で仕上げる">
+<style>
+  :root{
+    --bg:#F7F2E8;
+    --bg-alt:#FBF7EF;
+    --card:#FFFDF9;
+    --ink:#29251F;
+    --ink-soft:#6E6355;
+    --accent:#BE3A34;
+    --accent-dark:#9C2C27;
+    --accent-ink:#FFFDF9;
+    --belt-yellow:#C99A1E;
+    --belt-green:#4C8B5D;
+    --belt-blue:#3A6EA5;
+    --belt-brown:#8B5A2B;
+    --belt-black:#29251F;
+    --gold-fill:#C99A1E;
+    --line:#DED0B4;
+    --shadow:rgba(60,44,20,0.14);
+    --focus:#2B5FB0;
+    --good:#4C8B5D;
+    --bad:#BE3A34;
+    --phase-color:var(--accent);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+      --ink:#F2EBDB; --ink-soft:#B7A98E;
+      --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+      --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+      --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+      --good:#68AD7F; --bad:#E2564E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+    --ink:#F2EBDB; --ink-soft:#B7A98E;
+    --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+    --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+    --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+    --good:#68AD7F; --bad:#E2564E;
+  }
+
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0; min-height:100vh;
+    background:var(--bg); color:var(--ink);
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Meiryo',serif;
+    font-weight:700; text-wrap:balance; margin:0;
+  }
+  ruby{ruby-align:center;}
+  rt{font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif; font-weight:500; font-size:0.5em; opacity:0.85;}
+  .mono{font-family:Consolas,'SF Mono',Menlo,monospace; font-variant-numeric:tabular-nums;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:4px;}
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:820px; margin:0 auto; padding:22px 24px 0;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.9rem; color:var(--ink-soft); text-decoration:none;
+    border-bottom:1px dashed var(--ink-soft); padding-bottom:2px;
+  }
+  .back-link:hover{color:var(--belt-green); border-color:var(--belt-green);}
+  .stage-badge{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.04em;
+    color:var(--belt-green); border:1px solid var(--belt-green);
+    border-radius:999px; padding:5px 14px;
+  }
+
+  main{max-width:820px; margin:0 auto; padding:28px 24px 60px;}
+
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:40px 36px; box-shadow:0 10px 28px var(--shadow);
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.8rem; font-weight:700; letter-spacing:0.1em;
+    color:var(--phase-color);
+    background:color-mix(in srgb, var(--phase-color) 16%, transparent);
+    border:1px solid var(--phase-color);
+    padding:5px 14px; border-radius:2px; margin-bottom:18px;
+    transition:color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .panel h1{font-size:1.6rem; margin-bottom:14px;}
+  .panel > p.lead{color:var(--ink-soft); font-size:1rem; max-width:50ch; margin:0 auto 8px;}
+  .panel > p.lead-indent{text-align:left;}
+  .ime-note{
+    margin:20px auto 0; max-width:48ch; font-size:0.85rem; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:8px; padding:10px 16px;
+  }
+
+  .itinerary{list-style:none; margin:26px auto 0; padding:0; max-width:440px; text-align:left; display:grid; gap:12px;}
+  .itinerary li{display:flex; gap:14px; align-items:flex-start; font-size:0.92rem;}
+  .itinerary .num{
+    flex-shrink:0; width:26px; height:26px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:0.8rem;
+    color:var(--card); margin-top:1px;
+  }
+  .itinerary b{display:block;}
+  .itinerary span.sub{color:var(--ink-soft); font-size:0.86rem;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+    padding:13px 28px; border-radius:6px; border:1px solid transparent;
+    font-weight:700; font-size:1rem; cursor:pointer;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif;
+    background:var(--phase-color); color:var(--accent-ink);
+    box-shadow:0 4px 0 color-mix(in srgb, var(--phase-color) 70%, black);
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.3s ease;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 6px 0 color-mix(in srgb, var(--phase-color) 70%, black);}
+  .btn:active{transform:translateY(1px); box-shadow:0 2px 0 color-mix(in srgb, var(--phase-color) 70%, black);}
+  .btn-quiet{
+    background:transparent; color:var(--ink-soft); box-shadow:none;
+    border:1px solid var(--line); font-family:'Yu Gothic',sans-serif; font-weight:700;
+  }
+  .btn-quiet:hover{border-color:var(--belt-green); color:var(--belt-green); transform:none; box-shadow:none;}
+  .key-hint{margin-top:10px; font-size:0.76rem; color:var(--ink-soft); text-align:center;}
+
+  /* ---- legend ---- */
+  .legend{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:22px 0 6px; font-size:0.78rem; color:var(--ink-soft);}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .dot{width:11px; height:11px; border-radius:50%; display:inline-block;}
+
+  /* ---- keyboard ---- */
+  .kb-wrap{overflow-x:auto; margin:24px 0 6px; padding:4px;}
+  .kb{display:grid; gap:8px; min-width:max-content; margin:0 auto;}
+  .kb-row{display:flex; gap:8px; justify-content:center;}
+  .key{
+    width:42px; height:42px; border-radius:9px; flex-shrink:0;
+    background:var(--card); border:2.4px solid var(--zone, var(--line));
+    display:flex; align-items:center; justify-content:center; position:relative;
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:0.98rem;
+    color:var(--ink); cursor:pointer; transition:transform 0.12s ease, box-shadow 0.12s ease, opacity 0.2s ease;
+  }
+  .key .bump{position:absolute; bottom:5px; left:50%; transform:translateX(-50%); width:9px; height:3px; border-radius:2px; background:var(--zone);}
+  .key.dim{opacity:0.4;}
+  .key.target{box-shadow:0 0 0 4px color-mix(in srgb, var(--zone) 35%, transparent), 0 6px 14px var(--shadow); transform:translateY(-3px); opacity:1;}
+  .key.anchor-done{background:color-mix(in srgb, var(--good) 18%, var(--card)); opacity:1;}
+  .key.correct{background:color-mix(in srgb, var(--good) 25%, var(--card)); border-color:var(--good); opacity:1;}
+  .key.wrong{background:color-mix(in srgb, var(--bad) 25%, var(--card)); border-color:var(--bad); opacity:1;}
+
+  /* ---- practice ---- */
+  #practice, #interstitial, #result{display:none;}
+  .progress-line{display:flex; align-items:center; gap:14px; justify-content:center; margin-bottom:4px;}
+  .progress-line .mono{font-size:0.85rem; color:var(--ink-soft);}
+  .progress-track{width:180px; height:8px; border-radius:999px; background:var(--bg-alt); border:1px solid var(--line); overflow:hidden;}
+  .progress-fill{height:100%; background:var(--phase-color); border-radius:999px; transition:width 0.25s ease, background 0.3s ease;}
+  .phase-label{font-size:0.8rem; font-weight:700; color:var(--phase-color); letter-spacing:0.04em; margin-bottom:14px; transition:color 0.3s ease;}
+
+  .target-label{font-size:0.85rem; color:var(--ink-soft); letter-spacing:0.05em; margin-top:6px;}
+  .single-char{
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700;
+    font-size:4.6rem; line-height:1; margin:8px 0; color:var(--ink); min-height:1.1em;
+  }
+  .combo{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:3.4rem; line-height:1; margin:8px 0 0; min-height:1.1em;}
+  .combo .arrow{color:var(--ink-soft); font-size:0.55em; margin:0 10px; vertical-align:middle;}
+  .combo .dim{opacity:0.32;}
+  .dir-badge{display:inline-flex; align-items:center; gap:5px; margin-top:10px; font-size:0.78rem; font-weight:700; color:var(--ink-soft); border:1px solid var(--line); border-radius:999px; padding:3px 12px;}
+  .finger-hint{font-size:0.92rem; color:var(--ink-soft); margin-top:10px; min-height:1.4em;}
+  .finger-hint b{color:var(--ink);}
+  .miss-note{min-height:1.4em; font-size:0.85rem; color:var(--bad); margin-top:6px;}
+
+  .pulse-ring{
+    width:18px; height:18px; border-radius:50%; margin:4px auto 0;
+    background:var(--belt-green);
+    animation:pulse 1.1s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ transform:scale(0.7); opacity:0.5; }
+    50%{ transform:scale(1.15); opacity:1; }
+  }
+
+  /* ---- interstitial ---- */
+  .stamp-mini{
+    width:64px; height:64px; border-radius:50%; margin:4px auto 16px;
+    display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--phase-color); transform:rotate(-6deg);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:0.95rem; color:var(--phase-color);
+  }
+
+  /* ---- result ---- */
+  .stamp{
+    width:96px; height:96px; border-radius:50%; margin:6px auto 18px;
+    display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--good); transform:rotate(-6deg);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:1.6rem; color:var(--good);
+  }
+  .stamp.fail{border-color:var(--belt-brown); color:var(--belt-brown);}
+  .stat-row{display:flex; gap:16px; justify-content:center; margin:18px 0 6px; flex-wrap:wrap;}
+  .stat-box{border:1px solid var(--line); border-radius:8px; padding:14px 22px; background:var(--bg-alt); min-width:130px;}
+  .stat-box .mono{font-size:0.72rem; color:var(--ink-soft); display:block; letter-spacing:0.04em;}
+  .stat-box .stat-val{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:1.7rem; color:var(--ink);}
+  .result-msg{color:var(--ink-soft); margin-top:6px; max-width:46ch; margin-left:auto; margin-right:auto;}
+  .result-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{max-width:820px; margin:0 auto; padding:0 24px 40px; text-align:center;}
+  footer p{font-size:0.78rem; color:var(--ink-soft);}
+
+  @media (max-width:560px){
+    .panel{padding:30px 18px;}
+    .single-char{font-size:3.2rem;}
+    .combo{font-size:2.3rem;}
+    .key{width:32px; height:32px; font-size:0.8rem; border-radius:7px;}
+    .kb-row{gap:5px;} .kb{gap:5px;}
+  }
+</style>
+
+<div class="topbar">
+  <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
+  <span class="stage-badge">緑帯 — リズムの間</span>
+</div>
+
+<main>
+  <div class="panel" id="intro">
+    <span class="eyebrow">型稽古 3</span>
+    <h1>ふたつの型を、ひとつに</h1>
+    <p class="lead lead-indent">　白帯のホームポジションと、黄帯の運指を合わせて練習しよう。さいごはヒントなしのミックス稽古で、見ないで打つ感覚をつかむ。</p>
+
+    <ol class="itinerary">
+      <li><span class="num" style="background:var(--accent)">1</span><div><b>パート1 — はじめての型</b><span class="sub">白帯の復習。ホームポジションを打つ</span></div></li>
+      <li><span class="num" style="background:var(--gold-fill)">2</span><div><b>パート2 — 運指</b><span class="sub">黄帯の復習。上下の段へのばす</span></div></li>
+      <li><span class="num" style="background:var(--belt-green)">3</span><div><b>パート3 — ミックス稽古</b><span class="sub">ヒントなし。リズムよく、見ないで打つ</span></div></li>
+    </ol>
+
+    <div class="legend">
+      <span><span class="dot" style="background:var(--accent)"></span>小指</span>
+      <span><span class="dot" style="background:var(--gold-fill)"></span>くすり指</span>
+      <span><span class="dot" style="background:var(--belt-green)"></span>中指</span>
+      <span><span class="dot" style="background:var(--belt-blue)"></span>人差し指</span>
+      <span><span class="dot" style="background:var(--belt-brown)"></span>人差し指（のばす）</span>
+    </div>
+
+    <div class="kb-wrap"><div class="kb" id="kbIntro"></div></div>
+
+    <p class="ime-note">はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。</p>
+    <button class="btn" id="startBtn">型稽古をはじめる →</button>
+  </div>
+
+  <div class="panel" id="practice">
+    <div class="phase-label" id="phaseLabel">パート1/3 — はじめての型</div>
+    <div class="progress-line">
+      <span class="mono" id="progressText">0 / 12</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="target-label" id="targetLabel">つぎのキーを打とう</div>
+    <div class="single-char" id="singleChar" style="display:none"></div>
+    <div class="combo" id="comboDisplay" style="display:none"></div>
+    <div class="dir-badge" id="dirBadge" style="display:none"></div>
+    <div class="pulse-ring" id="pulseRing" style="display:none"></div>
+    <div class="finger-hint" id="fingerHint"></div>
+    <div class="miss-note" id="missNote">&nbsp;</div>
+
+    <div class="kb-wrap"><div class="kb" id="kbPractice"></div></div>
+  </div>
+
+  <div class="panel" id="interstitial">
+    <div class="stamp-mini" id="interStamp">OK</div>
+    <h1 id="interTitle">パート1 クリア！</h1>
+    <p class="lead" id="interMsg">つぎは運指の復習にすすもう。</p>
+    <button class="btn" id="nextPhaseBtn">つぎへ →</button>
+  </div>
+
+  <div class="panel" id="result">
+    <div class="stamp" id="stamp">合格</div>
+    <h1 id="resultTitle">緑帯 合格！</h1>
+    <p class="result-msg" id="resultMsg">ホームポジションと運指がひとつにつながった。つぎは青帯「記号の間」で、数字と記号にチャレンジしよう。</p>
+    <div class="stat-row">
+      <div class="stat-box"><span class="mono">速さ</span><span class="stat-val" id="statSpeed">0<span style="font-size:0.6em;font-weight:400;"> 文字/分</span></span></div>
+      <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
+    </div>
+    <div class="result-actions">
+      <a class="btn" id="nextStageLink" style="display:none" href="symbol-practice.html">青帯にチャレンジする →</a>
+      <button class="btn btn-quiet" id="retryBtn">もう一度練習する</button>
+      <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
+    </div>
+    <div class="key-hint">←→キーで選択、スペース／Enterキーで決定</div>
+  </div>
+</main>
+
+
+<script>
+(function(){
+  var HOME = [
+    {code:'KeyA', ch:'A', zone:'--accent', finger:'左手・小指'},
+    {code:'KeyS', ch:'S', zone:'--gold-fill', finger:'左手・くすり指'},
+    {code:'KeyD', ch:'D', zone:'--belt-green', finger:'左手・中指'},
+    {code:'KeyF', ch:'F', zone:'--belt-blue', finger:'左手・人差し指', bump:true},
+    {code:'KeyG', ch:'G', zone:'--belt-brown', finger:'左手・人差し指（のばす列）'},
+    {code:'KeyH', ch:'H', zone:'--belt-brown', finger:'右手・人差し指（のばす列）'},
+    {code:'KeyJ', ch:'J', zone:'--belt-blue', finger:'右手・人差し指', bump:true},
+    {code:'KeyK', ch:'K', zone:'--belt-green', finger:'右手・中指'},
+    {code:'KeyL', ch:'L', zone:'--gold-fill', finger:'右手・くすり指'},
+    {code:'Semicolon', ch:';', zone:'--accent', finger:'右手・小指'}
+  ];
+  var byCode = {};
+  HOME.forEach(function(k){ byCode[k.code] = k; });
+
+  var UPPER_ROW = [
+    ['KeyQ','Q','KeyA'], ['KeyW','W','KeyS'], ['KeyE','E','KeyD'], ['KeyR','R','KeyF'], ['KeyT','T','KeyG'],
+    ['KeyY','Y','KeyH'], ['KeyU','U','KeyJ'], ['KeyI','I','KeyK'], ['KeyO','O','KeyL'], ['KeyP','P','Semicolon']
+  ];
+  var LOWER_ROW = [
+    ['KeyZ','Z','KeyA'], ['KeyX','X','KeyS'], ['KeyC','C','KeyD'], ['KeyV','V','KeyF'], ['KeyB','B','KeyG'],
+    ['KeyN','N','KeyH'], ['KeyM','M','KeyJ']
+  ];
+  function makeReachKey(entry, dir){
+    var anchor = byCode[entry[2]];
+    return {code:entry[0], ch:entry[1], zone:anchor.zone, finger:anchor.finger, anchorCode:anchor.code, anchorCh:anchor.ch, dir:dir};
+  }
+  var REACH = UPPER_ROW.map(function(e){ return makeReachKey(e,'up'); })
+    .concat(LOWER_ROW.map(function(e){ return makeReachKey(e,'down'); }));
+  REACH.forEach(function(k){ byCode[k.code] = {code:k.code, ch:k.ch, zone:k.zone, finger:k.finger}; });
+
+  function buildKey(k, interactive){
+    var el = document.createElement('div');
+    el.className = 'key';
+    el.style.setProperty('--zone', 'var(' + k.zone + ')');
+    el.textContent = k.ch;
+    el.dataset.code = k.code;
+    if (k.bump){
+      var bump = document.createElement('span');
+      bump.className = 'bump';
+      el.appendChild(bump);
+    }
+    if (interactive){
+      el.tabIndex = 0;
+      el.setAttribute('role','button');
+      el.setAttribute('aria-label', k.ch);
+      el.addEventListener('click', function(){ handleAttempt(k.code); });
+      el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); handleAttempt(k.code); } });
+    }
+    return el;
+  }
+  function buildKeyboard(container, interactive){
+    var rowUpper = document.createElement('div'); rowUpper.className = 'kb-row';
+    UPPER_ROW.forEach(function(e){ rowUpper.appendChild(buildKey({code:e[0], ch:e[1], zone:byCode[e[2]] ? byCode[e[2]].zone : HOME.filter(function(h){return h.code===e[2];})[0].zone}, interactive)); });
+    var rowHome = document.createElement('div'); rowHome.className = 'kb-row';
+    HOME.forEach(function(k){ rowHome.appendChild(buildKey(k, interactive)); });
+    var rowLower = document.createElement('div'); rowLower.className = 'kb-row';
+    LOWER_ROW.forEach(function(e){ rowLower.appendChild(buildKey({code:e[0], ch:e[1], zone:byCode[e[2]] ? byCode[e[2]].zone : HOME.filter(function(h){return h.code===e[2];})[0].zone}, interactive)); });
+    container.appendChild(rowUpper);
+    container.appendChild(rowHome);
+    container.appendChild(rowLower);
+  }
+  buildKeyboard(document.getElementById('kbIntro'), false);
+  buildKeyboard(document.getElementById('kbPractice'), true);
+  var practiceKeyEls = {};
+  document.querySelectorAll('#kbPractice .key').forEach(function(el){ practiceKeyEls[el.dataset.code] = el; });
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i+1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+  function dedupeAdjacent(arr, keyFn){
+    for (var i=1; i<arr.length; i++){
+      if (keyFn(arr[i]) === keyFn(arr[i-1])){
+        var swapWith = (i+1) % arr.length;
+        var tmp = arr[i]; arr[i] = arr[swapWith]; arr[swapWith] = tmp;
+      }
+    }
+    return arr;
+  }
+
+  function asSingle(k){ return {type:'single', code:k.code, ch:k.ch, zone:k.zone, finger:k.finger}; }
+  function asCombo(k){ return {type:'combo', code:k.code, ch:k.ch, zone:k.zone, finger:k.finger, anchorCode:k.anchorCode, anchorCh:k.anchorCh, dir:k.dir}; }
+
+  function buildPart1(){
+    var pool = HOME.map(asSingle).concat([asSingle(byCode.KeyF), asSingle(byCode.KeyJ)]);
+    return dedupeAdjacent(shuffle(pool), function(x){ return x.code; });
+  }
+  function buildPart2(){
+    return shuffle(REACH.map(asCombo)).slice(0,10);
+  }
+  function buildPart3(){
+    var singles = shuffle(HOME.map(asSingle)).slice(0,8);
+    var combos = shuffle(REACH.map(asCombo)).slice(0,8);
+    return shuffle(singles.concat(combos));
+  }
+
+  var PHASES = [
+    {label:'パート1/3 — はじめての型', color:'--accent', showHints:true, rhythm:false, build:buildPart1, clearTitle:'パート1 クリア！', clearMsg:'ホームポジションはばっちり。つぎは運指の復習にすすもう。', nextLabel:'パート2へ →'},
+    {label:'パート2/3 — 運指', color:'--gold-fill', showHints:true, rhythm:false, build:buildPart2, clearTitle:'パート2 クリア！', clearMsg:'上下の段への運指もOK。さいごはヒントなしのミックス稽古。', nextLabel:'パート3へ →'},
+    {label:'パート3/3 — ミックス稽古', color:'--belt-green', showHints:false, rhythm:true, build:buildPart3, clearTitle:'', clearMsg:'', nextLabel:''}
+  ];
+
+  var intro = document.getElementById('intro');
+  var practice = document.getElementById('practice');
+  var interstitial = document.getElementById('interstitial');
+  var result = document.getElementById('result');
+  var phaseLabel = document.getElementById('phaseLabel');
+  var progressText = document.getElementById('progressText');
+  var progressFill = document.getElementById('progressFill');
+  var singleChar = document.getElementById('singleChar');
+  var comboDisplay = document.getElementById('comboDisplay');
+  var dirBadge = document.getElementById('dirBadge');
+  var pulseRing = document.getElementById('pulseRing');
+  var fingerHint = document.getElementById('fingerHint');
+  var missNote = document.getElementById('missNote');
+  var targetLabel = document.getElementById('targetLabel');
+
+  var phaseIdx, sequence, idx, subStep, itemHadMiss, phaseStartTime;
+  var overall = {items:0, missed:0, keystrokes:0, activeMs:0};
+  var audioCtx = null;
+
+  function beep(freq, dur){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = 0.08;
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.stop(audioCtx.currentTime + dur);
+    }catch(e){}
+  }
+
+  function setPhaseColor(varName){
+    document.body.style.setProperty('--phase-color', 'var(' + varName + ')');
+  }
+
+  function clearKeyStates(){
+    Object.keys(practiceKeyEls).forEach(function(code){
+      practiceKeyEls[code].classList.remove('target','correct','wrong','anchor-done','dim');
+    });
+  }
+
+  function showItem(){
+    clearKeyStates();
+    subStep = 0;
+    itemHadMiss = false;
+    missNote.innerHTML = '&nbsp;';
+    var phase = PHASES[phaseIdx];
+    var item = sequence[idx];
+
+    if (item.type === 'single'){
+      singleChar.style.display = 'block';
+      comboDisplay.style.display = 'none';
+      dirBadge.style.display = 'none';
+      singleChar.textContent = item.ch;
+      singleChar.style.color = 'var(' + item.zone + ')';
+      targetLabel.textContent = phase.showHints ? 'つぎのキーを打とう' : 'おぼえて打とう';
+      if (phase.showHints){
+        practiceKeyEls[item.code].classList.add('target');
+      } else {
+        Object.keys(practiceKeyEls).forEach(function(code){ practiceKeyEls[code].classList.add('dim'); });
+      }
+    } else {
+      singleChar.style.display = 'none';
+      comboDisplay.style.display = 'block';
+      dirBadge.style.display = 'inline-flex';
+      comboDisplay.innerHTML = '<span id="anchorCh">' + item.anchorCh + '</span><span class="arrow">→</span><span id="reachCh" class="dim">' + item.ch + '</span>';
+      comboDisplay.style.color = 'var(' + item.zone + ')';
+      dirBadge.textContent = (item.dir === 'up') ? '↑ うえの段へ' : '↓ したの段へ';
+      targetLabel.textContent = phase.showHints ? 'ホームポジションから、のばして打とう' : 'おぼえて打とう';
+      if (phase.showHints){
+        Object.keys(practiceKeyEls).forEach(function(code){
+          if (code !== item.anchorCode && code !== item.code) practiceKeyEls[code].classList.add('dim');
+        });
+        practiceKeyEls[item.anchorCode].classList.add('target');
+      } else {
+        Object.keys(practiceKeyEls).forEach(function(code){ practiceKeyEls[code].classList.add('dim'); });
+      }
+    }
+
+    fingerHint.innerHTML = phase.showHints ? ('<b>' + item.ch + '</b> → ' + item.finger) : '&nbsp;';
+    pulseRing.style.display = phase.rhythm ? 'block' : 'none';
+  }
+
+  function updateProgress(){
+    progressText.textContent = idx + ' / ' + sequence.length;
+    progressFill.style.width = Math.round(idx/sequence.length*100) + '%';
+  }
+
+  function startPhase(i){
+    phaseIdx = i;
+    var phase = PHASES[i];
+    sequence = phase.build();
+    idx = 0;
+    setPhaseColor(phase.color);
+    phaseLabel.textContent = phase.label;
+    interstitial.style.display = 'none';
+    result.style.display = 'none';
+    intro.style.display = 'none';
+    practice.style.display = 'block';
+    updateProgress();
+    showItem();
+    phaseStartTime = performance.now();
+  }
+
+  function handleAttempt(code){
+    if (practice.style.display !== 'block') return;
+    var phase = PHASES[phaseIdx];
+    var item = sequence[idx];
+    var expectedCode = (item.type === 'single') ? item.code : (subStep === 0 ? item.anchorCode : item.code);
+    var el = practiceKeyEls[code];
+
+    if (code === expectedCode){
+      if (el){ el.classList.remove('wrong','dim'); el.classList.add('correct'); }
+      overall.keystrokes++;
+
+      if (item.type === 'combo' && subStep === 0){
+        beep(660, 0.09);
+        subStep = 1;
+        var ac = document.getElementById('anchorCh'), rc = document.getElementById('reachCh');
+        if (ac) ac.classList.remove('dim');
+        if (rc) rc.classList.remove('dim');
+        if (phase.showHints){
+          practiceKeyEls[item.anchorCode].classList.remove('target');
+          practiceKeyEls[item.anchorCode].classList.add('anchor-done');
+          practiceKeyEls[item.code].classList.add('target');
+        }
+        return;
+      }
+
+      beep(880, 0.09);
+      overall.items++;
+      if (itemHadMiss) overall.missed++;
+      idx++;
+      updateProgress();
+      if (idx >= sequence.length){
+        setTimeout(finishPhase, 200);
+      } else {
+        setTimeout(showItem, 180);
+      }
+    } else {
+      itemHadMiss = true;
+      if (el){ el.classList.remove('correct'); el.classList.add('wrong'); setTimeout(function(){ el.classList.remove('wrong'); }, 260); }
+      beep(180, 0.12);
+      if (phase.showHints){
+        var expectedCh = (item.type === 'single') ? item.ch : (subStep === 0 ? item.anchorCh : item.ch);
+        missNote.textContent = 'おしい！「' + expectedCh + '」を' + item.finger + 'で打とう';
+      } else {
+        missNote.textContent = 'おしい！もう一度。';
+      }
+    }
+  }
+
+  function getVisibleResultBtns(){
+    return Array.prototype.slice.call(document.querySelectorAll('.result-actions .btn')).filter(function(el){
+      return el.offsetParent !== null;
+    });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (result.style.display !== 'none'){
+      var btns = getVisibleResultBtns();
+      if (btns.length === 0) return;
+      var idxBtn = btns.indexOf(document.activeElement);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+        e.preventDefault();
+        btns[idxBtn === -1 ? 0 : (idxBtn + 1) % btns.length].focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+        e.preventDefault();
+        btns[idxBtn === -1 ? btns.length - 1 : (idxBtn - 1 + btns.length) % btns.length].focus();
+      } else if ((e.key === ' ' || e.key === 'Enter') && idxBtn !== -1){
+        e.preventDefault();
+        btns[idxBtn].click();
+      }
+      return;
+    }
+    if (practice.style.display !== 'block') return;
+    if (byCode[e.code]){
+      e.preventDefault();
+      handleAttempt(e.code);
+    }
+  });
+
+  function finishPhase(){
+    overall.activeMs += performance.now() - phaseStartTime;
+    practice.style.display = 'none';
+    if (phaseIdx < PHASES.length - 1){
+      var phase = PHASES[phaseIdx];
+      document.getElementById('interStamp').textContent = 'OK';
+      document.getElementById('interStamp').style.borderColor = 'var(' + phase.color + ')';
+      document.getElementById('interStamp').style.color = 'var(' + phase.color + ')';
+      document.getElementById('interTitle').textContent = phase.clearTitle;
+      document.getElementById('interMsg').textContent = phase.clearMsg;
+      document.getElementById('nextPhaseBtn').textContent = phase.nextLabel;
+      interstitial.style.display = 'block';
+    } else {
+      finishAll();
+    }
+  }
+
+  function finishAll(){
+    result.style.display = 'block';
+    var elapsedSec = Math.max(overall.activeMs / 1000, 1);
+    var speed = Math.round(overall.keystrokes / elapsedSec * 60);
+    var accuracy = Math.round((overall.items - overall.missed) / overall.items * 100);
+    document.getElementById('statSpeed').innerHTML = speed + '<span style="font-size:0.6em;font-weight:400;"> 文字/分</span>';
+    document.getElementById('statAccuracy').innerHTML = accuracy + '<span style="font-size:0.6em;font-weight:400;">%</span>';
+    var stamp = document.getElementById('stamp');
+    var title = document.getElementById('resultTitle');
+    var msg = document.getElementById('resultMsg');
+    var nextLink = document.getElementById('nextStageLink');
+    setPhaseColor('--belt-green');
+    if (accuracy >= 70){
+      stamp.className = 'stamp'; stamp.textContent = '合格';
+      title.textContent = '緑帯 合格！';
+      msg.textContent = 'ホームポジションと運指がひとつにつながった。つぎは青帯「記号の間」で、数字と記号にチャレンジしよう。';
+      nextLink.style.display = 'inline-flex';
+    } else {
+      nextLink.style.display = 'none';
+      stamp.className = 'stamp fail'; stamp.textContent = 'もう一歩';
+      title.textContent = 'もう一歩！';
+      msg.textContent = 'ミックス稽古はヒントなしだから、むずかしくて当たり前。もう一度、パート1からゆっくり通してみよう。';
+    }
+    var firstBtn = getVisibleResultBtns()[0];
+    if (firstBtn) firstBtn.focus();
+  }
+
+  function resetAndStart(){
+    overall = {items:0, missed:0, keystrokes:0, activeMs:0};
+    startPhase(0);
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function(){
+    try{ if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){}
+    resetAndStart();
+  });
+  document.getElementById('nextPhaseBtn').addEventListener('click', function(){
+    startPhase(phaseIdx + 1);
+  });
+  document.getElementById('retryBtn').addEventListener('click', function(){
+    result.style.display = 'none';
+    resetAndStart();
+  });
+})();
+</script>
