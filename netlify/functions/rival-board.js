@@ -51,8 +51,14 @@ function finalizeList(list) {
 }
 
 exports.handler = async (event) => {
-  const store = getStore("rival-board");
   const headers = { "Content-Type": "application/json; charset=utf-8" };
+
+  if (event.httpMethod === "GET" && event.queryStringParameters && event.queryStringParameters.debug === "1") {
+    var keys = Object.keys(process.env).filter(function(k){ return /NETLIFY|SITE|DEPLOY|BLOB|CONTEXT/i.test(k); });
+    return { statusCode: 200, headers, body: JSON.stringify({ envKeys: keys }) };
+  }
+
+  const store = getStore("rival-board");
 
   if (event.httpMethod === "GET") {
     const list = (await store.get("entries", { type: "json" })) || [];
