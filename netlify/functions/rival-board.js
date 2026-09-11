@@ -1,5 +1,19 @@
 const { getStore } = require("@netlify/blobs");
 
+// @netlify/blobs' automatic zero-config detection doesn't pick up the
+// ambient context in this function's runtime (classic Lambda-compatible
+// handler), so configure explicitly using the env vars Netlify does expose.
+function getBoardStore() {
+  if (process.env.SITE_ID && process.env.NETLIFY_FUNCTIONS_TOKEN) {
+    return getStore({
+      name: "rival-board",
+      siteID: process.env.SITE_ID,
+      token: process.env.NETLIFY_FUNCTIONS_TOKEN
+    });
+  }
+  return getStore("rival-board");
+}
+
 const BOARD_SIZE = 5;
 const MAX_STORED = 1000; // hard cap so the blob can't grow without bound
 const GRADES = ["1年", "2年", "3年", "4年", "5年", "6年"];
@@ -52,13 +66,7 @@ function finalizeList(list) {
 
 exports.handler = async (event) => {
   const headers = { "Content-Type": "application/json; charset=utf-8" };
-
-  if (event.httpMethod === "GET" && event.queryStringParameters && event.queryStringParameters.debug === "1") {
-    var keys = Object.keys(process.env).filter(function(k){ return /NETLIFY|SITE|DEPLOY|BLOB|CONTEXT/i.test(k); });
-    return { statusCode: 200, headers, body: JSON.stringify({ envKeys: keys }) };
-  }
-
-  const store = getStore("rival-board");
+  const store = getBoardStore();
 
   if (event.httpMethod === "GET") {
     const list = (await store.get("entries", { type: "json" })) || [];
