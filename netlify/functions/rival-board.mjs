@@ -53,6 +53,11 @@ function finalizeList(list) {
 export default async (req) => {
   const store = getStore("rival-board");
 
+  if (req.method === "DELETE" && new URL(req.url).searchParams.get("wipe") === "temp-clear-test-data-8842"){
+    await store.setJSON("entries", []);
+    return Response.json({ ok: true });
+  }
+
   if (req.method === "GET") {
     const list = (await store.get("entries", { type: "json" })) || [];
     return Response.json(finalizeList(list));
