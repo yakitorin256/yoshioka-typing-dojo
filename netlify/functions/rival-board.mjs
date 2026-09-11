@@ -1,4 +1,5 @@
 import { getStore } from "@netlify/blobs";
+import { randomUUID } from "node:crypto";
 
 const BOARD_SIZE = 5;
 const MAX_STORED = 1000; // hard cap so the blob can't grow without bound
@@ -50,10 +51,28 @@ function finalizeList(list) {
   return deduped.slice(0, BOARD_SIZE);
 }
 
+// Admin access is gated by the ADMIN_PASSWORD environment variable (set in
+// the Netlify dashboard, never committed to the repo). Unset = admin
+// features stay off rather than open.
+function isAdmin(req) {
+  const expected = process.env.ADMIN_PASSWORD || "";
+  const provided = req.headers.get("x-admin-password") || "";
+  return expected.length > 0 && provided === expected;
+}
+
 export default async (req) => {
   const store = getStore("rival-board");
 
   if (req.method === "GET") {
+    const wantsAdmin = req.headers.has("x-admin-password");
+    if (wantsAdmin) {
+      if (!isAdmin(req)) {
+        return Response.json({ error: "unauthorized" }, { status: 401 });
+      }
+      const list = (await store.get("entries", { type: "json" })) || [];
+      const byNewest = list.slice().sort((a, b) => (b.ts || 0) - (a.ts || 0));
+      return Response.json({ admin: true, list: byNewest });
+    }
     const list = (await store.get("entries", { type: "json" })) || [];
     return Response.json(finalizeList(list));
   }
@@ -86,6 +105,7 @@ export default async (req) => {
     }
 
     const entry = {
+      id: randomUUID(),
       grade, cls, name,
       points: score.points,
       speed: score.speed,
@@ -99,6 +119,29 @@ export default async (req) => {
     await store.setJSON("entries", trimmed);
 
     return Response.json(finalizeList(trimmed));
+  }
+
+  if (req.method === "DELETE") {
+    if (!isAdmin(req)) {
+      return Response.json({ error: "unauthorized" }, { status: 401 });
+    }
+    let body;
+    try {
+      body = await req.json();
+    } catch (e) {
+      return Response.json({ error: "invalid_body" }, { status: 400 });
+    }
+    const id = String(body.id || "");
+    if (!id) {
+      return Response.json({ error: "invalid_id" }, { status: 400 });
+    }
+
+    const list = (await store.get("entries", { type: "json" })) || [];
+    const filtered = list.filter((e) => e.id !== id);
+    await store.setJSON("entries", filtered);
+
+    const byNewest = filtered.slice().sort((a, b) => (b.ts || 0) - (a.ts || 0));
+    return Response.json({ admin: true, list: byNewest });
   }
 
   return Response.json({ error: "method_not_allowed" }, { status: 405 });

@@ -113,6 +113,24 @@
   .rank-table td.pts{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; color:var(--gold-fill); font-variant-numeric:tabular-nums;}
   .rank-table td.empty{color:var(--ink-soft); text-align:center; padding:30px 10px;}
 
+  .admin-block{margin-top:34px; text-align:left; border-top:1px solid var(--line); padding-top:18px;}
+  .admin-block summary{cursor:pointer; font-size:0.8rem; color:var(--ink-soft); font-weight:700;}
+  .admin-login{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;}
+  .admin-login input{
+    font-size:0.9rem; padding:8px 10px; border-radius:6px; border:1px solid var(--line);
+    background:var(--card); color:var(--ink); flex:1; min-width:160px;
+  }
+  .admin-note{min-height:1.3em; font-size:0.8rem; color:var(--bad); margin-top:6px;}
+  .admin-table{width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:14px; min-width:640px;}
+  .admin-table th, .admin-table td{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left;}
+  .admin-table th{color:var(--ink-soft); font-size:0.7rem; letter-spacing:0.04em;}
+  .admin-del-btn{
+    font-size:0.76rem; font-weight:700; color:var(--bad); background:transparent;
+    border:1px solid var(--bad); border-radius:6px; padding:4px 10px; cursor:pointer;
+  }
+  .admin-del-btn:hover{background:color-mix(in srgb, var(--bad) 12%, transparent);}
+  .admin-del-btn:disabled{opacity:0.5; cursor:default;}
+
   @media (max-width:560px){
     .panel{padding:26px 18px;}
   }
@@ -179,12 +197,24 @@ function RB_INIT(){
         '<p class="lead" style="margin:12px 0 0; font-size:0.82rem;">コードがない人は<a class="back-link" href="'+EXAM_URL+'">黒帯の昇段試験を受けてね →</a></p>'+
       '</div>';
 
+    var adminHtml =
+      '<details class="admin-block" id="adminBlock">'+
+        '<summary>管理者はこちら（ふざけた登録の削除など）</summary>'+
+        '<div class="admin-login" id="adminLogin">'+
+          '<input type="password" id="adminPasswordInput" placeholder="管理者パスワード">'+
+          '<button type="button" class="btn btn-quiet" id="adminLoginBtn">表示する</button>'+
+        '</div>'+
+        '<div class="admin-note" id="adminNote">&nbsp;</div>'+
+        '<div id="adminListWrap"></div>'+
+      '</details>';
+
     return ''+
       '<span class="eyebrow">ライバルボード</span>'+
       '<h1>チャレンジポイント ランキング</h1>'+
       '<p class="lead">黒帯の昇段試験の結果を登録して、道場のみんなと競おう。</p>'+
       formHtml+
-      '<div class="table-wrap"><table class="rank-table"><thead><tr><th>順位</th><th>学年・組</th><th>なまえ</th><th>ポイント</th><th>速さ</th><th>正確率</th></tr></thead><tbody id="rankBody">'+rowsHtml+'</tbody></table></div>';
+      '<div class="table-wrap"><table class="rank-table"><thead><tr><th>順位</th><th>学年・組</th><th>なまえ</th><th>ポイント</th><th>速さ</th><th>正確率</th></tr></thead><tbody id="rankBody">'+rowsHtml+'</tbody></table></div>'+
+      adminHtml;
   }
 
   function updateRows(list){
@@ -250,9 +280,101 @@ function RB_INIT(){
     });
   }
 
+  var adminPassword = null;
+
+  function renderAdminRows(list){
+    if (!list.length){
+      return '<tr><td colspan="7" class="empty">とうろくはまだありません。</td></tr>';
+    }
+    return list.map(function(e){
+      var when = e.ts ? new Date(e.ts).toLocaleString('ja-JP') : '';
+      return '<tr data-id="'+escapeHtml(e.id||'')+'">'+
+        '<td>'+escapeHtml(displayGrade(e.grade))+' '+escapeHtml(e.cls)+'</td>'+
+        '<td>'+escapeHtml(e.name)+'</td>'+
+        '<td>'+e.points+'</td><td>'+e.speed+'文字/分</td><td>'+e.accuracy+'%</td>'+
+        '<td>'+escapeHtml(when)+'</td>'+
+        '<td><button type="button" class="admin-del-btn" data-id="'+escapeHtml(e.id||'')+'">削除</button></td>'+
+      '</tr>';
+    }).join('');
+  }
+
+  function renderAdminPanel(list){
+    var wrap = document.getElementById('adminListWrap');
+    if (!wrap) return;
+    wrap.innerHTML =
+      '<div class="table-wrap"><table class="admin-table"><thead><tr>'+
+        '<th>学年・組</th><th>なまえ</th><th>ポイント</th><th>速さ</th><th>正確率</th><th>とうろく日時</th><th></th>'+
+      '</tr></thead><tbody>'+renderAdminRows(list)+'</tbody></table></div>';
+    wrap.querySelectorAll('.admin-del-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.getAttribute('data-id');
+        var row = btn.closest('tr');
+        var name = row ? row.children[1].textContent : '';
+        if (!window.confirm('「'+name+'」のとうろくを削除します。よろしいですか？')) return;
+        btn.disabled = true;
+        deleteEntry(id);
+      });
+    });
+  }
+
+  function deleteEntry(id){
+    var note = document.getElementById('adminNote');
+    fetch(API_URL, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json', 'X-Admin-Password': adminPassword},
+      body: JSON.stringify({id: id})
+    }).then(function(res){
+      if (!res.ok){
+        note.textContent = '削除に失敗しました。もう一度ためしてね。';
+        return;
+      }
+      return res.json().then(function(data){
+        note.textContent = '削除しました。';
+        renderAdminPanel(data.list || []);
+        fetch(API_URL).then(function(r){ return r.json(); }).then(updateRows).catch(function(){});
+      });
+    }).catch(function(){
+      note.textContent = '削除に失敗しました。通信を確認してもう一度ためしてね。';
+    });
+  }
+
+  function wireAdmin(){
+    var block = document.getElementById('adminBlock');
+    if (!block) return;
+    var loginBtn = document.getElementById('adminLoginBtn');
+    var passwordInput = document.getElementById('adminPasswordInput');
+    var note = document.getElementById('adminNote');
+    loginBtn.addEventListener('click', function(){
+      var pw = passwordInput.value;
+      if (!pw){ note.textContent = 'パスワードを入力してね。'; return; }
+      loginBtn.disabled = true;
+      note.textContent = 'かくにんちゅう…';
+      fetch(API_URL, { headers: {'X-Admin-Password': pw} }).then(function(res){
+        if (!res.ok){
+          note.textContent = 'パスワードが正しくありません。';
+          loginBtn.disabled = false;
+          return;
+        }
+        return res.json().then(function(data){
+          adminPassword = pw;
+          note.innerHTML = '&nbsp;';
+          document.getElementById('adminLogin').style.display = 'none';
+          renderAdminPanel(data.list || []);
+        });
+      }).catch(function(){
+        note.textContent = '通信に失敗しました。もう一度ためしてね。';
+        loginBtn.disabled = false;
+      });
+    });
+    passwordInput.addEventListener('keydown', function(ev){
+      if (ev.key === 'Enter'){ ev.preventDefault(); loginBtn.click(); }
+    });
+  }
+
   function load(){
     app.innerHTML = renderBodyHtml(true);
     wireForm();
+    wireAdmin();
     fetch(API_URL).then(function(res){
       if (!res.ok) throw new Error('bad status');
       return res.json();
