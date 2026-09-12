@@ -331,21 +331,25 @@
   var SPAWN_Y = -50;
   var FALL_DIST = GROUND_Y - SPAWN_Y;
 
-  // duration (seconds) for one fruit's fall: an overall trend toward
-  // faster falls as the test progresses, PLUS random per-fruit variation
-  // so the pacing isn't perfectly predictable
-  var BASE_DURATION = 8.4;
+  // duration (seconds) PER KEYSTROKE for one fruit's fall: an overall
+  // trend toward faster typing as the test progresses, PLUS random
+  // per-fruit variation so the pacing isn't perfectly predictable. The
+  // total fall duration then scales with how many keystrokes the target
+  // actually needs, so a 4-character word gets proportionally more time
+  // than a single kana instead of falling at the same speed.
+  var BASE_DURATION_PER_KEY = 4.2;
   var MIN_TREND_MULT = 0.52;
-  var MIN_DURATION = 2.9;
+  var MIN_DURATION_PER_KEY = 1.45;
 
-  function durationForIndex(idx, total){
+  function durationForIndex(idx, total, keyCount){
     var t = total > 1 ? idx / (total - 1) : 0;
     var trend = 1 - t * (1 - MIN_TREND_MULT);
     var jitter = 0.78 + Math.random() * 0.5; // 0.78x – 1.28x
-    return Math.max(BASE_DURATION * trend * jitter, MIN_DURATION);
+    var perKey = Math.max(BASE_DURATION_PER_KEY * trend * jitter, MIN_DURATION_PER_KEY);
+    return perKey * Math.max(keyCount, 1);
   }
-  function speedForIndex(idx, total){
-    return FALL_DIST / durationForIndex(idx, total);
+  function speedForIndex(idx, total, keyCount){
+    return FALL_DIST / durationForIndex(idx, total, keyCount);
   }
 
   // ---- canvas DPI scaling ----
@@ -492,7 +496,7 @@
       y: SPAWN_Y,
       rx: rx, ry: ry,
       label: target.label,
-      speed: speedForIndex(targetIdx, sequence.length),
+      speed: speedForIndex(targetIdx, sequence.length, target.codes.length),
       wrongFlash: 0,
       hue: Math.random()
     };
