@@ -1,5 +1,5 @@
-<title>隕石タイピング ら行 しゅうりょうテスト</title>
-<meta name="description" content="吉岡小タイピング道場・ら行しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろの総まとめ。文字が書かれた隕石が落ちてくる前に正しくローマ字で打って砕く、隕石タイピングゲーム">
+<title>くだものキャッチ ら行 しゅうりょうテスト</title>
+<meta name="description" content="吉岡小タイピング道場・ら行しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろの総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
 <style>
   :root{
     --bg:#F7F2E8;
@@ -195,14 +195,14 @@
 <main>
   <div class="panel" id="intro">
     <span class="eyebrow">ら行 しゅうりょうテスト</span>
-    <h1><ruby>隕石<rt>いんせき</rt></ruby>タイピング　ら行 しゅうりょうテスト</h1>
+    <h1>くだものキャッチ　ら行 しゅうりょうテスト</h1>
     <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」「やゆよ」「らりるれろ」の修了テスト。ぜんぶで30問、クリアしたら「わをん」の練習にすすめるよ。</p>
     <ol class="rule-list">
       <li><span class="rule-num">1</span>単音10問と、ことば20問。あわせて30問。</li>
-      <li><span class="rule-num">2</span>文字が書かれた隕石が、上から落ちてくる。</li>
-      <li><span class="rule-num">3</span>ローマ字で正しく打つと、隕石はこなごなに砕ける。</li>
-      <li><span class="rule-num">4</span>隕石が下の基地にとどいてしまったら、ゲームオーバー。</li>
-      <li><span class="rule-num">5</span>隕石のスピードは、だんだん速くなっていくよ。</li>
+      <li><span class="rule-num">2</span>文字が書かれたくだものが、上から落ちてくる。</li>
+      <li><span class="rule-num">3</span>ローマ字で正しく打つと、キャラクターがかごでキャッチする。</li>
+      <li><span class="rule-num">4</span>くだものが地面に落ちてしまったら、ゲームオーバー。</li>
+      <li><span class="rule-num">5</span>くだもののスピードは、だんだん速くなっていくよ。</li>
     </ol>
     <p class="ime-note" style="text-align:left;">　はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。</p>
     <p class="ime-note" style="text-align:left;">　※「ち」だけは、「TI」のほかに「CHI」と打ってもOK。</p>
@@ -332,8 +332,8 @@
   var SPAWN_Y = -50;
   var FALL_DIST = GROUND_Y - SPAWN_Y;
 
-  // duration (seconds) for one meteor's fall: an overall trend toward
-  // faster falls as the test progresses, PLUS random per-meteor variation
+  // duration (seconds) for one fruit's fall: an overall trend toward
+  // faster falls as the test progresses, PLUS random per-fruit variation
   // so the pacing isn't perfectly predictable
   var BASE_DURATION = 8.4;
   var MIN_TREND_MULT = 0.52;
@@ -358,22 +358,20 @@
   }
   fitCanvas();
 
-  // ---- background: stars + drifting decorative meteors ----
-  var stars = [];
-  for (var si = 0; si < 46; si++){
-    stars.push({x:Math.random()*CW, y:Math.random()*CH, r:Math.random()*1.4+0.4, phase:Math.random()*Math.PI*2, speed:Math.random()*1.4+0.6});
+  // ---- background: soft sky, drifting clouds ----
+  var clouds = [];
+  function makeCloud(){
+    return {x:Math.random()*CW, y:20+Math.random()*(GROUND_Y*0.55), r:16+Math.random()*14, speed:6+Math.random()*8};
   }
-  function makeBgMeteor(){
-    return {x:Math.random()*CW, y:-20-Math.random()*200, r:6+Math.random()*7, speed:14+Math.random()*10};
-  }
-  var bgMeteors = [makeBgMeteor(), makeBgMeteor(), makeBgMeteor()];
+  for (var ci = 0; ci < 5; ci++){ clouds.push(makeCloud()); }
 
   // ---- state ----
   var STATE_IDLE = 0, STATE_PLAYING = 1, STATE_TRANSITION = 2, STATE_GAMEOVER_ANIM = 3, STATE_DONE = 4;
   var state = STATE_IDLE;
-  var sequence, targetIdx, codeIndex, meteor, particles = [], bursts = [], transitionTimer, pendingWin;
+  var sequence, targetIdx, codeIndex, fruit, particles = [], bursts = [], transitionTimer, pendingWin;
   var missTotal, missedTargets, targetHadMiss, startTime, elapsedAtEnd;
   var shakeTime = 0, flashTime = 0;
+  var catcherX = 0;
   var audioCtx = null;
   var rafId = null, lastT = null;
 
@@ -391,19 +389,19 @@
       osc.stop(audioCtx.currentTime + dur);
     }catch(e){}
   }
-  function boomSound(){
+  function splatSound(){
     try{
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       var osc = audioCtx.createOscillator();
       var gain = audioCtx.createGain();
-      osc.type = 'sawtooth';
+      osc.type = 'triangle';
       osc.frequency.setValueAtTime(220, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.5);
+      osc.frequency.exponentialRampToValueAtTime(70, audioCtx.currentTime + 0.28);
       gain.gain.value = 0.14;
       osc.connect(gain); gain.connect(audioCtx.destination);
       osc.start();
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.55);
-      osc.stop(audioCtx.currentTime + 0.55);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+      osc.stop(audioCtx.currentTime + 0.3);
     }catch(e){}
   }
   function fanfare(){
@@ -411,14 +409,14 @@
     setTimeout(function(){ beep(1100, 0.14); }, 140);
     setTimeout(function(){ beep(1320, 0.22); }, 280);
   }
-  function crackSound(){
+  function catchSound(){
     try{
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       var osc = audioCtx.createOscillator();
       var gain = audioCtx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(1500, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(420, audioCtx.currentTime + 0.13);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(700, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1500, audioCtx.currentTime + 0.13);
       gain.gain.value = 0.12;
       osc.connect(gain); gain.connect(audioCtx.destination);
       osc.start();
@@ -480,8 +478,8 @@
     wordMeaningHint.textContent = target.meaning ? ('（' + target.meaning + '）') : ' ';
   }
 
-  // ---- meteor lifecycle ----
-  function spawnMeteor(){
+  // ---- fruit lifecycle ----
+  function spawnFruit(){
     var target = sequence[targetIdx];
     codeIndex = 0;
     targetHadMiss = false;
@@ -490,18 +488,14 @@
     var rx = Math.max(34, textW/2 + 16);
     var ry = Math.max(30, rx * 0.8);
     var margin = rx + 8;
-    meteor = {
+    fruit = {
       x: margin + Math.random() * Math.max(1, (CW - margin*2)),
       y: SPAWN_Y,
       rx: rx, ry: ry,
       label: target.label,
       speed: speedForIndex(targetIdx, sequence.length),
       wrongFlash: 0,
-      speckles: [
-        {a:Math.random()*Math.PI*2, d:0.4+Math.random()*0.3, r:rx*0.16},
-        {a:Math.random()*Math.PI*2, d:0.3+Math.random()*0.4, r:rx*0.12},
-        {a:Math.random()*Math.PI*2, d:0.5+Math.random()*0.3, r:rx*0.14}
-      ]
+      hue: Math.random()
     };
     updateProgress();
     renderRomaHint();
@@ -510,33 +504,31 @@
     state = STATE_PLAYING;
   }
 
-  function shatterMeteor(){
-    if (!meteor) return;
-    var mx = meteor.x, my = meteor.y;
-    var baseR = Math.max(meteor.rx, meteor.ry);
-    crackSound();
-    shakeTime = Math.max(shakeTime, 0.18);
-    bursts.push({x:mx, y:my, maxR: baseR*2.6, life:0.32, maxLife:0.32, style:'ring', color:'#FFD27A'});
-    bursts.push({x:mx, y:my, maxR: baseR*0.85, life:0.14, maxLife:0.14, style:'flash', color:'#FFF6DC'});
-    for (var i = 0; i < 34; i++){
+  function catchFruit(){
+    if (!fruit) return;
+    var fx = fruit.x, fy = fruit.y;
+    var baseR = Math.max(fruit.rx, fruit.ry);
+    catchSound();
+    bursts.push({x:fx, y:fy, maxR: baseR*2.2, life:0.28, maxLife:0.28, style:'ring', color:'#FFE18A'});
+    bursts.push({x:fx, y:fy, maxR: baseR*0.7, life:0.12, maxLife:0.12, style:'flash', color:'#FFF8E1'});
+    for (var i = 0; i < 20; i++){
       var ang = Math.random() * Math.PI * 2;
-      var spark = Math.random() < 0.4;
-      var spd = spark ? (150 + Math.random() * 260) : (60 + Math.random() * 220);
+      var spd = 70 + Math.random() * 160;
       particles.push({
-        x: mx, y: my,
-        vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd - 60,
-        life: spark ? (0.22 + Math.random() * 0.16) : (0.5 + Math.random() * 0.4),
-        maxLife: spark ? (0.22 + Math.random() * 0.16) : (0.5 + Math.random() * 0.4),
-        size: spark ? (1.3 + Math.random() * 1.7) : (2.8 + Math.random() * 4.8),
-        color: spark ? '#FFE7A8' : (Math.random() < 0.5 ? '#C9695A' : '#DED0B4')
+        x: fx, y: fy,
+        vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd - 90,
+        life: 0.35 + Math.random() * 0.3,
+        maxLife: 0.35 + Math.random() * 0.3,
+        size: 1.6 + Math.random() * 2.6,
+        color: Math.random() < 0.5 ? '#FFE18A' : '#FFF8E1'
       });
     }
-    meteor = null;
+    fruit = null;
   }
 
   function solveTarget(){
     beep(1120, 0.14);
-    shatterMeteor();
+    catchFruit();
     targetIdx++;
     state = STATE_TRANSITION;
     if (targetIdx >= sequence.length){
@@ -552,7 +544,7 @@
   }
 
   function handleAttempt(code){
-    if (state !== STATE_PLAYING || !meteor) return;
+    if (state !== STATE_PLAYING || !fruit) return;
     var target = sequence[targetIdx];
     var expected = target.codes[codeIndex];
     var matched = (code === expected);
@@ -581,7 +573,7 @@
       missTotal++;
       if (!targetHadMiss){ missedTargets++; targetHadMiss = true; }
       beep(180, 0.12);
-      meteor.wrongFlash = 0.18;
+      fruit.wrongFlash = 0.18;
       if (info && info.offset === 0 && target.chars[info.charIndex] === 'ち'){
         missNote.textContent = 'おしい！「ち」は「T」か「C」から始まるよ';
       } else if (info && info.offset === 0 && target.chars[info.charIndex] === 'ふ'){
@@ -595,43 +587,47 @@
 
   function triggerGameOver(){
     state = STATE_GAMEOVER_ANIM;
-    boomSound();
-    shakeTime = 0.5;
-    flashTime = 0.35;
-    for (var i = 0; i < 22; i++){
-      var ang = Math.random() * Math.PI * 2;
-      var spd = 30 + Math.random() * 150;
+    splatSound();
+    shakeTime = 0.3;
+    flashTime = 0.2;
+    var fx = fruit ? fruit.x : catcherX;
+    for (var i = 0; i < 16; i++){
+      var ang = Math.PI + (Math.random() - 0.5) * Math.PI * 0.9;
+      var spd = 40 + Math.random() * 130;
       particles.push({
-        x: meteor ? meteor.x : CW/2, y: meteor ? meteor.y : GROUND_Y,
-        vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd - 40,
-        life: 0.6 + Math.random() * 0.4, maxLife: 0.6 + Math.random() * 0.4,
-        size: 2 + Math.random() * 4,
-        color: Math.random() < 0.5 ? '#BE3A34' : '#C9695A'
+        x: fx, y: GROUND_Y,
+        vx: Math.cos(ang) * spd, vy: -Math.abs(Math.sin(ang)) * spd * 0.5 - 20,
+        life: 0.45 + Math.random() * 0.3, maxLife: 0.45 + Math.random() * 0.3,
+        size: 2 + Math.random() * 3.5,
+        color: Math.random() < 0.5 ? '#E8935C' : '#C9695A'
       });
     }
-    meteor = null;
+    fruit = null;
     setTimeout(function(){ finish(false); }, 750);
   }
 
   // ---- main loop ----
   function update(dt){
-    stars.forEach(function(s){ s.phase += dt * s.speed; });
-    bgMeteors.forEach(function(m){
-      m.y += m.speed * dt;
-      if (m.y - m.r > CH){ var nm = makeBgMeteor(); m.x = nm.x; m.y = nm.y; m.r = nm.r; m.speed = nm.speed; }
+    clouds.forEach(function(c){
+      c.x += c.speed * dt;
+      if (c.x - c.r > CW + 20){ c.x = -c.r - 20; c.y = 20+Math.random()*(GROUND_Y*0.55); }
     });
 
-    if (state === STATE_PLAYING && meteor){
-      meteor.y += meteor.speed * dt;
-      if (meteor.wrongFlash > 0) meteor.wrongFlash = Math.max(0, meteor.wrongFlash - dt);
-      if (meteor.y + meteor.ry >= GROUND_Y){
+    // the catcher eases toward whichever x the current fruit is falling at
+    var chaseX = fruit ? fruit.x : catcherX;
+    catcherX += (chaseX - catcherX) * Math.min(1, 3.2 * dt);
+
+    if (state === STATE_PLAYING && fruit){
+      fruit.y += fruit.speed * dt;
+      if (fruit.wrongFlash > 0) fruit.wrongFlash = Math.max(0, fruit.wrongFlash - dt);
+      if (fruit.y + fruit.ry >= GROUND_Y){
         triggerGameOver();
       }
     } else if (state === STATE_TRANSITION){
       transitionTimer -= dt;
       if (transitionTimer <= 0){
         if (pendingWin){ finish(true); }
-        else { spawnMeteor(); }
+        else { spawnFruit(); }
       }
     }
 
@@ -651,78 +647,112 @@
     }
   }
 
-  // player's ship: an angular starfighter (swept wings, gold trim, twin
-  // thrusters)
-  function drawBase(cracked){
-    var bx = CW/2, by = GROUND_Y + 4;
+  // catcher: a chubby cub character holding a woven basket, sliding
+  // left-right to line up under the falling fruit
+  function drawCatcher(missed){
     ctx.save();
-    ctx.translate(bx, by);
+    ctx.translate(catcherX, GROUND_Y + 4);
 
-    var bodyColor = cracked ? '#4A423A' : '#7C8A99';
-    var outlineColor = cracked ? '#241E18' : '#1C2530';
-    var accentColor = cracked ? '#5A4030' : '#DDB13B';
-    var windowColor = cracked ? '#4A3F36' : '#DDB13B';
-    var windowShine = cracked ? '#5A4F46' : '#FFF3D0';
+    var furColor = missed ? '#A88A6B' : '#D98C4A';
+    var basketColor = missed ? '#6B5138' : '#8B5A2B';
+    var basketRim = missed ? '#3A2C1C' : '#5A3B1E';
 
-    if (!cracked){
-      var flicker = 0.7 + Math.sin(Date.now() / 80) * 0.3;
-      [-10, 10].forEach(function(ex){
-        var glowGrad = ctx.createRadialGradient(ex, 4, 1, ex, 4, 10);
-        glowGrad.addColorStop(0, 'rgba(255,224,150,' + (0.85 * flicker).toFixed(2) + ')');
-        glowGrad.addColorStop(1, 'rgba(221,177,59,0)');
-        ctx.fillStyle = glowGrad;
-        ctx.beginPath();
-        ctx.arc(ex, 4, 10, 0, Math.PI * 2);
-        ctx.fill();
-      });
+    // body
+    ctx.fillStyle = furColor;
+    ctx.strokeStyle = '#3A2A1A';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.ellipse(0, -36, 21, 25, 0, 0, Math.PI * 2);
+    ctx.fill(); ctx.stroke();
+
+    // ears
+    ctx.beginPath(); ctx.arc(-13, -56, 7.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(13, -56, 7.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // face
+    if (missed){
+      ctx.strokeStyle = '#3A2A1A';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(-10, -37); ctx.lineTo(-4, -33); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-4, -37); ctx.lineTo(-10, -33); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(10, -37); ctx.lineTo(4, -33); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(4, -37); ctx.lineTo(10, -33); ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, -22, 4, Math.PI * 1.1, Math.PI * 1.9);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = '#241A10';
+      ctx.beginPath(); ctx.arc(-7, -37, 2.1, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(7, -37, 2.1, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#241A10';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.arc(0, -29, 4, 0.1 * Math.PI, 0.9 * Math.PI);
+      ctx.stroke();
     }
 
-    ctx.fillStyle = bodyColor;
-    ctx.strokeStyle = outlineColor;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(5, -30); ctx.lineTo(30, -2); ctx.lineTo(24, 6); ctx.lineTo(8, -8); ctx.closePath();
-    ctx.fill(); ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-5, -30); ctx.lineTo(-30, -2); ctx.lineTo(-24, 6); ctx.lineTo(-8, -8); ctx.closePath();
-    ctx.fill(); ctx.stroke();
+    // arms holding the basket
+    ctx.fillStyle = furColor;
+    ctx.strokeStyle = '#3A2A1A';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.ellipse(-19, -8, 6, 10, 0.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(19, -8, 6, 10, -0.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
 
-    ctx.strokeStyle = accentColor;
-    ctx.lineWidth = 2.5;
-    ctx.beginPath(); ctx.moveTo(20, -1); ctx.lineTo(28, -1); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(-20, -1); ctx.lineTo(-28, -1); ctx.stroke();
-
+    // basket, with a gentle bob while waiting
+    var bob = missed ? 0 : Math.sin(Date.now() / 180) * 1.4;
+    ctx.save();
+    ctx.translate(0, 2 + bob);
+    ctx.fillStyle = basketColor;
     ctx.beginPath();
-    ctx.moveTo(0, -70);
-    ctx.lineTo(9, -30);
-    ctx.lineTo(9, 4);
-    ctx.lineTo(-9, 4);
-    ctx.lineTo(-9, -30);
+    ctx.moveTo(-21, -5);
+    ctx.lineTo(21, -5);
+    ctx.lineTo(16, 15);
+    ctx.lineTo(-16, 15);
     ctx.closePath();
-    ctx.fillStyle = bodyColor;
     ctx.fill();
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = outlineColor;
-    ctx.stroke();
-
-    ctx.strokeStyle = accentColor;
+    ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(-17, -1); ctx.lineTo(-13, 13); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, -5); ctx.lineTo(0, 15); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(17, -1); ctx.lineTo(13, 13); ctx.stroke();
+    ctx.strokeStyle = basketRim;
     ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    ctx.moveTo(0, -70); ctx.lineTo(0, -32);
-    ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-21, -5); ctx.lineTo(21, -5); ctx.stroke();
+    ctx.restore();
 
-    ctx.beginPath();
-    ctx.arc(0, -42, 6, 0, Math.PI * 2);
-    ctx.fillStyle = windowColor;
-    ctx.fill();
-    ctx.lineWidth = 1.5;
-    ctx.strokeStyle = outlineColor;
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(-2, -44.4, 1.8, 0, Math.PI * 2);
-    ctx.fillStyle = windowShine;
-    ctx.fill();
+    ctx.restore();
+  }
 
+  function drawFruit(f){
+    ctx.save();
+    ctx.translate(f.x, f.y);
+    var fillColor = f.wrongFlash > 0 ? '#E2564E' : (f.hue < 0.5 ? '#E8935C' : '#D9645A');
+    ctx.fillStyle = fillColor;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, f.rx, f.ry, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.28)';
+    ctx.beginPath();
+    ctx.ellipse(-f.rx * 0.32, -f.ry * 0.34, f.rx * 0.26, f.ry * 0.16, -0.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#6B4A2B';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, -f.ry);
+    ctx.lineTo(4, -f.ry - 9);
+    ctx.stroke();
+    ctx.fillStyle = '#6FA85A';
+    ctx.beginPath();
+    ctx.ellipse(9, -f.ry - 9, 7, 3.6, 0.6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.font = "bold 34px 'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = 'rgba(60,30,15,0.85)';
+    ctx.strokeText(f.label, 0, 2);
+    ctx.fillStyle = '#FFFBF0';
+    ctx.fillText(f.label, 0, 2);
     ctx.restore();
   }
 
@@ -731,52 +761,30 @@
     if (shakeTime > 0){
       ctx.translate((Math.random()-0.5) * 10 * (shakeTime/0.5), (Math.random()-0.5) * 10 * (shakeTime/0.5));
     }
-    var grad = ctx.createLinearGradient(0, 0, 0, CH);
-    grad.addColorStop(0, '#0b1330');
-    grad.addColorStop(1, '#1c1042');
+    var grad = ctx.createLinearGradient(0, 0, 0, GROUND_Y);
+    grad.addColorStop(0, '#BFE3F2');
+    grad.addColorStop(1, '#E7F3DE');
     ctx.fillStyle = grad;
-    ctx.fillRect(-20, -20, CW+40, CH+40);
+    ctx.fillRect(-20, -20, CW+40, GROUND_Y+20);
+    ctx.fillStyle = '#BFE0A0';
+    ctx.fillRect(-20, GROUND_Y, CW+40, CH-GROUND_Y+20);
+    ctx.strokeStyle = '#A9CE87';
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(-20, GROUND_Y+1.5); ctx.lineTo(CW+20, GROUND_Y+1.5); ctx.stroke();
 
-    stars.forEach(function(s){
-      var alpha = 0.4 + 0.6 * Math.abs(Math.sin(s.phase));
-      ctx.fillStyle = 'rgba(255,255,255,' + alpha.toFixed(2) + ')';
+    clouds.forEach(function(c){
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.ellipse(c.x, c.y, c.r, c.r*0.62, 0, 0, Math.PI*2);
+      ctx.ellipse(c.x - c.r*0.55, c.y + c.r*0.12, c.r*0.62, c.r*0.42, 0, 0, Math.PI*2);
+      ctx.ellipse(c.x + c.r*0.55, c.y + c.r*0.12, c.r*0.62, c.r*0.42, 0, 0, Math.PI*2);
       ctx.fill();
     });
 
-    bgMeteors.forEach(function(m){
-      ctx.fillStyle = 'rgba(140,110,90,0.55)';
-      ctx.beginPath();
-      ctx.arc(m.x, m.y, m.r, 0, Math.PI*2);
-      ctx.fill();
-    });
+    drawCatcher(state === STATE_GAMEOVER_ANIM || (state === STATE_DONE && !fruit && missedTargetsFailed));
 
-    drawBase(state === STATE_GAMEOVER_ANIM || state === STATE_DONE && !meteor && missedTargetsFailed);
-
-    if (meteor){
-      ctx.save();
-      ctx.translate(meteor.x, meteor.y);
-      var fillColor = meteor.wrongFlash > 0 ? '#E2564E' : '#8B5A2B';
-      ctx.fillStyle = fillColor;
-      ctx.beginPath();
-      ctx.ellipse(0, 0, meteor.rx, meteor.ry, 0, 0, Math.PI*2);
-      ctx.fill();
-      ctx.fillStyle = 'rgba(0,0,0,0.22)';
-      meteor.speckles.forEach(function(sp){
-        ctx.beginPath();
-        ctx.arc(Math.cos(sp.a)*meteor.rx*sp.d, Math.sin(sp.a)*meteor.ry*sp.d, sp.r, 0, Math.PI*2);
-        ctx.fill();
-      });
-      ctx.font = "bold 34px 'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif";
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = 'rgba(30,18,10,0.85)';
-      ctx.strokeText(meteor.label, 0, 2);
-      ctx.fillStyle = '#FBF7EF';
-      ctx.fillText(meteor.label, 0, 2);
-      ctx.restore();
+    if (fruit){
+      drawFruit(fruit);
     }
 
     bursts.forEach(function(b){
@@ -809,7 +817,7 @@
     });
 
     if (flashTime > 0){
-      ctx.fillStyle = 'rgba(226,86,78,' + (flashTime/0.35*0.45).toFixed(2) + ')';
+      ctx.fillStyle = 'rgba(226,86,78,' + (flashTime/0.2*0.35).toFixed(2) + ')';
       ctx.fillRect(-20, -20, CW+40, CH+40);
     }
     ctx.restore();
@@ -881,12 +889,13 @@
     missTotal = 0; missedTargets = 0; targetHadMiss = false;
     missedTargetsFailed = false;
     shakeTime = 0; flashTime = 0;
+    catcherX = CW/2;
     startTime = performance.now();
     intro.style.display = 'none';
     result.style.display = 'none';
     game.style.display = 'block';
     lastT = null;
-    spawnMeteor();
+    spawnFruit();
     if (!rafId) rafId = requestAnimationFrame(loop);
   }
 
@@ -915,7 +924,7 @@
     } else {
       missedTargetsFailed = true;
       stamp.className = 'stamp fail'; stamp.textContent = 'もう一歩';
-      title.textContent = '隕石が とどいてしまった…';
+      title.textContent = 'くだものが 地面に おちてしまった…';
       msg.textContent = 'ここまで ' + targetIdx + ' / ' + (sequence ? sequence.length : 30) + ' 問クリア。あわてなくて大丈夫、もう一度チャレンジしてみよう。';
       nextLink.style.display = 'none';
       statRow.style.display = 'none';
@@ -936,6 +945,7 @@
   });
 
   // idle render so the panel isn't blank before start
+  catcherX = CW/2;
   render();
 })();
 </script>
