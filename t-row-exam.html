@@ -419,6 +419,20 @@
     }catch(e){}
   }
 
+  // 出題を音声で読み上げる（対応ブラウザのみ。未対応でも無音で失敗するだけで、
+  // ゲーム自体は問題なく続けられる）。
+  var speechSupported = ('speechSynthesis' in window) && (typeof SpeechSynthesisUtterance !== 'undefined');
+  function speakLabel(text){
+    if (!speechSupported) return;
+    try{
+      window.speechSynthesis.cancel();
+      var utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'ja-JP';
+      utter.rate = 0.85;
+      window.speechSynthesis.speak(utter);
+    }catch(e){}
+  }
+
   function updateProgress(){
     progressText.textContent = 'もんだい ' + targetIdx + ' / ' + sequence.length;
     progressFill.style.width = Math.round(targetIdx/sequence.length*100) + '%';
@@ -483,6 +497,7 @@
     };
     updateProgress();
     renderRomaHint();
+    speakLabel(target.label);
     missNote.innerHTML = '&nbsp;';
     state = STATE_PLAYING;
   }
