@@ -308,6 +308,9 @@
     justify-self:end; max-width:340px;
   }
   .stage:nth-child(even) .stage-card{grid-column:3; justify-self:start;}
+  .stage.stage-final{grid-template-columns:1fr; justify-items:center;}
+  .stage.stage-final .stage-node{grid-column:1; margin-bottom:14px;}
+  .stage.stage-final .stage-card{grid-column:1; justify-self:center; max-width:380px; text-align:center;}
   .stage-lv{
     font-family:Consolas,'SF Mono',Menlo,monospace;
     font-size:0.78rem; font-weight:700; letter-spacing:0.06em;
@@ -795,7 +798,7 @@
         <div class="stage-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14"/><path d="M4 19.5A2 2 0 0 0 6 21h13"/><path d="M8 7h7M8 11h7"/></svg></div>
       </div>
 
-      <div class="stage" style="--stage-color:var(--belt-black)">
+      <div class="stage stage-final" style="--stage-color:var(--belt-black)">
         <div class="stage-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg></div>
         <div class="stage-card">
           <div class="stage-lv">黒帯 — 昇段試験</div>
