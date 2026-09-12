@@ -377,6 +377,30 @@
   var audioCtx = null;
   var rafId = null, lastT = null;
 
+  // several distinct fruit kinds, drawn from a shuffled deck so the same
+  // fruit doesn't keep repeating; the deck reshuffles once emptied, with a
+  // swap to avoid an immediate repeat right across the reshuffle boundary
+  var FRUIT_KINDS = ['apple', 'orange', 'peach', 'grape', 'strawberry', 'melon'];
+  var fruitDeck = [];
+  var lastFruitKind = null;
+  function nextFruitKind(){
+    if (fruitDeck.length === 0){
+      fruitDeck = FRUIT_KINDS.slice();
+      for (var i = fruitDeck.length - 1; i > 0; i--){
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = fruitDeck[i]; fruitDeck[i] = fruitDeck[j]; fruitDeck[j] = tmp;
+      }
+      if (lastFruitKind && fruitDeck[fruitDeck.length - 1] === lastFruitKind && fruitDeck.length > 1){
+        var swapWith = fruitDeck.length - 2;
+        var tmp2 = fruitDeck[fruitDeck.length - 1];
+        fruitDeck[fruitDeck.length - 1] = fruitDeck[swapWith];
+        fruitDeck[swapWith] = tmp2;
+      }
+    }
+    lastFruitKind = fruitDeck.pop();
+    return lastFruitKind;
+  }
+
   function beep(freq, dur, type){
     try{
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -497,7 +521,7 @@
       label: target.label,
       speed: speedForIndex(targetIdx, sequence.length, target.codes.length),
       wrongFlash: 0,
-      hue: Math.random()
+      kind: nextFruitKind()
     };
     updateProgress();
     renderRomaHint();
@@ -649,15 +673,15 @@
     }
   }
 
-  // catcher: a farmer bear cub in a kerchief, holding a woven basket,
+  // catcher: a farmer rabbit in a kerchief, holding a woven basket,
   // sliding left-right to line up under the falling fruit
   function drawCatcher(missed){
     ctx.save();
     ctx.translate(catcherX, GROUND_Y + 4);
 
-    var furColor = missed ? '#B08F6C' : '#D98C4A';
-    var furShade = missed ? '#8F7157' : '#BC7539';
-    var creamColor = missed ? '#DCD0B8' : '#F6E6C8';
+    var furColor = missed ? '#C7B896' : '#EAD5A5';
+    var furShade = missed ? '#A8987A' : '#CBAE73';
+    var creamColor = missed ? '#EDE3CC' : '#FBF3DE';
     var outline = '#3A2A1A';
     var basketColor = missed ? '#6B5138' : '#8B5A2B';
     var basketShade = missed ? '#5A4128' : '#734723';
@@ -670,6 +694,12 @@
     ctx.beginPath();
     ctx.ellipse(0, 3, 25, 5.5, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    // fluffy round tail, peeking out behind the body
+    ctx.fillStyle = creamColor;
+    ctx.strokeStyle = outline;
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(-19, -16, 6.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
 
     // feet
     ctx.fillStyle = furShade;
@@ -707,15 +737,15 @@
     ctx.ellipse(0, -44, 5, 3.4, 0, 0, Math.PI * 2);
     ctx.fill(); ctx.stroke();
 
-    // ears (with inner-ear shading)
+    // ears: tall and upright, with a pink inner-ear
     ctx.fillStyle = furColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1.3;
-    ctx.beginPath(); ctx.arc(-13, -65, 7.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(13, -65, 7.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = creamColor;
-    ctx.beginPath(); ctx.arc(-13, -64, 3.6, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.arc(13, -64, 3.6, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(-9, -79, 5.2, 17, -0.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(9, -79, 5.2, 17, 0.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = 'rgba(226,86,78,0.4)';
+    ctx.beginPath(); ctx.ellipse(-9, -79, 2.4, 12, -0.1, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(9, -79, 2.4, 12, 0.1, 0, Math.PI * 2); ctx.fill();
 
     // head
     ctx.fillStyle = furColor;
@@ -728,14 +758,35 @@
     // snout
     ctx.fillStyle = creamColor;
     ctx.beginPath();
-    ctx.ellipse(0, -48, 9, 7, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -48, 8, 6.4, 0, 0, Math.PI * 2);
     ctx.fill();
 
+    // whiskers
+    ctx.strokeStyle = 'rgba(58,42,26,0.55)';
+    ctx.lineWidth = 1;
+    [-1, 1].forEach(function(side){
+      for (var wi = 0; wi < 3; wi++){
+        ctx.beginPath();
+        ctx.moveTo(side * 6, -48 + wi * 2 - 2);
+        ctx.lineTo(side * 15, -49 + wi * 3 - 3);
+        ctx.stroke();
+      }
+    });
+
     // nose
-    ctx.fillStyle = outline;
+    ctx.fillStyle = 'rgba(226,86,78,0.75)';
     ctx.beginPath();
-    ctx.ellipse(0, -51, 2.6, 2, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -51, 2.4, 1.8, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    // little buck teeth
+    if (!missed){
+      ctx.fillStyle = '#FFFDF6';
+      ctx.strokeStyle = outline;
+      ctx.lineWidth = 0.6;
+      ctx.beginPath(); ctx.rect(-2.4, -46.5, 2, 3); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.rect(0.4, -46.5, 2, 3); ctx.fill(); ctx.stroke();
+    }
 
     if (missed){
       // worried eyebrows + downcast eyes + small frown
@@ -848,10 +899,20 @@
     ctx.restore();
   }
 
+  var FRUIT_STYLES = {
+    apple:      {body:'#D9483F', shade:'#8C2A24'},
+    orange:     {body:'#F0973A', shade:'#B5691E'},
+    peach:      {body:'#F2B6A0', shade:'#D98564'},
+    grape:      {body:'#8C5FBF', shade:'#5E3D8A'},
+    strawberry: {body:'#E23B55', shade:'#A31F38'},
+    melon:      {body:'#9BC15A', shade:'#6C9138'}
+  };
+
   function drawFruit(f){
     ctx.save();
     ctx.translate(f.x, f.y);
-    var fillColor = f.wrongFlash > 0 ? '#E2564E' : (f.hue < 0.5 ? '#E8935C' : '#D9645A');
+    var style = FRUIT_STYLES[f.kind] || FRUIT_STYLES.apple;
+    var fillColor = f.wrongFlash > 0 ? '#E2564E' : style.body;
     ctx.fillStyle = fillColor;
     ctx.beginPath();
     ctx.ellipse(0, 0, f.rx, f.ry, 0, 0, Math.PI * 2);
@@ -860,16 +921,68 @@
     ctx.beginPath();
     ctx.ellipse(-f.rx * 0.32, -f.ry * 0.34, f.rx * 0.26, f.ry * 0.16, -0.5, 0, Math.PI * 2);
     ctx.fill();
-    ctx.strokeStyle = '#6B4A2B';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(0, -f.ry);
-    ctx.lineTo(4, -f.ry - 9);
-    ctx.stroke();
-    ctx.fillStyle = '#6FA85A';
-    ctx.beginPath();
-    ctx.ellipse(9, -f.ry - 9, 7, 3.6, 0.6, 0, Math.PI * 2);
-    ctx.fill();
+
+    // kind-specific details (skipped while flashing red on a miss, so the
+    // flash colour reads clearly)
+    if (f.wrongFlash <= 0){
+      if (f.kind === 'orange'){
+        ctx.fillStyle = style.shade;
+        ctx.beginPath(); ctx.ellipse(0, -f.ry * 0.72, 2.6, 2, 0, 0, Math.PI * 2); ctx.fill();
+      } else if (f.kind === 'peach'){
+        ctx.strokeStyle = style.shade;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, -f.ry * 0.82);
+        ctx.quadraticCurveTo(f.rx * 0.18, 0, 0, f.ry * 0.82);
+        ctx.stroke();
+      } else if (f.kind === 'grape'){
+        ctx.fillStyle = style.body;
+        ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.ellipse(-f.rx * 0.58, f.ry * 0.22, f.rx * 0.32, f.ry * 0.32, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(f.rx * 0.52, f.ry * 0.34, f.rx * 0.3, f.ry * 0.3, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      } else if (f.kind === 'strawberry'){
+        ctx.fillStyle = '#FFE9A8';
+        for (var si = 0; si < 6; si++){
+          var sang = si * (Math.PI * 2 / 6) + 0.3;
+          ctx.beginPath();
+          ctx.ellipse(Math.cos(sang) * f.rx * 0.5, Math.sin(sang) * f.ry * 0.55, 1.6, 2.2, sang, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else if (f.kind === 'melon'){
+        ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+        ctx.lineWidth = 1.3;
+        for (var mi = -1; mi <= 1; mi++){
+          ctx.beginPath();
+          ctx.moveTo(mi * f.rx * 0.5, -f.ry * 0.8);
+          ctx.quadraticCurveTo(mi * f.rx * 0.7, 0, mi * f.rx * 0.5, f.ry * 0.8);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // stem + leaf (grape draws its own small stem instead, since its shape
+    // already reads as a cluster)
+    if (f.kind === 'grape'){
+      ctx.strokeStyle = '#6FA85A';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(0, -f.ry * 0.9);
+      ctx.lineTo(3, -f.ry - 8);
+      ctx.stroke();
+    } else {
+      ctx.strokeStyle = '#6B4A2B';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, -f.ry);
+      ctx.lineTo(4, -f.ry - 9);
+      ctx.stroke();
+      ctx.fillStyle = '#6FA85A';
+      ctx.beginPath();
+      ctx.ellipse(9, -f.ry - 9, 7, 3.6, 0.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
     ctx.font = "bold 34px 'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif";
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -1015,6 +1128,7 @@
     missedTargetsFailed = false;
     shakeTime = 0; flashTime = 0;
     catcherX = CW/2;
+    fruitDeck = []; lastFruitKind = null;
     startTime = performance.now();
     intro.style.display = 'none';
     result.style.display = 'none';
