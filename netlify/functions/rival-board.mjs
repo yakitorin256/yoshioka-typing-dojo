@@ -1,5 +1,4 @@
 import { getStore } from "@netlify/blobs";
-import { randomUUID } from "node:crypto";
 
 const BOARD_SIZE = 5;
 const MAX_STORED = 1000; // hard cap so the blob can't grow without bound
@@ -105,7 +104,6 @@ export default async (req) => {
     }
 
     const entry = {
-      id: randomUUID(),
       grade, cls, name,
       points: score.points,
       speed: score.speed,
@@ -131,13 +129,13 @@ export default async (req) => {
     } catch (e) {
       return Response.json({ error: "invalid_body" }, { status: 400 });
     }
-    const id = String(body.id || "");
-    if (!id) {
-      return Response.json({ error: "invalid_id" }, { status: 400 });
+    const ts = Number(body.ts);
+    if (!Number.isFinite(ts) || ts <= 0) {
+      return Response.json({ error: "invalid_ts" }, { status: 400 });
     }
 
     const list = (await store.get("entries", { type: "json" })) || [];
-    const filtered = list.filter((e) => e.id !== id);
+    const filtered = list.filter((e) => e.ts !== ts);
     await store.setJSON("entries", filtered);
 
     const byNewest = filtered.slice().sort((a, b) => (b.ts || 0) - (a.ts || 0));

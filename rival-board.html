@@ -288,12 +288,12 @@ function RB_INIT(){
     }
     return list.map(function(e){
       var when = e.ts ? new Date(e.ts).toLocaleString('ja-JP') : '';
-      return '<tr data-id="'+escapeHtml(e.id||'')+'">'+
+      return '<tr data-ts="'+escapeHtml(e.ts||'')+'">'+
         '<td>'+escapeHtml(displayGrade(e.grade))+' '+escapeHtml(e.cls)+'</td>'+
         '<td>'+escapeHtml(e.name)+'</td>'+
         '<td>'+e.points+'</td><td>'+e.speed+'文字/分</td><td>'+e.accuracy+'%</td>'+
         '<td>'+escapeHtml(when)+'</td>'+
-        '<td><button type="button" class="admin-del-btn" data-id="'+escapeHtml(e.id||'')+'">削除</button></td>'+
+        '<td><button type="button" class="admin-del-btn" data-ts="'+escapeHtml(e.ts||'')+'">削除</button></td>'+
       '</tr>';
     }).join('');
   }
@@ -307,22 +307,22 @@ function RB_INIT(){
       '</tr></thead><tbody>'+renderAdminRows(list)+'</tbody></table></div>';
     wrap.querySelectorAll('.admin-del-btn').forEach(function(btn){
       btn.addEventListener('click', function(){
-        var id = btn.getAttribute('data-id');
+        var ts = btn.getAttribute('data-ts');
         var row = btn.closest('tr');
         var name = row ? row.children[1].textContent : '';
         if (!window.confirm('「'+name+'」のとうろくを削除します。よろしいですか？')) return;
         btn.disabled = true;
-        deleteEntry(id);
+        deleteEntry(ts);
       });
     });
   }
 
-  function deleteEntry(id){
+  function deleteEntry(ts){
     var note = document.getElementById('adminNote');
     fetch(API_URL, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json', 'X-Admin-Password': adminPassword},
-      body: JSON.stringify({id: id})
+      body: JSON.stringify({ts: Number(ts)})
     }).then(function(res){
       if (!res.ok){
         note.textContent = '削除に失敗しました。もう一度ためしてね。';
