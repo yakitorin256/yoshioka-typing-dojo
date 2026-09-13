@@ -1,4 +1,4 @@
-<title>がだ行（濁音）の練習 トレーニング</title>
+<title>が行・だ行（濁音）の練習 トレーニング</title>
 <meta name="description" content="吉岡小タイピング道場・が行とだ行（濁音）の練習。子音「g」「d」を使って「がぎぐげご」「だぢづでど」を打つしくみを学ぶタイピング練習アプリ">
 <style>
   :root{
@@ -243,7 +243,7 @@
   .finger-hint{font-size:0.92rem; color:var(--ink-soft); margin-top:4px;}
   .miss-note{min-height:1.4em; font-size:0.85rem; color:var(--bad); margin-top:6px;}
 
-  /* ---- step 2: words built from がだ行 + already-known文字 ---- */
+  /* ---- step 2: words built from が行・だ行 + already-known文字 ---- */
   .phase-banner{
     margin:6px auto 0; max-width:34ch; font-size:0.82rem; font-weight:700;
     color:var(--belt-intro);
@@ -305,16 +305,16 @@
 
 <div class="topbar">
   <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
-  <span class="stage-badge">がだ行（濁音）の練習</span>
+  <span class="stage-badge">が行・だ行（濁音）の練習</span>
 </div>
 
 <main>
   <div class="panel" id="intro">
     <span class="eyebrow">トレーニング11</span>
-    <h1>がだ行（濁音）の練習</h1>
+    <h1>が行・だ行（濁音）の練習</h1>
     <p class="lead" style="text-align:left;">　文字の右上に「゛」（濁点）がつくと、音が変わるよ。「か」に濁点がつくと「が」、「た」に濁点がつくと「だ」になる。</p>
     <p class="lead" style="text-align:left;">　ローマ字で打つときは、子音を変えるだけでOK。か行の「K」の代わりに「G」、た行の「T」の代わりに「D」を使うと、母音の打ち方はいままでと同じまま、がぎぐげご・だぢづでど が打てるよ。</p>
-    <p class="lead" style="text-align:left;">　ふたつの行を、まとめて練習しよう。さいごに、がだ行を使った ことば も 10もん うつよ。</p>
+    <p class="lead" style="text-align:left;">　ふたつの行を、まとめて練習しよう。さいごに、が行・だ行を使った ことば も 10もん うつよ。</p>
 
     <div class="combo-row" id="comboRow"></div>
     <div class="combo-legend">
@@ -338,7 +338,7 @@
       <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
     </div>
 
-    <div class="phase-banner" id="phaseBanner" style="display:none">ステップ2：がだ行の音でできる ことばを うとう（10もん）</div>
+    <div class="phase-banner" id="phaseBanner" style="display:none">ステップ2：が行・だ行の音でできる ことばを うとう（10もん）</div>
     <div class="target-label" id="targetLabel">この文字を、ローマ字で打とう</div>
     <div class="target-char" id="targetChar">が</div>
     <div class="word-meaning" id="wordMeaning" style="display:none">&nbsp;</div>
@@ -351,7 +351,7 @@
 
   <div class="panel" id="result">
     <div class="stamp" id="stamp">合格</div>
-    <h1 id="resultTitle">がだ行 合格！</h1>
+    <h1 id="resultTitle">が行・だ行 合格！</h1>
     <p class="result-msg" id="resultMsg" style="text-align:left;">　「がぎぐげご」「だぢづでど」がしっかり打てるようになった。</p>
     <div class="stat-row">
       <div class="stat-box"><span class="mono">速さ</span><span class="stat-val" id="statSpeed">0<span style="font-size:0.6em;font-weight:400;"> 文字/分</span></span></div>
@@ -561,7 +561,7 @@
     return pool.map(function(i){ return KANA[i]; });
   }
 
-  // Step 2: real words spelled with がだ行 plus か・な・は・ま・ら・わをん行の
+  // Step 2: real words spelled with が行・だ行 plus か・な・は・ま・ら・わをん行の
   // すでに学んだ文字（あ行はもちろんOK）。
   var WORDS = [
     {kana:'かがみ', meaning:'鏡'},
@@ -879,7 +879,7 @@
     var nextLink = document.getElementById('nextStageLink');
     if (accuracy >= 70){
       stamp.className = 'stamp'; stamp.textContent = '合格';
-      title.textContent = 'がだ行 合格！';
+      title.textContent = 'が行・だ行 合格！';
       msg.textContent = '　「がぎぐげご」「だぢづでど」も、ことばも うてるようになった。つぎは しゅうりょうテストにチャレンジしよう。';
       nextLink.style.display = 'inline-flex';
     } else {
