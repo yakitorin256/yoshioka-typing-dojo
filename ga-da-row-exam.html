@@ -1,5 +1,5 @@
-<title>くだものキャッチ わをん しゅうりょうテスト</title>
-<meta name="description" content="吉岡小タイピング道場・わをんしゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをんの総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
+<title>くだものキャッチ がだ行 しゅうりょうテスト</title>
+<meta name="description" content="吉岡小タイピング道場・がだ行（濁音）しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・がだ行の総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
 <style>
   :root{
     --bg:#F7F2E8;
@@ -133,12 +133,6 @@
   .btn-quiet:hover{border-color:var(--belt-intro); color:var(--belt-intro); transform:none; box-shadow:none;}
   .key-hint{margin-top:10px; font-size:0.76rem; color:var(--ink-soft); text-align:center;}
 
-  ruby{ruby-align:center;}
-  rt{
-    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
-    font-weight:500; font-size:0.5em; letter-spacing:0; opacity:0.85;
-  }
-
   /* ---- game screen ---- */
   #game{display:none; padding:28px 20px 34px;}
   .progress-line{display:flex; align-items:center; gap:14px; justify-content:center; margin-bottom:16px;}
@@ -189,14 +183,14 @@
 
 <div class="topbar">
   <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
-  <span class="stage-badge">わをん しゅうりょうテスト</span>
+  <span class="stage-badge">がだ行 しゅうりょうテスト</span>
 </div>
 
 <main>
   <div class="panel" id="intro">
-    <span class="eyebrow">わをん しゅうりょうテスト</span>
-    <h1>くだものキャッチ　わをん しゅうりょうテスト</h1>
-    <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」「やゆよ」「らりるれろ」「わ・を・ん」の修了テスト。ぜんぶで30問、クリアしたら「がだ行（濁音）」の練習にすすめるよ。</p>
+    <span class="eyebrow">がだ行 しゅうりょうテスト</span>
+    <h1>くだものキャッチ　がだ行 しゅうりょうテスト</h1>
+    <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」「やゆよ」「らりるれろ」「わ・を・ん」「がぎぐげご・だぢづでど（濁音）」の修了テスト。ぜんぶで30問、クリアしたら白帯にすすめるよ。</p>
     <ol class="rule-list">
       <li><span class="rule-num">1</span>単音10問と、ことば20問。あわせて30問。</li>
       <li><span class="rule-num">2</span>文字が書かれたくだものが、上から落ちてくる。</li>
@@ -226,13 +220,13 @@
   <div class="panel" id="result">
     <div class="stamp" id="stamp">合格</div>
     <h1 id="resultTitle">しゅうりょう合格！</h1>
-    <p class="result-msg" id="resultMsg">30問ぜんぶクリア！つぎは「がだ行（濁音）」の練習にすすもう。</p>
+    <p class="result-msg" id="resultMsg">30問ぜんぶクリア！つぎは白帯「ホームポジションの間」にチャレンジしよう。</p>
     <div class="stat-row" id="statRow">
       <div class="stat-box"><span class="mono">かかった時間</span><span class="stat-val" id="statTime">0<span style="font-size:0.6em;font-weight:400;"> 秒</span></span></div>
       <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
     </div>
     <div class="result-actions">
-      <a class="btn" id="nextStageLink" style="display:none" href="ga-da-row-practice.html">がだ行の練習へ →</a>
+      <a class="btn" id="nextStageLink" style="display:none" href="home-position-practice.html">白帯にチャレンジする →</a>
       <button class="btn btn-quiet" id="retryBtn">もう一度ちょうせんする</button>
       <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
     </div>
@@ -246,7 +240,7 @@
 (function(){
   "use strict";
 
-  // ---- vocabulary: あ行〜わ行, the material トレーニング1〜10 covered ----
+  // ---- vocabulary: あ行〜わ行＋濁音（がだ行）, the material トレーニング1〜11 covered ----
   var byMoraCodes = {
     'あ':['KeyA'], 'い':['KeyI'], 'う':['KeyU'], 'え':['KeyE'], 'お':['KeyO'],
     'か':['KeyK','KeyA'], 'き':['KeyK','KeyI'], 'く':['KeyK','KeyU'], 'け':['KeyK','KeyE'], 'こ':['KeyK','KeyO'],
@@ -257,39 +251,42 @@
     'ま':['KeyM','KeyA'], 'み':['KeyM','KeyI'], 'む':['KeyM','KeyU'], 'め':['KeyM','KeyE'], 'も':['KeyM','KeyO'],
     'や':['KeyY','KeyA'], 'ゆ':['KeyY','KeyU'], 'よ':['KeyY','KeyO'],
     'ら':['KeyR','KeyA'], 'り':['KeyR','KeyI'], 'る':['KeyR','KeyU'], 'れ':['KeyR','KeyE'], 'ろ':['KeyR','KeyO'],
-    'わ':['KeyW','KeyA'], 'を':['KeyW','KeyO'], 'ん':['KeyN','KeyN']
+    'わ':['KeyW','KeyA'], 'を':['KeyW','KeyO'], 'ん':['KeyN','KeyN'],
+    'が':['KeyG','KeyA'], 'ぎ':['KeyG','KeyI'], 'ぐ':['KeyG','KeyU'], 'げ':['KeyG','KeyE'], 'ご':['KeyG','KeyO'],
+    'だ':['KeyD','KeyA'], 'ぢ':['KeyD','KeyI'], 'づ':['KeyD','KeyU'], 'で':['KeyD','KeyE'], 'ど':['KeyD','KeyO']
   };
   var byCode = {
     KeyA:{roma:'a'}, KeyI:{roma:'i'}, KeyU:{roma:'u'}, KeyE:{roma:'e'}, KeyO:{roma:'o'},
     KeyK:{roma:'k'}, KeyS:{roma:'s'}, KeyT:{roma:'t'}, KeyN:{roma:'n'}, KeyH:{roma:'h'}, KeyM:{roma:'m'}, KeyY:{roma:'y'}, KeyR:{roma:'r'}, KeyW:{roma:'w'},
+    KeyG:{roma:'g'}, KeyD:{roma:'d'},
     KeyC:{roma:'c'}, KeyF:{roma:'f'}
   };
   // 「ち」だけ、教える「TI」に加えて実際のIMEでもおなじみの「CHI」も受け付ける。
   var CHI_ALT_CODES = ['KeyC', 'KeyH', 'KeyI'];
   // 「ふ」だけ、教える「HU」に加えて実際のIMEでもおなじみの「FU」も受け付ける。
   var FU_ALT_CODES = ['KeyF', 'KeyU'];
-  var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん'];
+  var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん','が','ぎ','ぐ','げ','ご','だ','ぢ','づ','で','ど'];
   var WORDS = [
     {kana:'さくら', meaning:'桜'},
     {kana:'そら', meaning:'空'},
-    {kana:'しろ', meaning:'白'},
-    {kana:'くろ', meaning:'黒'},
     {kana:'とり', meaning:'鳥'},
-    {kana:'はしる', meaning:'走る'},
     {kana:'かえる', meaning:'帰る'},
-    {kana:'これ', meaning:'これ'},
     {kana:'わたし', meaning:'私'},
-    {kana:'かわ', meaning:'川'},
-    {kana:'にわ', meaning:'庭'},
-    {kana:'こわい', meaning:'怖い'},
     {kana:'かわいい', meaning:'可愛い'},
-    {kana:'ほん', meaning:'本'},
     {kana:'きりん', meaning:'麒麟'},
     {kana:'みかん', meaning:'蜜柑'},
     {kana:'てんき', meaning:'天気'},
-    {kana:'ほんを', meaning:'本を'},
-    {kana:'えを', meaning:'絵を'},
-    {kana:'はなを', meaning:'花を'}
+    {kana:'はなを', meaning:'花を'},
+    {kana:'かがみ', meaning:'鏡'},
+    {kana:'めがね', meaning:'眼鏡'},
+    {kana:'まいご', meaning:'迷子'},
+    {kana:'ひげ', meaning:'髭'},
+    {kana:'かぐ', meaning:'家具'},
+    {kana:'からだ', meaning:'体'},
+    {kana:'まど', meaning:'窓'},
+    {kana:'かど', meaning:'角'},
+    {kana:'くだもの', meaning:'果物'},
+    {kana:'でんわ', meaning:'電話'}
   ];
 
   function shuffle(arr){
@@ -677,16 +674,17 @@
     }
   }
 
-  // catcher: a farmer fox in a kerchief, holding a woven basket, sliding
-  // left-right to line up under the falling fruit — the last of the five
-  // forest-animal friends the student meets before 白帯
+  // catcher: a farmer hedgehog in a kerchief, holding a woven basket,
+  // sliding left-right to line up under the falling fruit — the 6th
+  // forest-animal friend, welcoming the student to 濁音
   function drawCatcher(missed){
     ctx.save();
     ctx.translate(catcherX, GROUND_Y + 4);
 
-    var furColor = missed ? '#B5875F' : '#E2703A';
-    var furShade = missed ? '#93684A' : '#B5531F';
-    var creamColor = missed ? '#EDE3CC' : '#FDF6E8';
+    var furColor = missed ? '#A9967D' : '#C9A96E';
+    var furShade = missed ? '#8A7862' : '#A9895A';
+    var creamColor = missed ? '#EDE3CC' : '#FBF3DE';
+    var spikeColor = missed ? '#6E6152' : '#7A6A4E';
     var outline = '#3A2A1A';
     var basketColor = missed ? '#6B5138' : '#8B5A2B';
     var basketShade = missed ? '#5A4128' : '#734723';
@@ -698,23 +696,6 @@
     ctx.fillStyle = 'rgba(40,30,15,0.16)';
     ctx.beginPath();
     ctx.ellipse(0, 3, 25, 5.5, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // bushy, white-tipped tail, peeking out behind the body
-    ctx.fillStyle = furColor;
-    ctx.strokeStyle = outline;
-    ctx.lineWidth = 1.3;
-    ctx.beginPath();
-    ctx.moveTo(-15, -8);
-    ctx.quadraticCurveTo(-36, -12, -32, -38);
-    ctx.quadraticCurveTo(-30, -50, -16, -50);
-    ctx.quadraticCurveTo(-26, -46, -24, -34);
-    ctx.quadraticCurveTo(-22, -16, -15, -8);
-    ctx.closePath();
-    ctx.fill(); ctx.stroke();
-    ctx.fillStyle = creamColor;
-    ctx.beginPath();
-    ctx.ellipse(-24, -46, 6, 5, 0.5, 0, Math.PI * 2);
     ctx.fill();
 
     // feet
@@ -753,16 +734,6 @@
     ctx.ellipse(0, -44, 5, 3.4, 0, 0, Math.PI * 2);
     ctx.fill(); ctx.stroke();
 
-    // ears: large and pointed, with dark tips and cream insides
-    ctx.fillStyle = furColor;
-    ctx.strokeStyle = outline;
-    ctx.lineWidth = 1.3;
-    ctx.beginPath(); ctx.moveTo(-18, -62); ctx.lineTo(-12, -80); ctx.lineTo(-6, -62); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(6, -62); ctx.lineTo(12, -80); ctx.lineTo(18, -62); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = creamColor;
-    ctx.beginPath(); ctx.moveTo(-15, -64); ctx.lineTo(-12, -75); ctx.lineTo(-9, -64); ctx.closePath(); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(9, -64); ctx.lineTo(12, -75); ctx.lineTo(15, -64); ctx.closePath(); ctx.fill();
-
     // head
     ctx.fillStyle = furColor;
     ctx.strokeStyle = outline;
@@ -771,22 +742,48 @@
     ctx.arc(0, -53, 16, 0, Math.PI * 2);
     ctx.fill(); ctx.stroke();
 
-    // snout: more pointed than the others, fox-style
+    // spiky crown, sweeping over the top of the head and shoulders —
+    // the hedgehog's signature feature
+    ctx.fillStyle = spikeColor;
+    ctx.strokeStyle = outline;
+    ctx.lineWidth = 1;
+    var spikeCount = 9;
+    for (var spi = 0; spi <= spikeCount; spi++){
+      var ang = Math.PI * (1.18 - (spi / spikeCount) * 1.36);
+      var baseX = Math.cos(ang) * 16.5, baseY = -53 + Math.sin(ang) * 16.5;
+      var tipX = Math.cos(ang) * 25, tipY = -53 + Math.sin(ang) * 25;
+      var perpX = -Math.sin(ang) * 3.2, perpY = Math.cos(ang) * 3.2;
+      ctx.beginPath();
+      ctx.moveTo(baseX - perpX, baseY - perpY);
+      ctx.lineTo(tipX, tipY);
+      ctx.lineTo(baseX + perpX, baseY + perpY);
+      ctx.closePath();
+      ctx.fill(); ctx.stroke();
+    }
+
+    // tiny ears, tucked beneath the spikes
+    ctx.fillStyle = furColor;
+    ctx.strokeStyle = outline;
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(-14, -57, 3.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(14, -57, 3.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // snout: long and pointed
     ctx.fillStyle = creamColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(-8, -49);
-    ctx.quadraticCurveTo(0, -40, 8, -49);
-    ctx.quadraticCurveTo(5, -44, 0, -43);
-    ctx.quadraticCurveTo(-5, -44, -8, -49);
+    ctx.moveTo(-7, -48);
+    ctx.quadraticCurveTo(0, -38, 7, -48);
+    ctx.quadraticCurveTo(4, -43, 0, -42);
+    ctx.quadraticCurveTo(-4, -43, -7, -48);
     ctx.closePath();
     ctx.fill();
 
     // nose
     ctx.fillStyle = outline;
     ctx.beginPath();
-    ctx.ellipse(0, -44, 2.4, 1.8, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -43, 2.2, 1.7, 0, 0, Math.PI * 2);
     ctx.fill();
 
     if (missed){
@@ -800,7 +797,7 @@
       ctx.beginPath(); ctx.moveTo(9, -53); ctx.lineTo(3, -49); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(3, -53); ctx.lineTo(9, -49); ctx.stroke();
       ctx.beginPath();
-      ctx.arc(0, -41, 4, Math.PI * 1.1, Math.PI * 1.9);
+      ctx.arc(0, -40, 4, Math.PI * 1.1, Math.PI * 1.9);
       ctx.stroke();
     } else {
       // gentle eyebrows
@@ -817,13 +814,13 @@
       ctx.beginPath(); ctx.arc(5.7, -54.8, 0.8, 0, Math.PI * 2); ctx.fill();
       // rosy cheeks
       ctx.fillStyle = 'rgba(226,86,78,0.28)';
-      ctx.beginPath(); ctx.ellipse(-11, -47, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(11, -47, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(-11, -46, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(11, -46, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
       // smile
       ctx.strokeStyle = outline;
       ctx.lineWidth = 1.4;
       ctx.beginPath();
-      ctx.arc(0, -46, 3.6, 0.15 * Math.PI, 0.85 * Math.PI);
+      ctx.arc(0, -45, 3.6, 0.15 * Math.PI, 0.85 * Math.PI);
       ctx.stroke();
     }
 
@@ -1158,7 +1155,7 @@
       fanfare();
       stamp.className = 'stamp'; stamp.textContent = '合格';
       title.textContent = 'しゅうりょう合格！';
-      msg.textContent = '30問ぜんぶクリア！あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん、ひらがなの基本がぜんぶ身についたね。つぎは「がだ行（濁音）」の練習にすすもう。';
+      msg.textContent = '30問ぜんぶクリア！あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・がだ行、ひらがなの基本と濁音がぜんぶ身についたね。つぎは白帯「ホームポジションの間」にチャレンジしよう。';
       nextLink.style.display = 'inline-flex';
       statRow.style.display = 'flex';
     } else {
