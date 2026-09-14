@@ -206,6 +206,8 @@
     </ol>
     <p class="ime-note" style="text-align:left;">　はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。</p>
     <p class="ime-note" style="text-align:left;">　※「ち」だけは、「TI」のほかに「CHI」と打ってもOK。</p>
+    <p class="ime-note" style="text-align:left;">　※「し」だけは、「SI」のほかに「SHI」と打ってもOK。</p>
+    <p class="ime-note" style="text-align:left;">　※「つ」だけは、「TU」のほかに「TSU」と打ってもOK。</p>
     <button class="btn" id="startBtn">テストをはじめる →</button>
     <div class="key-hint">クリック、またはスペースキー／Enterキーではじめる</div>
   </div>
@@ -259,6 +261,10 @@
   };
   // 「ち」だけ、教える「TI」に加えて実際のIMEでもおなじみの「CHI」も受け付ける。
   var CHI_ALT_CODES = ['KeyC', 'KeyH', 'KeyI'];
+  // 「し」だけ、教える「SI」に加えて実際のIMEでもおなじみの「SHI」も受け付ける。
+  var SHI_ALT_CODES = ['KeyS', 'KeyH', 'KeyI'];
+  // 「つ」だけ、教える「TU」に加えて実際のIMEでもおなじみの「TSU」も受け付ける。
+  var TSU_ALT_CODES = ['KeyT', 'KeyS', 'KeyU'];
   var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の'];
   var WORDS = [
     {kana:'いぬ', meaning:'犬'},
@@ -562,6 +568,14 @@
         target.codes.splice.apply(target.codes, [codeIndex, 2].concat(CHI_ALT_CODES));
         target.codeLens[info.charIndex] = 3;
         matched = true;
+      } else if (info && info.offset === 1 && target.chars[info.charIndex] === 'し' && code === 'KeyH'){
+        target.codes.splice.apply(target.codes, [codeIndex, 1].concat(SHI_ALT_CODES.slice(1)));
+        target.codeLens[info.charIndex] = 3;
+        matched = true;
+      } else if (info && info.offset === 1 && target.chars[info.charIndex] === 'つ' && code === 'KeyS'){
+        target.codes.splice.apply(target.codes, [codeIndex, 1].concat(TSU_ALT_CODES.slice(1)));
+        target.codeLens[info.charIndex] = 3;
+        matched = true;
       }
     }
     if (matched){
@@ -578,6 +592,10 @@
       meteor.wrongFlash = 0.18;
       if (info && info.offset === 0 && target.chars[info.charIndex] === 'ち'){
         missNote.textContent = 'おしい！「ち」は「T」か「C」から始まるよ';
+      } else if (info && info.offset === 1 && target.chars[info.charIndex] === 'し'){
+        missNote.textContent = 'おしい！「し」は「SI」か「SHI」だよ';
+      } else if (info && info.offset === 1 && target.chars[info.charIndex] === 'つ'){
+        missNote.textContent = 'おしい！「つ」は「TU」か「TSU」だよ';
       } else {
         var wrongInfo = byCode[expected];
         missNote.textContent = 'おしい！つぎは「' + wrongInfo.roma.toUpperCase() + '」だよ';
