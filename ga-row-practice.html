@@ -1,5 +1,5 @@
-<title>が行・だ行（濁音）の練習 トレーニング</title>
-<meta name="description" content="吉岡小タイピング道場・が行とだ行（濁音）の練習。子音「g」「d」を使って「がぎぐげご」「だぢづでど」を打つしくみを学ぶタイピング練習アプリ">
+<title>が行（濁音）の練習 トレーニング</title>
+<meta name="description" content="吉岡小タイピング道場・が行（濁音）の練習。子音「g」を使って「がぎぐげご」を打つしくみを学ぶタイピング練習アプリ">
 <style>
   :root{
     --bg:#F7F2E8;
@@ -120,10 +120,10 @@
   .btn-quiet:hover{border-color:var(--belt-intro); color:var(--belt-intro); transform:none; box-shadow:none;}
   .key-hint{margin-top:10px; font-size:0.76rem; color:var(--ink-soft); text-align:center;}
 
-  /* ---- combo teaching row: 子音(G・D) + 母音 = がぎぐげご・だぢづでど ---- */
+  /* ---- combo teaching row: 子音(G) + 母音(あいうえお) = がぎぐげご ---- */
   .combo-row{
     display:grid; grid-template-columns:repeat(auto-fit, minmax(92px, 1fr));
-    gap:12px; max-width:480px; margin:26px auto 4px;
+    gap:12px; max-width:540px; margin:26px auto 4px;
   }
   .combo-unit{
     display:flex; flex-direction:column; align-items:center; gap:6px;
@@ -136,11 +136,11 @@
     font-size:2.2rem; color:var(--ink); min-width:1em; text-align:center;
     width:100%; margin-top:2px; padding-top:8px; border-top:1px dashed var(--line);
   }
-  .combo-legend{display:flex; gap:20px; justify-content:center; margin-top:14px; font-size:0.76rem; color:var(--ink-soft); flex-wrap:wrap;}
+  .combo-legend{display:flex; gap:20px; justify-content:center; margin-top:14px; font-size:0.76rem; color:var(--ink-soft);}
   .combo-legend span{display:inline-flex; align-items:center; gap:6px;}
   .combo-dot{width:10px; height:10px; border-radius:3px; display:inline-block;}
 
-  /* ---- full keyboard map: shows where G, D + the vowel keys sit ---- */
+  /* ---- full keyboard map: shows where G + the 5 vowel keys sit ---- */
   .full-kb{margin:22px auto 0; display:inline-block;}
   .kb-line{display:flex; gap:6px; margin-top:6px;}
   .kb-line:first-child{margin-top:0;}
@@ -157,7 +157,7 @@
     background:var(--card); border:2.2px solid var(--zone, var(--line)); color:var(--ink);
     box-shadow:0 3px 0 color-mix(in srgb, var(--zone, var(--line)) 65%, black);
   }
-  /* the consonant keys are filled solid, so they read as a different kind of key
+  /* the consonant key is filled solid, so it reads as a different kind of key
      from the outlined vowel keys */
   .fk-key.target-key.fk-consonant{
     background:var(--zone, var(--line)); color:#fff;
@@ -243,7 +243,7 @@
   .finger-hint{font-size:0.92rem; color:var(--ink-soft); margin-top:4px;}
   .miss-note{min-height:1.4em; font-size:0.85rem; color:var(--bad); margin-top:6px;}
 
-  /* ---- step 2: words built from が行・だ行 + already-known文字 ---- */
+  /* ---- step 2: words built from が行 + already-known あいうえお ---- */
   .phase-banner{
     margin:6px auto 0; max-width:34ch; font-size:0.82rem; font-weight:700;
     color:var(--belt-intro);
@@ -305,27 +305,27 @@
 
 <div class="topbar">
   <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
-  <span class="stage-badge">が行・だ行（濁音）の練習</span>
+  <span class="stage-badge">が行（濁音）の練習</span>
 </div>
 
 <main>
   <div class="panel" id="intro">
     <span class="eyebrow">トレーニング11</span>
-    <h1>が行・だ行（濁音）の練習</h1>
-    <p class="lead" style="text-align:left;">　文字の右上に「゛」（濁点）がつくと、音が変わるよ。「か」に濁点がつくと「が」、「た」に濁点がつくと「だ」になる。</p>
-    <p class="lead" style="text-align:left;">　ローマ字で打つときは、子音を変えるだけでOK。か行の「K」の代わりに「G」、た行の「T」の代わりに「D」を使うと、母音の打ち方はいままでと同じまま、がぎぐげご・だぢづでど が打てるよ。</p>
-    <p class="lead" style="text-align:left;">　ふたつの行を、まとめて練習しよう。さいごに、が行・だ行を使った ことば も 10もん うつよ。</p>
+    <h1>が行（濁音）の練習</h1>
+    <p class="lead" style="text-align:left;">　文字の右上に「゛」（濁点）がつくと、音が変わるよ。「か」に濁点がつくと「が」になるよ。</p>
+    <p class="lead" style="text-align:left;">　ローマ字で打つときは、子音を変えるだけでOK。か行の「K」の代わりに「G」を使うと、母音の打ち方はいままでと同じまま、がぎぐげご が打てるよ。</p>
+    <p class="lead" style="text-align:left;">　さいごに、が行の音でできる ことばも 10もん うつよ。</p>
 
     <div class="combo-row" id="comboRow"></div>
     <div class="combo-legend">
-      <span><span class="combo-dot" style="background:var(--belt-brown);"></span>今日おぼえる子音（G・D）</span>
+      <span><span class="combo-dot" style="background:var(--belt-brown);"></span>子音（G）</span>
       <span><span class="combo-dot" style="background:var(--accent);"></span>母音（あいうえお）</span>
     </div>
 
-    <div class="target-label" style="margin-top:26px;">キーボード全体の中で、GとDのキーの場所もたしかめよう</div>
+    <div class="target-label" style="margin-top:26px;">キーボード全体の中で、Gのキーの場所もたしかめよう</div>
     <div class="kb-wrap"><div class="full-kb" id="fullKbIntro"></div></div>
 
-    <p class="kb-legend" style="text-align:left;">　キーの右下の小さい字は、本物のキーボードにも書かれているかな文字だよ。この練習では使わないので、気にしなくてOK。左上のアルファベットだけを見て打とう。</p>
+    <p class="kb-legend" style="text-align:left;">　キーの右下の小さい字は、本物のキーボードにも書かれているかな文字だよ。この練習では使わないので、気にしなくてOK。左上のアルファベットだけを見て、「G」の次に母音、の順番で打とう。</p>
 
     <p class="ime-note" style="text-align:left;">　はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。</p>
     <button class="btn" id="startBtn">トレーニングをはじめる →</button>
@@ -334,11 +334,11 @@
 
   <div class="panel" id="practice">
     <div class="progress-line">
-      <span class="mono" id="progressText">もじ 0 / 30</span>
+      <span class="mono" id="progressText">もじ 0 / 20</span>
       <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
     </div>
 
-    <div class="phase-banner" id="phaseBanner" style="display:none">ステップ2：が行・だ行の音でできる ことばを うとう（10もん）</div>
+    <div class="phase-banner" id="phaseBanner" style="display:none">ステップ2：が行の音でできる ことばを うとう（10もん）</div>
     <div class="target-label" id="targetLabel">この文字を、ローマ字で打とう</div>
     <div class="target-char" id="targetChar">が</div>
     <div class="word-meaning" id="wordMeaning" style="display:none">&nbsp;</div>
@@ -351,14 +351,14 @@
 
   <div class="panel" id="result">
     <div class="stamp" id="stamp">合格</div>
-    <h1 id="resultTitle">が行・だ行 合格！</h1>
-    <p class="result-msg" id="resultMsg" style="text-align:left;">　「がぎぐげご」「だぢづでど」がしっかり打てるようになった。</p>
+    <h1 id="resultTitle">が行 合格！</h1>
+    <p class="result-msg" id="resultMsg">「が・ぎ・ぐ・げ・ご」がしっかり打てるようになった。つぎは しゅうりょうテストにチャレンジしよう。</p>
     <div class="stat-row">
       <div class="stat-box"><span class="mono">速さ</span><span class="stat-val" id="statSpeed">0<span style="font-size:0.6em;font-weight:400;"> 文字/分</span></span></div>
       <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
     </div>
     <div class="result-actions">
-      <a class="btn" id="nextStageLink" style="display:none" href="ga-da-row-exam.html">しゅうりょうテストへ →</a>
+      <a class="btn" id="nextStageLink" style="display:none" href="ga-row-exam.html">しゅうりょうテストへ →</a>
       <button class="btn btn-quiet" id="retryBtn">もう一度練習する</button>
       <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
     </div>
@@ -370,11 +370,10 @@
 
 <script>
 (function(){
-  // が行・だ行は、それぞれ子音「G」「D」＋あいうえおの5母音、で仕組みは
-  // これまでの行とまったく同じ（濁点は子音の文字を変えるだけ）。
-  // 「ぢ」は「DI」、「づ」は「DU」で打つ（実際のIMEともおなじ入力）。
-  var G_KEY = {code:'KeyG', roma:'G', kisKana:'き', zone:'--belt-brown', finger:'左手・人差し指', isConsonant:true};
-  var D_KEY = {code:'KeyD', roma:'D', kisKana:'し', zone:'--belt-brown', finger:'左手・中指', isConsonant:true};
+  // Two-key sequences: G (子音) always first, then one of the 5 vowels (母音).
+  // kisKana is the kana engraved on the real key (JIS kana-input layout) —
+  // shown on the keycap for authenticity, not used by this romaji lesson.
+  var CONSONANT = {code:'KeyG', roma:'G', kisKana:'き', zone:'--belt-brown', finger:'左手・人差し指'};
   var VOWELS = [
     {code:'KeyA', hira:'あ', roma:'a', kisKana:'ち', zone:'--accent', finger:'左手・小指'},
     {code:'KeyI', hira:'い', roma:'i', kisKana:'に', zone:'--belt-green', finger:'右手・中指'},
@@ -383,18 +382,13 @@
     {code:'KeyO', hira:'お', roma:'o', kisKana:'ら', zone:'--gold-fill', finger:'右手・くすり指'}
   ];
   var KANA = [
-    {hira:'が', codes:['KeyG', 'KeyA']},
-    {hira:'ぎ', codes:['KeyG', 'KeyI']},
-    {hira:'ぐ', codes:['KeyG', 'KeyU']},
-    {hira:'げ', codes:['KeyG', 'KeyE']},
-    {hira:'ご', codes:['KeyG', 'KeyO']},
-    {hira:'だ', codes:['KeyD', 'KeyA']},
-    {hira:'ぢ', codes:['KeyD', 'KeyI']},
-    {hira:'づ', codes:['KeyD', 'KeyU']},
-    {hira:'で', codes:['KeyD', 'KeyE']},
-    {hira:'ど', codes:['KeyD', 'KeyO']}
+    {hira:'が', codes:[CONSONANT.code, 'KeyA']},
+    {hira:'ぎ', codes:[CONSONANT.code, 'KeyI']},
+    {hira:'ぐ', codes:[CONSONANT.code, 'KeyU']},
+    {hira:'げ', codes:[CONSONANT.code, 'KeyE']},
+    {hira:'ご', codes:[CONSONANT.code, 'KeyO']}
   ];
-  var ALL_KEYS = [G_KEY, D_KEY].concat(VOWELS);
+  var ALL_KEYS = [CONSONANT].concat(VOWELS);
   var byCode = {};
   ALL_KEYS.forEach(function(k){ byCode[k.code] = k; });
   var byRoma = {};
@@ -408,8 +402,7 @@
     {code:'KeyM', roma:'M', finger:'右手・人差し指'},
     {code:'KeyN', roma:'N', finger:'右手・人差し指'},
     {code:'KeyH', roma:'H', finger:'右手・人差し指'},
-    {code:'KeyR', roma:'R', finger:'左手・人差し指'},
-    {code:'KeyW', roma:'W', finger:'左手・薬指'}
+    {code:'KeyT', roma:'T', finger:'左手・人差し指'}
   ];
   EXTRA_KEYS.forEach(function(k){ byCode[k.code] = k; });
 
@@ -417,31 +410,30 @@
     return codes.map(function(c){ return byCode[c].roma.toLowerCase(); }).join('');
   }
 
-  // ---- combo teaching row: first-key + second-key = kana ----
+  // ---- combo teaching row: G + vowel = kana ----
   var comboRow = document.getElementById('comboRow');
   KANA.forEach(function(item){
     var unit = document.createElement('div');
     unit.className = 'combo-unit';
 
-    var first = byCode[item.codes[0]];
     var kKey = document.createElement('div');
     kKey.className = 'key'; kKey.style.width='44px'; kKey.style.height='44px';
-    kKey.style.setProperty('--zone', 'var(' + first.zone + ')');
+    kKey.style.setProperty('--zone', 'var(' + CONSONANT.zone + ')');
     var kLabel = document.createElement('span');
     kLabel.className = 'key-roma-label'; kLabel.style.fontSize='1rem'; kLabel.style.top='5px'; kLabel.style.left='6px';
-    kLabel.textContent = first.roma.toUpperCase();
+    kLabel.textContent = 'G';
     kKey.appendChild(kLabel);
 
     var plus = document.createElement('span');
     plus.className = 'combo-op'; plus.textContent = '+';
 
-    var second = byCode[item.codes[1]];
+    var vowel = VOWELS[KANA.indexOf(item)];
     var vKey = document.createElement('div');
     vKey.className = 'key'; vKey.style.width='44px'; vKey.style.height='44px';
-    vKey.style.setProperty('--zone', 'var(' + second.zone + ')');
+    vKey.style.setProperty('--zone', 'var(' + vowel.zone + ')');
     var vLabel = document.createElement('span');
     vLabel.className = 'key-roma-label'; vLabel.style.fontSize='1rem'; vLabel.style.top='5px'; vLabel.style.left='6px';
-    vLabel.textContent = second.roma.toUpperCase();
+    vLabel.textContent = vowel.roma.toUpperCase();
     vKey.appendChild(vLabel);
 
     var eq = document.createElement('span');
@@ -476,7 +468,7 @@
         var target = byRoma[letter];
         var key = document.createElement('div');
         key.className = target
-          ? (target.isConsonant ? 'fk-key target-key fk-consonant' : 'fk-key target-key')
+          ? (target === CONSONANT ? 'fk-key target-key fk-consonant' : 'fk-key target-key')
           : 'fk-key';
         key.textContent = letter;
         if (target){
@@ -500,10 +492,10 @@
   }
   buildFullKeyboard(document.getElementById('fullKbIntro'));
 
-  // ---- interactive practice keyboard: G, D, then the 5 vowels ----
+  // ---- interactive practice keyboard: G, then the 5 vowels ----
   function buildPracticeKeyboard(container){
     ALL_KEYS.forEach(function(k, i){
-      if (i === 2){
+      if (i === 1){
         var gap = document.createElement('div');
         gap.className = 'key-gap';
         container.appendChild(gap);
@@ -532,7 +524,7 @@
 
       var sub = document.createElement('span');
       sub.className = 'key-sub';
-      sub.textContent = k.isConsonant ? '子音' : '母音';
+      sub.textContent = (k === CONSONANT) ? '子音' : '母音';
 
       unit.appendChild(el);
       unit.appendChild(sub);
@@ -546,7 +538,7 @@
   function buildSequence(){
     var pool = [];
     KANA.forEach(function(k, i){
-      for (var w=0; w<3; w++) pool.push(i);
+      for (var w=0; w<4; w++) pool.push(i);
     });
     for (var i = pool.length - 1; i > 0; i--){
       var j = Math.floor(Math.random() * (i+1));
@@ -561,7 +553,7 @@
     return pool.map(function(i){ return KANA[i]; });
   }
 
-  // Step 2: real words spelled with が行・だ行 plus か・な・は・ま・ら・わをん行の
+  // Step 2: real words spelled with が行 plus か・た・な・は・ま行の
   // すでに学んだ文字（あ行はもちろんOK）。
   var WORDS = [
     {kana:'かがみ', meaning:'鏡'},
@@ -569,28 +561,23 @@
     {kana:'まいご', meaning:'迷子'},
     {kana:'ひげ', meaning:'髭'},
     {kana:'かぐ', meaning:'家具'},
-    {kana:'からだ', meaning:'体'},
-    {kana:'まど', meaning:'窓'},
-    {kana:'かど', meaning:'角'},
-    {kana:'くだもの', meaning:'果物'},
-    {kana:'でんわ', meaning:'電話'}
+    {kana:'うなぎ', meaning:'鰻'},
+    {kana:'とかげ', meaning:'蜥蜴'},
+    {kana:'えがお', meaning:'笑顔'},
+    {kana:'まご', meaning:'孫'},
+    {kana:'とげ', meaning:'棘'}
   ];
   var byMoraCodes = {};
   VOWELS.forEach(function(v){ byMoraCodes[v.hira] = [v.code]; });
   KANA.forEach(function(k){ byMoraCodes[k.hira] = k.codes; });
   // このトレーニングで使う ことば に出てくる、ほかの行の文字。
   byMoraCodes['か'] = ['KeyK', 'KeyA'];
-  byMoraCodes['く'] = ['KeyK', 'KeyU'];
   byMoraCodes['み'] = ['KeyM', 'KeyI'];
-  byMoraCodes['め'] = ['KeyM', 'KeyE'];
-  byMoraCodes['ま'] = ['KeyM', 'KeyA'];
-  byMoraCodes['も'] = ['KeyM', 'KeyO'];
   byMoraCodes['ね'] = ['KeyN', 'KeyE'];
-  byMoraCodes['の'] = ['KeyN', 'KeyO'];
-  byMoraCodes['ん'] = ['KeyN', 'KeyN'];
   byMoraCodes['ひ'] = ['KeyH', 'KeyI'];
-  byMoraCodes['ら'] = ['KeyR', 'KeyA'];
-  byMoraCodes['わ'] = ['KeyW', 'KeyA'];
+  byMoraCodes['と'] = ['KeyT', 'KeyO'];
+  byMoraCodes['な'] = ['KeyN', 'KeyA'];
+  byMoraCodes['ま'] = ['KeyM', 'KeyA'];
 
   function buildWordSequence(){
     var pool = WORDS.slice();
@@ -725,7 +712,7 @@
       if (el){ el.classList.remove('correct'); el.classList.add('wrong'); setTimeout(function(){ el.classList.remove('wrong'); }, 260); }
       beep(180, 0.12);
       if (subIdx === 0){
-        missNote.textContent = 'おしい！「' + k.hira + '」は「' + byCode[k.codes[0]].roma.toUpperCase() + '」から始まるよ';
+        missNote.textContent = 'おしい！「' + k.hira + '」は「G」から始まるよ';
       } else {
         var vowelInfo = byCode[expectedCode];
         missNote.textContent = 'おしい！つぎは「' + vowelInfo.roma.toUpperCase() + '」だよ';
@@ -868,6 +855,8 @@
     practice.style.display = 'none';
     result.style.display = 'block';
     var elapsed = Math.max((performance.now() - startTime) / 1000, 1);
+    // scored over both steps: the 20 single-key reps plus every key of the
+    // 10 words
     var typed = Math.max(totalChars, 1);
     var speed = Math.round(typed / elapsed * 60);
     var accuracy = Math.round((typed - missedChars) / typed * 100);
@@ -879,13 +868,13 @@
     var nextLink = document.getElementById('nextStageLink');
     if (accuracy >= 70){
       stamp.className = 'stamp'; stamp.textContent = '合格';
-      title.textContent = 'が行・だ行 合格！';
-      msg.textContent = '　「がぎぐげご」「だぢづでど」も、ことばも うてるようになった。つぎは しゅうりょうテストにチャレンジしよう。';
+      title.textContent = 'が行 合格！';
+      msg.textContent = '「が・ぎ・ぐ・げ・ご」も、ことばも うてるようになった。つぎは しゅうりょうテストにチャレンジしよう。';
       nextLink.style.display = 'inline-flex';
     } else {
       stamp.className = 'stamp fail'; stamp.textContent = 'もう一歩';
       title.textContent = 'もう一歩！';
-      msg.textContent = '　あわてなくて大丈夫。が行はGから、だ行はDから、というじゅんばんの感覚を、もう一度確かめてみよう。';
+      msg.textContent = 'あわてなくて大丈夫。「G」の次に母音を打つ、じゅんばんの感覚を、もう一度確かめてみよう。';
       nextLink.style.display = 'none';
     }
     var firstBtn = getVisibleResultBtns()[0];

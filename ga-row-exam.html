@@ -1,5 +1,5 @@
-<title>くだものキャッチ が行・だ行 しゅうりょうテスト</title>
-<meta name="description" content="吉岡小タイピング道場・が行・だ行（濁音）しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行・だ行の総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
+<title>くだものキャッチ が行 しゅうりょうテスト</title>
+<meta name="description" content="吉岡小タイピング道場・が行（濁音）しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行の総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
 <style>
   :root{
     --bg:#F7F2E8;
@@ -183,14 +183,14 @@
 
 <div class="topbar">
   <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
-  <span class="stage-badge">が行・だ行 しゅうりょうテスト</span>
+  <span class="stage-badge">が行 しゅうりょうテスト</span>
 </div>
 
 <main>
   <div class="panel" id="intro">
-    <span class="eyebrow">が行・だ行 しゅうりょうテスト</span>
-    <h1>くだものキャッチ　が行・だ行 しゅうりょうテスト</h1>
-    <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」「やゆよ」「らりるれろ」「わ・を・ん」「がぎぐげご・だぢづでど（濁音）」の修了テスト。ぜんぶで30問、クリアしたら白帯にすすめるよ。</p>
+    <span class="eyebrow">が行 しゅうりょうテスト</span>
+    <h1>くだものキャッチ　が行 しゅうりょうテスト</h1>
+    <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」「やゆよ」「らりるれろ」「わ・を・ん」「がぎぐげご（濁音）」の修了テスト。ぜんぶで30問、クリアしたら白帯にすすめるよ。</p>
     <ol class="rule-list">
       <li><span class="rule-num">1</span>単音10問と、ことば20問。あわせて30問。</li>
       <li><span class="rule-num">2</span>文字が書かれたくだものが、上から落ちてくる。</li>
@@ -242,7 +242,7 @@
 (function(){
   "use strict";
 
-  // ---- vocabulary: あ行〜わ行＋濁音（が行・だ行）, the material トレーニング1〜11 covered ----
+  // ---- vocabulary: あ行〜わ行＋濁音（が行）, the material トレーニング1〜11 covered ----
   var byMoraCodes = {
     'あ':['KeyA'], 'い':['KeyI'], 'う':['KeyU'], 'え':['KeyE'], 'お':['KeyO'],
     'か':['KeyK','KeyA'], 'き':['KeyK','KeyI'], 'く':['KeyK','KeyU'], 'け':['KeyK','KeyE'], 'こ':['KeyK','KeyO'],
@@ -254,13 +254,12 @@
     'や':['KeyY','KeyA'], 'ゆ':['KeyY','KeyU'], 'よ':['KeyY','KeyO'],
     'ら':['KeyR','KeyA'], 'り':['KeyR','KeyI'], 'る':['KeyR','KeyU'], 'れ':['KeyR','KeyE'], 'ろ':['KeyR','KeyO'],
     'わ':['KeyW','KeyA'], 'を':['KeyW','KeyO'], 'ん':['KeyN','KeyN'],
-    'が':['KeyG','KeyA'], 'ぎ':['KeyG','KeyI'], 'ぐ':['KeyG','KeyU'], 'げ':['KeyG','KeyE'], 'ご':['KeyG','KeyO'],
-    'だ':['KeyD','KeyA'], 'ぢ':['KeyD','KeyI'], 'づ':['KeyD','KeyU'], 'で':['KeyD','KeyE'], 'ど':['KeyD','KeyO']
+    'が':['KeyG','KeyA'], 'ぎ':['KeyG','KeyI'], 'ぐ':['KeyG','KeyU'], 'げ':['KeyG','KeyE'], 'ご':['KeyG','KeyO']
   };
   var byCode = {
     KeyA:{roma:'a'}, KeyI:{roma:'i'}, KeyU:{roma:'u'}, KeyE:{roma:'e'}, KeyO:{roma:'o'},
     KeyK:{roma:'k'}, KeyS:{roma:'s'}, KeyT:{roma:'t'}, KeyN:{roma:'n'}, KeyH:{roma:'h'}, KeyM:{roma:'m'}, KeyY:{roma:'y'}, KeyR:{roma:'r'}, KeyW:{roma:'w'},
-    KeyG:{roma:'g'}, KeyD:{roma:'d'},
+    KeyG:{roma:'g'},
     KeyC:{roma:'c'}, KeyF:{roma:'f'}
   };
   // 「ち」だけ、教える「TI」に加えて実際のIMEでもおなじみの「CHI」も受け付ける。
@@ -271,7 +270,7 @@
   var TSU_ALT_CODES = ['KeyT', 'KeyS', 'KeyU'];
   // 「ふ」だけ、教える「HU」に加えて実際のIMEでもおなじみの「FU」も受け付ける。
   var FU_ALT_CODES = ['KeyF', 'KeyU'];
-  var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん','が','ぎ','ぐ','げ','ご','だ','ぢ','づ','で','ど'];
+  var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん','が','ぎ','ぐ','げ','ご'];
   var WORDS = [
     {kana:'さくら', meaning:'桜'},
     {kana:'そら', meaning:'空'},
@@ -288,11 +287,11 @@
     {kana:'まいご', meaning:'迷子'},
     {kana:'ひげ', meaning:'髭'},
     {kana:'かぐ', meaning:'家具'},
-    {kana:'からだ', meaning:'体'},
-    {kana:'まど', meaning:'窓'},
-    {kana:'かど', meaning:'角'},
-    {kana:'くだもの', meaning:'果物'},
-    {kana:'でんわ', meaning:'電話'}
+    {kana:'うなぎ', meaning:'鰻'},
+    {kana:'とかげ', meaning:'蜥蜴'},
+    {kana:'えがお', meaning:'笑顔'},
+    {kana:'まご', meaning:'孫'},
+    {kana:'とげ', meaning:'棘'}
   ];
 
   function shuffle(arr){
@@ -1173,7 +1172,7 @@
       fanfare();
       stamp.className = 'stamp'; stamp.textContent = '合格';
       title.textContent = 'しゅうりょう合格！';
-      msg.textContent = '30問ぜんぶクリア！あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行・だ行、ひらがなの基本と濁音がぜんぶ身についたね。つぎは白帯「ホームポジションの間」にチャレンジしよう。';
+      msg.textContent = '30問ぜんぶクリア！あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行、ひらがなの基本と濁音がぜんぶ身についたね。つぎは白帯「ホームポジションの間」にチャレンジしよう。';
       nextLink.style.display = 'inline-flex';
       statRow.style.display = 'flex';
     } else {
