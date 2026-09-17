@@ -1,5 +1,5 @@
-<title>くだものキャッチ が行 しゅうりょうテスト</title>
-<meta name="description" content="吉岡小タイピング道場・が行（濁音）しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行の総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
+<title>くだものキャッチ ざじずぜぞ しゅうりょうテスト</title>
+<meta name="description" content="吉岡小タイピング道場・ざじずぜそ（濁音）しゅうりょうテスト。あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行・ざ行の総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
 <style>
   :root{
     --bg:#F7F2E8;
@@ -183,14 +183,14 @@
 
 <div class="topbar">
   <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
-  <span class="stage-badge">が行 しゅうりょうテスト</span>
+  <span class="stage-badge">ざじずぜぞ しゅうりょうテスト</span>
 </div>
 
 <main>
   <div class="panel" id="intro">
-    <span class="eyebrow">が行 しゅうりょうテスト</span>
-    <h1>くだものキャッチ　が行 しゅうりょうテスト</h1>
-    <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」「やゆよ」「らりるれろ」「わ・を・ん」「がぎぐげご（濁音）」の修了テスト。ぜんぶで30問、クリアしたら「ざじずぜぞ（濁音）」の練習にすすめるよ。</p>
+    <span class="eyebrow">ざじずぜぞ しゅうりょうテスト</span>
+    <h1>くだものキャッチ　ざじずぜぞ しゅうりょうテスト</h1>
+    <p class="lead" style="text-align:left;">　「あいうえお」「かきくけこ」「さしすせそ」「たちつてと」「なにぬねの」「はひふへほ」「まみむめも」「やゆよ」「らりるれろ」「わ・を・ん」「がぎぐげご・ざじずぜぞ（濁音）」の修了テスト。ぜんぶで30問、クリアしたら白帯にすすめるよ。</p>
     <ol class="rule-list">
       <li><span class="rule-num">1</span>単音10問と、ことば20問。あわせて30問。</li>
       <li><span class="rule-num">2</span>文字が書かれたくだものが、上から落ちてくる。</li>
@@ -203,6 +203,7 @@
     <p class="ime-note" style="text-align:left;">　※「し」だけは、「SI」のほかに「SHI」と打ってもOK。</p>
     <p class="ime-note" style="text-align:left;">　※「つ」だけは、「TU」のほかに「TSU」と打ってもOK。</p>
     <p class="ime-note" style="text-align:left;">　※「ふ」だけは、「HU」のほかに「FU」と打ってもOK。</p>
+    <p class="ime-note" style="text-align:left;">　※「じ」だけは、「ZI」のほかに「JI」と打ってもOK。</p>
     <p class="ime-note" style="text-align:left;">　※「ん」は、母音を使わずに「N」を2回打つよ（NN）。</p>
     <button class="btn" id="startBtn">テストをはじめる →</button>
     <div class="key-hint">クリック、またはスペースキー／Enterキーではじめる</div>
@@ -222,13 +223,13 @@
   <div class="panel" id="result">
     <div class="stamp" id="stamp">合格</div>
     <h1 id="resultTitle">しゅうりょう合格！</h1>
-    <p class="result-msg" id="resultMsg">30問ぜんぶクリア！つぎは「ざじずぜぞ（濁音）」の練習にすすもう。</p>
+    <p class="result-msg" id="resultMsg">30問ぜんぶクリア！つぎは白帯「ホームポジションの間」にチャレンジしよう。</p>
     <div class="stat-row" id="statRow">
       <div class="stat-box"><span class="mono">かかった時間</span><span class="stat-val" id="statTime">0<span style="font-size:0.6em;font-weight:400;"> 秒</span></span></div>
       <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
     </div>
     <div class="result-actions">
-      <a class="btn" id="nextStageLink" style="display:none" href="za-row-practice.html">ざじずぜぞの練習へ →</a>
+      <a class="btn" id="nextStageLink" style="display:none" href="home-position-practice.html">白帯にチャレンジする →</a>
       <button class="btn btn-quiet" id="retryBtn">もう一度ちょうせんする</button>
       <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
     </div>
@@ -242,7 +243,7 @@
 (function(){
   "use strict";
 
-  // ---- vocabulary: あ行〜わ行＋濁音（が行）, the material トレーニング1〜11 covered ----
+  // ---- vocabulary: あ行〜わ行＋濁音（が行・ざ行）, the material トレーニング1〜12 covered ----
   var byMoraCodes = {
     'あ':['KeyA'], 'い':['KeyI'], 'う':['KeyU'], 'え':['KeyE'], 'お':['KeyO'],
     'か':['KeyK','KeyA'], 'き':['KeyK','KeyI'], 'く':['KeyK','KeyU'], 'け':['KeyK','KeyE'], 'こ':['KeyK','KeyO'],
@@ -254,13 +255,14 @@
     'や':['KeyY','KeyA'], 'ゆ':['KeyY','KeyU'], 'よ':['KeyY','KeyO'],
     'ら':['KeyR','KeyA'], 'り':['KeyR','KeyI'], 'る':['KeyR','KeyU'], 'れ':['KeyR','KeyE'], 'ろ':['KeyR','KeyO'],
     'わ':['KeyW','KeyA'], 'を':['KeyW','KeyO'], 'ん':['KeyN','KeyN'],
-    'が':['KeyG','KeyA'], 'ぎ':['KeyG','KeyI'], 'ぐ':['KeyG','KeyU'], 'げ':['KeyG','KeyE'], 'ご':['KeyG','KeyO']
+    'が':['KeyG','KeyA'], 'ぎ':['KeyG','KeyI'], 'ぐ':['KeyG','KeyU'], 'げ':['KeyG','KeyE'], 'ご':['KeyG','KeyO'],
+    'ざ':['KeyZ','KeyA'], 'じ':['KeyZ','KeyI'], 'ず':['KeyZ','KeyU'], 'ぜ':['KeyZ','KeyE'], 'ぞ':['KeyZ','KeyO']
   };
   var byCode = {
     KeyA:{roma:'a'}, KeyI:{roma:'i'}, KeyU:{roma:'u'}, KeyE:{roma:'e'}, KeyO:{roma:'o'},
     KeyK:{roma:'k'}, KeyS:{roma:'s'}, KeyT:{roma:'t'}, KeyN:{roma:'n'}, KeyH:{roma:'h'}, KeyM:{roma:'m'}, KeyY:{roma:'y'}, KeyR:{roma:'r'}, KeyW:{roma:'w'},
-    KeyG:{roma:'g'},
-    KeyC:{roma:'c'}, KeyF:{roma:'f'}
+    KeyG:{roma:'g'}, KeyZ:{roma:'z'},
+    KeyC:{roma:'c'}, KeyF:{roma:'f'}, KeyJ:{roma:'j'}
   };
   // 「ち」だけ、教える「TI」に加えて実際のIMEでもおなじみの「CHI」も受け付ける。
   var CHI_ALT_CODES = ['KeyC', 'KeyH', 'KeyI'];
@@ -270,7 +272,9 @@
   var TSU_ALT_CODES = ['KeyT', 'KeyS', 'KeyU'];
   // 「ふ」だけ、教える「HU」に加えて実際のIMEでもおなじみの「FU」も受け付ける。
   var FU_ALT_CODES = ['KeyF', 'KeyU'];
-  var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん','が','ぎ','ぐ','げ','ご'];
+  // 「じ」だけ、教える「ZI」に加えて実際のIMEでもおなじみの「JI」も受け付ける。
+  var JI_ALT_CODES = ['KeyJ', 'KeyI'];
+  var CHAR_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん','が','ぎ','ぐ','げ','ご','ざ','じ','ず','ぜ','ぞ'];
   var WORDS = [
     {kana:'さくら', meaning:'桜'},
     {kana:'そら', meaning:'空'},
@@ -282,16 +286,16 @@
     {kana:'みかん', meaning:'蜜柑'},
     {kana:'てんき', meaning:'天気'},
     {kana:'はなを', meaning:'花を'},
-    {kana:'かがみ', meaning:'鏡'},
-    {kana:'めがね', meaning:'眼鏡'},
-    {kana:'まいご', meaning:'迷子'},
-    {kana:'ひげ', meaning:'髭'},
-    {kana:'かぐ', meaning:'家具'},
-    {kana:'うなぎ', meaning:'鰻'},
-    {kana:'とかげ', meaning:'蜥蜴'},
-    {kana:'えがお', meaning:'笑顔'},
-    {kana:'まご', meaning:'孫'},
-    {kana:'とげ', meaning:'棘'}
+    {kana:'ぞう', meaning:'象'},
+    {kana:'かぜ', meaning:'風'},
+    {kana:'みず', meaning:'水'},
+    {kana:'すず', meaning:'鈴'},
+    {kana:'かず', meaning:'数'},
+    {kana:'なぞ', meaning:'謎'},
+    {kana:'じかん', meaning:'時間'},
+    {kana:'かんじ', meaning:'漢字'},
+    {kana:'れいぞうこ', meaning:'冷蔵庫'},
+    {kana:'ひざ', meaning:'膝'}
   ];
 
   function shuffle(arr){
@@ -592,6 +596,9 @@
       } else if (info && info.offset === 0 && target.chars[info.charIndex] === 'ふ' && code === 'KeyF'){
         target.codes.splice.apply(target.codes, [codeIndex, 2].concat(FU_ALT_CODES));
         matched = true;
+      } else if (info && info.offset === 0 && target.chars[info.charIndex] === 'じ' && code === 'KeyJ'){
+        target.codes.splice.apply(target.codes, [codeIndex, 2].concat(JI_ALT_CODES));
+        matched = true;
       } else if (info && info.offset === 1 && target.chars[info.charIndex] === 'し' && code === 'KeyH'){
         target.codes.splice.apply(target.codes, [codeIndex, 1].concat(SHI_ALT_CODES.slice(1)));
         target.codeLens[info.charIndex] = 3;
@@ -618,6 +625,8 @@
         missNote.textContent = 'おしい！「ち」は「T」か「C」から始まるよ';
       } else if (info && info.offset === 0 && target.chars[info.charIndex] === 'ふ'){
         missNote.textContent = 'おしい！「ふ」は「H」か「F」から始まるよ';
+      } else if (info && info.offset === 0 && target.chars[info.charIndex] === 'じ'){
+        missNote.textContent = 'おしい！「じ」は「Z」か「J」から始まるよ';
       } else if (info && info.offset === 1 && target.chars[info.charIndex] === 'し'){
         missNote.textContent = 'おしい！「し」は「SI」か「SHI」だよ';
       } else if (info && info.offset === 1 && target.chars[info.charIndex] === 'つ'){
@@ -691,17 +700,18 @@
     }
   }
 
-  // catcher: a farmer hedgehog in a kerchief, holding a woven basket,
-  // sliding left-right to line up under the falling fruit — the 6th
-  // forest-animal friend, welcoming the student to 濁音
+  // catcher: a farmer owl in a kerchief, holding a woven basket,
+  // sliding left-right to line up under the falling fruit — the 7th
+  // forest-animal friend, and the first bird
   function drawCatcher(missed){
     ctx.save();
     ctx.translate(catcherX, GROUND_Y + 4);
 
-    var furColor = missed ? '#A9967D' : '#C9A96E';
-    var furShade = missed ? '#8A7862' : '#A9895A';
-    var creamColor = missed ? '#EDE3CC' : '#FBF3DE';
-    var spikeColor = missed ? '#6E6152' : '#7A6A4E';
+    var furColor = missed ? '#A08A66' : '#8B6F47';
+    var furShade = missed ? '#7D6A4E' : '#6B5335';
+    var creamColor = missed ? '#E8DDBE' : '#F5EAD0';
+    var tuftColor = missed ? '#6E5E45' : '#5A4A30';
+    var beakColor = missed ? '#8A7862' : '#E8A23C';
     var outline = '#3A2A1A';
     var basketColor = missed ? '#6B5138' : '#8B5A2B';
     var basketShade = missed ? '#5A4128' : '#734723';
@@ -715,12 +725,11 @@
     ctx.ellipse(0, 3, 25, 5.5, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // feet
-    ctx.fillStyle = furShade;
-    ctx.strokeStyle = outline;
-    ctx.lineWidth = 1.2;
-    ctx.beginPath(); ctx.ellipse(-10, -3, 7.5, 5, 0.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(10, -3, 7.5, 5, -0.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // feet (little bird talons instead of paws)
+    ctx.strokeStyle = beakColor;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(-10, 1); ctx.lineTo(-13, -3); ctx.moveTo(-10, 1); ctx.lineTo(-10, -4); ctx.moveTo(-10, 1); ctx.lineTo(-7, -3); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(10, 1); ctx.lineTo(13, -3); ctx.moveTo(10, 1); ctx.lineTo(10, -4); ctx.moveTo(10, 1); ctx.lineTo(7, -3); ctx.stroke();
 
     // body (torso)
     ctx.fillStyle = furColor;
@@ -735,6 +744,18 @@
     ctx.beginPath();
     ctx.ellipse(0, -23, 12, 15, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    // soft feather-scallop texture on the belly
+    ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+    ctx.lineWidth = 1;
+    [-27, -21, -15].forEach(function(fy){
+      ctx.beginPath();
+      ctx.arc(-5, fy, 3, 0.2 * Math.PI, 0.8 * Math.PI);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(5, fy, 3, 0.2 * Math.PI, 0.8 * Math.PI);
+      ctx.stroke();
+    });
 
     // kerchief around the neck
     ctx.fillStyle = kerchiefColor;
@@ -756,100 +777,85 @@
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1.4;
     ctx.beginPath();
-    ctx.arc(0, -53, 16, 0, Math.PI * 2);
+    ctx.arc(0, -55, 17, 0, Math.PI * 2);
     ctx.fill(); ctx.stroke();
 
-    // spiky crown, sweeping over the top of the head and shoulders —
-    // the hedgehog's signature feature
-    ctx.fillStyle = spikeColor;
+    // ear-tufts, the owl's signature feature
+    ctx.fillStyle = tuftColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1;
-    var spikeCount = 9;
-    for (var spi = 0; spi <= spikeCount; spi++){
-      var ang = Math.PI * (1.18 - (spi / spikeCount) * 1.36);
-      var baseX = Math.cos(ang) * 16.5, baseY = -53 + Math.sin(ang) * 16.5;
-      var tipX = Math.cos(ang) * 25, tipY = -53 + Math.sin(ang) * 25;
-      var perpX = -Math.sin(ang) * 3.2, perpY = Math.cos(ang) * 3.2;
-      ctx.beginPath();
-      ctx.moveTo(baseX - perpX, baseY - perpY);
-      ctx.lineTo(tipX, tipY);
-      ctx.lineTo(baseX + perpX, baseY + perpY);
-      ctx.closePath();
-      ctx.fill(); ctx.stroke();
-    }
+    ctx.beginPath();
+    ctx.moveTo(-12, -68); ctx.lineTo(-7, -70); ctx.lineTo(-9, -60); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(12, -68); ctx.lineTo(7, -70); ctx.lineTo(9, -60); ctx.closePath();
+    ctx.fill(); ctx.stroke();
 
-    // tiny ears, tucked beneath the spikes
-    ctx.fillStyle = furColor;
-    ctx.strokeStyle = outline;
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.arc(-14, -57, 3.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(14, -57, 3.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-
-    // snout: long and pointed
+    // pale facial disc framing the eyes
     ctx.fillStyle = creamColor;
+    ctx.beginPath();
+    ctx.ellipse(0, -52, 13, 12, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = furShade;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.ellipse(0, -52, 13, 12, 0, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // beak: small hooked triangle at the centre of the face
+    ctx.fillStyle = beakColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(-7, -48);
-    ctx.quadraticCurveTo(0, -38, 7, -48);
-    ctx.quadraticCurveTo(4, -43, 0, -42);
-    ctx.quadraticCurveTo(-4, -43, -7, -48);
+    ctx.moveTo(-3.4, -49);
+    ctx.lineTo(3.4, -49);
+    ctx.quadraticCurveTo(0, -41, -0.5, -40);
     ctx.closePath();
-    ctx.fill();
-
-    // nose
-    ctx.fillStyle = outline;
-    ctx.beginPath();
-    ctx.ellipse(0, -43, 2.2, 1.7, 0, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.fill(); ctx.stroke();
 
     if (missed){
       // worried eyebrows + downcast eyes + small frown
       ctx.strokeStyle = outline;
       ctx.lineWidth = 1.6;
-      ctx.beginPath(); ctx.moveTo(-10, -58); ctx.lineTo(-4, -56); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(10, -58); ctx.lineTo(4, -56); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(-9, -53); ctx.lineTo(-3, -49); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(-3, -53); ctx.lineTo(-9, -49); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(9, -53); ctx.lineTo(3, -49); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(3, -53); ctx.lineTo(9, -49); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-11, -60); ctx.lineTo(-4, -57); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(11, -60); ctx.lineTo(4, -57); ctx.stroke();
+      ctx.fillStyle = '#FFFDF6';
+      ctx.beginPath(); ctx.arc(-6.5, -53, 5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.arc(6.5, -53, 5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = outline;
+      ctx.beginPath(); ctx.arc(-6.5, -51, 2.1, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(6.5, -51, 2.1, 0, Math.PI * 2); ctx.fill();
       ctx.beginPath();
-      ctx.arc(0, -40, 4, Math.PI * 1.1, Math.PI * 1.9);
+      ctx.arc(0, -40, 3.6, Math.PI * 1.1, Math.PI * 1.9);
       ctx.stroke();
     } else {
-      // gentle eyebrows
+      // big round owl eyes: pale ring, dark pupil, glint
       ctx.strokeStyle = outline;
-      ctx.lineWidth = 1.4;
-      ctx.beginPath(); ctx.arc(-6.5, -60, 4, Math.PI * 1.15, Math.PI * 1.65); ctx.stroke();
-      ctx.beginPath(); ctx.arc(6.5, -60, 4, Math.PI * 1.35, Math.PI * 1.85); ctx.stroke();
-      // eyes with a little highlight glint
-      ctx.fillStyle = outline;
-      ctx.beginPath(); ctx.arc(-6.5, -54, 2.3, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.arc(6.5, -54, 2.3, 0, Math.PI * 2); ctx.fill();
+      ctx.lineWidth = 1.3;
       ctx.fillStyle = '#FFFDF6';
-      ctx.beginPath(); ctx.arc(-7.3, -54.8, 0.8, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.arc(5.7, -54.8, 0.8, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(-6.5, -54, 5.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.arc(6.5, -54, 5.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = outline;
+      ctx.beginPath(); ctx.arc(-6.5, -54, 2.6, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(6.5, -54, 2.6, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#FFFDF6';
+      ctx.beginPath(); ctx.arc(-7.6, -55.2, 0.9, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(5.4, -55.2, 0.9, 0, Math.PI * 2); ctx.fill();
       // rosy cheeks
-      ctx.fillStyle = 'rgba(226,86,78,0.28)';
-      ctx.beginPath(); ctx.ellipse(-11, -46, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(11, -46, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
-      // smile
-      ctx.strokeStyle = outline;
-      ctx.lineWidth = 1.4;
-      ctx.beginPath();
-      ctx.arc(0, -45, 3.6, 0.15 * Math.PI, 0.85 * Math.PI);
-      ctx.stroke();
+      ctx.fillStyle = 'rgba(226,86,78,0.24)';
+      ctx.beginPath(); ctx.ellipse(-12, -47, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(12, -47, 3, 2.2, 0, 0, Math.PI * 2); ctx.fill();
     }
 
-    // arms holding the basket, with small paw fingers at the tips
+    // wings holding the basket, with small feather tufts at the tips
     ctx.fillStyle = furColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1.2;
-    ctx.beginPath(); ctx.ellipse(-18, -9, 6, 11, 0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(18, -9, 6, 11, -0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = creamColor;
-    ctx.beginPath(); ctx.arc(-20, 0, 4.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(20, 0, 4.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(-18, -9, 6, 12, 0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(18, -9, 6, 12, -0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = furShade;
+    ctx.beginPath(); ctx.moveTo(-21, -1); ctx.lineTo(-17, 3); ctx.lineTo(-19, -3); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(21, -1); ctx.lineTo(17, 3); ctx.lineTo(19, -3); ctx.closePath(); ctx.fill();
 
     // basket, with a gentle bob while waiting
     var bob = missed ? 0 : Math.sin(Date.now() / 180) * 1.4;
@@ -1172,7 +1178,7 @@
       fanfare();
       stamp.className = 'stamp'; stamp.textContent = '合格';
       title.textContent = 'しゅうりょう合格！';
-      msg.textContent = '30問ぜんぶクリア！あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行、ひらがなの基本と濁音がぜんぶ身についたね。つぎは「ざじずぜぞ（濁音）」の練習にすすもう。';
+      msg.textContent = '30問ぜんぶクリア！あいうえお・かきくけこ・さしすせそ・たちつてと・なにぬねの・はひふへほ・まみむめも・やゆよ・らりるれろ・わをん・が行・ざ行、ひらがなの基本と濁音がぜんぶ身についたね。つぎは白帯「ホームポジションの間」にチャレンジしよう。';
       nextLink.style.display = 'inline-flex';
       statRow.style.display = 'flex';
     } else {

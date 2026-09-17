@@ -1,0 +1,928 @@
+<title>ざじずぜぞ の練習 トレーニング</title>
+<meta name="description" content="吉岡小タイピング道場・ざじずぜその練習（濁音）。子音「z」と母音「あいうえお」を組み合わせてローマ字を打つしくみを学ぶタイピング練習アプリ">
+<style>
+  :root{
+    --bg:#F7F2E8;
+    --bg-alt:#FBF7EF;
+    --card:#FFFDF9;
+    --ink:#29251F;
+    --ink-soft:#6E6355;
+    --accent:#BE3A34;
+    --accent-dark:#9C2C27;
+    --accent-ink:#FFFDF9;
+    --belt-yellow:#C99A1E;
+    --belt-green:#4C8B5D;
+    --belt-blue:#3A6EA5;
+    --belt-brown:#8B5A2B;
+    --belt-black:#29251F;
+    --belt-intro:#C9695A;
+    --gold-fill:#C99A1E;
+    --line:#DED0B4;
+    --shadow:rgba(60,44,20,0.14);
+    --focus:#2B5FB0;
+    --good:#4C8B5D;
+    --bad:#BE3A34;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+      --ink:#F2EBDB; --ink-soft:#B7A98E;
+      --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+      --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+      --belt-intro:#E08575;
+      --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+      --good:#68AD7F; --bad:#E2564E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+    --ink:#F2EBDB; --ink-soft:#B7A98E;
+    --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+    --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+    --belt-intro:#E08575;
+    --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+    --good:#68AD7F; --bad:#E2564E;
+  }
+
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0; min-height:100vh;
+    background:var(--bg); color:var(--ink);
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Meiryo',serif;
+    font-weight:700; text-wrap:balance; margin:0;
+  }
+  .mono{font-family:Consolas,'SF Mono',Menlo,monospace; font-variant-numeric:tabular-nums;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:4px;}
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:760px; margin:0 auto; padding:22px 24px 0;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.9rem; color:var(--ink-soft); text-decoration:none;
+    border-bottom:1px dashed var(--ink-soft); padding-bottom:2px;
+  }
+  .back-link:hover{color:var(--accent); border-color:var(--accent);}
+  .stage-badge{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.04em;
+    color:var(--belt-intro); border:1px solid var(--belt-intro);
+    border-radius:999px; padding:5px 14px;
+  }
+
+  main{max-width:760px; margin:0 auto; padding:28px 24px 60px;}
+
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:40px 36px; box-shadow:0 10px 28px var(--shadow);
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.98rem; font-weight:700; letter-spacing:0.1em;
+    color:var(--belt-intro);
+    background:color-mix(in srgb, var(--belt-intro) 14%, transparent);
+    border:1px solid var(--belt-intro);
+    padding:5px 14px; border-radius:2px; margin-bottom:18px;
+  }
+  .panel h1{font-size:1.7rem; margin-bottom:14px;}
+  .panel > p.lead{color:var(--ink-soft); font-size:1rem; max-width:44ch; margin:0 auto 8px;}
+  .ime-note{
+    margin:20px auto 0; max-width:46ch; font-size:0.85rem; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:8px; padding:10px 16px;
+  }
+  .kb-legend{margin:10px auto 0; max-width:42ch; font-size:0.76rem; color:var(--ink-soft);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+    padding:13px 28px; border-radius:6px; border:1px solid transparent;
+    font-weight:700; font-size:1rem; cursor:pointer;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif;
+    background:var(--belt-intro); color:var(--accent-ink);
+    box-shadow:0 4px 0 color-mix(in srgb, var(--belt-intro) 70%, black);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 6px 0 color-mix(in srgb, var(--belt-intro) 70%, black);}
+  .btn:active{transform:translateY(1px); box-shadow:0 2px 0 color-mix(in srgb, var(--belt-intro) 70%, black);}
+  .btn-quiet{
+    background:transparent; color:var(--ink-soft); box-shadow:none;
+    border:1px solid var(--line); font-family:'Yu Gothic',sans-serif; font-weight:700;
+  }
+  .btn-quiet:hover{border-color:var(--belt-intro); color:var(--belt-intro); transform:none; box-shadow:none;}
+  .key-hint{margin-top:10px; font-size:0.76rem; color:var(--ink-soft); text-align:center;}
+
+  /* ---- combo teaching row: 子音(Z) + 母音(あいうえお) = ざじずぜぞ ---- */
+  .combo-row{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(92px, 1fr));
+    gap:12px; max-width:540px; margin:26px auto 4px;
+  }
+  .combo-unit{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:12px;
+    padding:14px 8px 12px;
+  }
+  .combo-op{font-size:1.05rem; color:var(--ink-soft); font-weight:700; line-height:1;}
+  .combo-result{
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700;
+    font-size:2.2rem; color:var(--ink); min-width:1em; text-align:center;
+    width:100%; margin-top:2px; padding-top:8px; border-top:1px dashed var(--line);
+  }
+  .combo-legend{display:flex; gap:20px; justify-content:center; margin-top:14px; font-size:0.76rem; color:var(--ink-soft);}
+  .combo-legend span{display:inline-flex; align-items:center; gap:6px;}
+  .combo-dot{width:10px; height:10px; border-radius:3px; display:inline-block;}
+
+  /* ---- full keyboard map: shows where Z + the 5 vowel keys sit ---- */
+  .full-kb{margin:22px auto 0; display:inline-block;}
+  .kb-line{display:flex; gap:6px; margin-top:6px;}
+  .kb-line:first-child{margin-top:0;}
+  .kb-line[data-row="2"]{margin-left:24px;}
+  .kb-line[data-row="3"]{margin-left:48px;}
+  .fk-key-wrap{position:relative; flex-shrink:0;}
+  .fk-key{
+    width:38px; height:38px; border-radius:7px;
+    display:flex; align-items:center; justify-content:center; position:relative;
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:0.92rem;
+    background:var(--bg-alt); border:1.5px solid var(--line); color:var(--ink-soft);
+  }
+  .fk-key.target-key{
+    background:var(--card); border:2.2px solid var(--zone, var(--line)); color:var(--ink);
+    box-shadow:0 3px 0 color-mix(in srgb, var(--zone, var(--line)) 65%, black);
+  }
+  /* the consonant key is filled solid, so it reads as a different kind of key
+     from the outlined vowel keys */
+  .fk-key.target-key.fk-consonant{
+    background:var(--zone, var(--line)); color:#fff;
+  }
+  .fk-key.target-key.fk-consonant::after{
+    content:"";
+    position:absolute; inset:-7px;
+    border-radius:50%;
+    border:3px solid #FF3B30;
+    pointer-events:none;
+  }
+  .fk-key.target-key.fk-consonant .fk-kana{color:rgba(255,255,255,0.75);}
+  .fk-kana{
+    position:absolute; bottom:1px; right:2px;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:0.5rem;
+    color:var(--ink-soft);
+  }
+  .fk-hira{
+    position:absolute; top:-24px; left:50%; transform:translateX(-50%);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:1.15rem;
+    color:var(--zone, var(--ink)); white-space:nowrap;
+  }
+  .fk-hira.fk-label-small{font-size:0.66rem; font-family:'Yu Gothic',sans-serif; font-weight:700;}
+
+  /* ---- keyboard (practice) ---- */
+  .kb-wrap{overflow-x:auto; margin:28px 0 6px; padding:4px;}
+  .kb-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:0 auto; align-items:center;}
+  .key-unit{display:flex; flex-direction:column; align-items:center; gap:4px;}
+  .key-gap{width:14px;}
+  .key{
+    width:56px; height:56px; border-radius:10px; flex-shrink:0;
+    background:var(--card); border:2.4px solid var(--zone, var(--line));
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 4px 0 color-mix(in srgb, var(--zone, var(--line)) 65%, black);
+    transition:transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .key-roma-label{
+    position:absolute; top:7px; left:9px;
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:1.35rem;
+    color:var(--ink);
+  }
+  .key-kana-label{
+    position:absolute; bottom:5px; right:8px;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+  .key:hover{transform:translateY(-1px);}
+  .key:active{transform:translateY(3px); box-shadow:0 1px 0 color-mix(in srgb, var(--zone, var(--line)) 65%, black);}
+  .key.target{
+    box-shadow:0 0 0 4px color-mix(in srgb, var(--zone) 35%, transparent), 0 4px 0 color-mix(in srgb, var(--zone) 65%, black);
+    transform:translateY(-3px);
+  }
+  .key.correct{background:color-mix(in srgb, var(--good) 25%, var(--card)); border-color:var(--good); box-shadow:0 4px 0 color-mix(in srgb, var(--good) 65%, black);}
+  .key.wrong{background:color-mix(in srgb, var(--bad) 25%, var(--card)); border-color:var(--bad); box-shadow:0 4px 0 color-mix(in srgb, var(--bad) 65%, black);}
+  .key-sub{font-size:0.68rem; color:var(--ink-soft); letter-spacing:0.04em;}
+  .mini-key{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:1.7em; height:1.7em; border-radius:6px; margin:0 2px;
+    background:var(--card); border:2px solid var(--ink-soft);
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700;
+    color:var(--ink); vertical-align:middle;
+    box-shadow:0 2px 0 color-mix(in srgb, var(--ink-soft) 60%, black);
+  }
+
+  /* ---- practice ---- */
+  #practice{display:none;}
+  .progress-line{display:flex; align-items:center; gap:14px; justify-content:center; margin-bottom:10px;}
+  .progress-line .mono{font-size:0.85rem; color:var(--ink-soft);}
+  .progress-track{width:200px; height:8px; border-radius:999px; background:var(--bg-alt); border:1px solid var(--line); overflow:hidden;}
+  .progress-fill{height:100%; background:var(--belt-intro); border-radius:999px; transition:width 0.25s ease;}
+  .target-label{font-size:0.85rem; color:var(--ink-soft); letter-spacing:0.05em; margin-top:8px;}
+  .target-char{
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Meiryo',serif; font-weight:700;
+    font-size:5.2rem; line-height:1; margin:10px 0 0; color:var(--ink);
+    min-height:1.1em;
+  }
+  .target-roma{
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700;
+    font-size:1.8rem; letter-spacing:0.04em; color:var(--ink-soft);
+  }
+  .target-roma .roma-done{color:var(--good);}
+  .finger-hint{font-size:0.92rem; color:var(--ink-soft); margin-top:4px;}
+  .miss-note{min-height:1.4em; font-size:0.85rem; color:var(--bad); margin-top:6px;}
+
+  /* ---- step 2: words built from ざ行 + already-known文字 ---- */
+  .phase-banner{
+    margin:6px auto 0; max-width:34ch; font-size:0.82rem; font-weight:700;
+    color:var(--belt-intro);
+    background:color-mix(in srgb, var(--belt-intro) 12%, transparent);
+    border:1px solid var(--belt-intro); border-radius:8px; padding:7px 14px;
+  }
+  .target-char.word-mode{font-size:4.4rem; letter-spacing:0.06em;}
+  .target-char .wc-done{color:var(--good);}
+  .target-char .wc-now{
+    color:var(--ink);
+    border-bottom:5px solid var(--belt-intro);
+  }
+  .target-char .wc-todo{color:var(--ink-soft); opacity:0.4;}
+  .word-meaning{font-size:0.9rem; color:var(--ink-soft); margin-top:8px;}
+
+  /* ---- result ---- */
+  #result{display:none;}
+  .stamp{
+    width:96px; height:96px; border-radius:50%; margin:6px auto 18px;
+    display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--good); transform:rotate(-6deg);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:1.6rem;
+    color:var(--good);
+  }
+  .stamp.fail{border-color:var(--belt-brown); color:var(--belt-brown);}
+  .stat-row{display:flex; gap:16px; justify-content:center; margin:18px 0 6px; flex-wrap:wrap;}
+  .stat-box{border:1px solid var(--line); border-radius:8px; padding:14px 22px; background:var(--bg-alt); min-width:130px;}
+  .stat-box .mono{font-size:0.72rem; color:var(--ink-soft); display:block; letter-spacing:0.04em;}
+  .stat-box .stat-val{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:1.7rem; color:var(--ink);}
+  .result-msg{color:var(--ink-soft); margin-top:6px; max-width:42ch; margin-left:auto; margin-right:auto;}
+  .result-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{max-width:760px; margin:0 auto; padding:0 24px 40px; text-align:center;}
+  footer p{font-size:0.78rem; color:var(--ink-soft);}
+
+  @media (max-width:520px){
+    .panel{padding:30px 20px;}
+    .target-char{font-size:3.6rem;}
+    .target-char.word-mode{font-size:2.9rem;}
+    .target-roma{font-size:1.4rem;}
+    .key{width:48px; height:48px;}
+    .key-roma-label{font-size:1.1rem; top:5px; left:7px;}
+    .key-kana-label{font-size:0.68rem; bottom:4px; right:6px;}
+    .combo-result{font-size:1.7rem; padding-top:6px;}
+    .combo-row{grid-template-columns:repeat(auto-fit, minmax(76px, 1fr)); gap:8px;}
+    .combo-unit{gap:4px; padding:10px 6px 8px;}
+    .combo-op{font-size:0.92rem;}
+    .kb-row{gap:10px;}
+    .fk-key{width:30px; height:30px; font-size:0.76rem;}
+    .fk-key.target-key.fk-consonant::after{inset:-5px; border-width:2.5px;}
+    .fk-kana{font-size:0.42rem;}
+    .fk-hira{font-size:0.92rem; top:-19px;}
+    .fk-hira.fk-label-small{font-size:0.56rem;}
+    .kb-line{gap:4px;}
+    .kb-line[data-row="2"]{margin-left:19px;}
+    .kb-line[data-row="3"]{margin-left:38px;}
+  }
+</style>
+
+<div class="topbar">
+  <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
+  <span class="stage-badge">ざじずぜぞ の練習</span>
+</div>
+
+<main>
+  <div class="panel" id="intro">
+    <span class="eyebrow">トレーニング12</span>
+    <h1>ざじずぜぞ の練習</h1>
+    <p class="lead" style="text-align:left;">　さ行に濁点「゛」がつくと、ざ行になるよ。ローマ字は「子音」と「母音」を組み合わせて打つよ。子音の「Z」に、もう覚えた「あ・い・う・え・お」を組み合わせると…</p>
+    <p class="lead" style="text-align:left;">　さいごに、ざ行の音でできる ことばも 10もん うつよ。</p>
+
+    <div class="combo-row" id="comboRow"></div>
+    <div class="combo-legend">
+      <span><span class="combo-dot" style="background:var(--belt-brown);"></span>子音（Z）</span>
+      <span><span class="combo-dot" style="background:var(--accent);"></span>母音（あいうえお）</span>
+    </div>
+
+    <div class="target-label" style="margin-top:26px;">キーボード全体の中で、Zのキーの場所もたしかめよう</div>
+    <div class="kb-wrap"><div class="full-kb" id="fullKbIntro"></div></div>
+
+    <p class="kb-legend" style="text-align:left;">　キーの右下の小さい字は、本物のキーボードにも書かれているかな文字だよ。この練習では使わないので、気にしなくてOK。左上のアルファベットだけを見て、「Z」の次に母音、の順番で打とう。</p>
+    <p class="kb-legend" style="text-align:left;">　※「じ」だけは、「ZI」のほかに「JI」と打ってもOK。</p>
+
+    <p class="ime-note" style="text-align:left;">　はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。</p>
+    <button class="btn" id="startBtn">トレーニングをはじめる →</button>
+    <div class="key-hint">クリック、またはスペースキー／Enterキーではじめる</div>
+  </div>
+
+  <div class="panel" id="practice">
+    <div class="progress-line">
+      <span class="mono" id="progressText">もじ 0 / 20</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="phase-banner" id="phaseBanner" style="display:none">ステップ2：ざ行の音でできる ことばを うとう（10もん）</div>
+    <div class="target-label" id="targetLabel">この文字を、ローマ字で打とう</div>
+    <div class="target-char" id="targetChar">ざ</div>
+    <div class="word-meaning" id="wordMeaning" style="display:none">&nbsp;</div>
+    <div class="target-roma" id="targetRoma">za</div>
+    <div class="finger-hint" id="fingerHint"><span class="mini-key">Z</span> → 左手・小指</div>
+    <div class="miss-note" id="missNote">&nbsp;</div>
+
+    <div class="kb-wrap"><div class="kb-row" id="kbRowPractice"></div></div>
+  </div>
+
+  <div class="panel" id="result">
+    <div class="stamp" id="stamp">合格</div>
+    <h1 id="resultTitle">ざじずぜぞ 合格！</h1>
+    <p class="result-msg" id="resultMsg">「ざ・じ・ず・ぜ・ぞ」がしっかり打てるようになった。つぎは しゅうりょうテストにチャレンジしよう。</p>
+    <div class="stat-row">
+      <div class="stat-box"><span class="mono">速さ</span><span class="stat-val" id="statSpeed">0<span style="font-size:0.6em;font-weight:400;"> 文字/分</span></span></div>
+      <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
+    </div>
+    <div class="result-actions">
+      <a class="btn" id="nextStageLink" style="display:none" href="za-row-exam.html">しゅうりょうテストへ →</a>
+      <button class="btn btn-quiet" id="retryBtn">もう一度練習する</button>
+      <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
+    </div>
+    <div class="key-hint">←→キーで選択、スペース／Enterキーで決定</div>
+  </div>
+</main>
+
+<footer><p>吉岡小タイピング道場</p></footer>
+
+<script>
+(function(){
+  // Two-key sequences: Z (子音) always first, then one of the 5 vowels (母音).
+  // kisKana is the kana engraved on the real key (JIS kana-input layout) —
+  // shown on the keycap for authenticity, not used by this romaji lesson.
+  var CONSONANT = {code:'KeyZ', roma:'Z', kisKana:'つ', zone:'--belt-brown', finger:'左手・小指'};
+  var VOWELS = [
+    {code:'KeyA', hira:'あ', roma:'a', kisKana:'ち', zone:'--accent', finger:'左手・小指'},
+    {code:'KeyI', hira:'い', roma:'i', kisKana:'に', zone:'--belt-green', finger:'右手・中指'},
+    {code:'KeyU', hira:'う', roma:'u', kisKana:'な', zone:'--belt-blue', finger:'右手・人差し指'},
+    {code:'KeyE', hira:'え', roma:'e', kisKana:'い', zone:'--belt-green', finger:'左手・中指'},
+    {code:'KeyO', hira:'お', roma:'o', kisKana:'ら', zone:'--gold-fill', finger:'右手・くすり指'}
+  ];
+  var KANA = [
+    {hira:'ざ', codes:[CONSONANT.code, 'KeyA']},
+    {hira:'じ', codes:[CONSONANT.code, 'KeyI']},
+    {hira:'ず', codes:[CONSONANT.code, 'KeyU']},
+    {hira:'ぜ', codes:[CONSONANT.code, 'KeyE']},
+    {hira:'ぞ', codes:[CONSONANT.code, 'KeyO']}
+  ];
+  var ALL_KEYS = [CONSONANT].concat(VOWELS);
+  var byCode = {};
+  ALL_KEYS.forEach(function(k){ byCode[k.code] = k; });
+  var byRoma = {};
+  ALL_KEYS.forEach(function(k){ byRoma[k.roma.toUpperCase()] = k; });
+
+  // 「じ」だけ、教える「ZI」に加えて実際のIMEでもおなじみの「JI」も受け付ける。
+  // J には専用のキー表示がないので byCode だけに登録し、キーボード図には出さない。
+  var JI_ALT_CODES = ['KeyJ', 'KeyI'];
+  byCode.KeyJ = {roma:'j', finger:'右手・人差し指'};
+  var jiUsingAlt = false;
+
+  function resolveExpected(hira, primaryCodes, pos, pressedCode){
+    if (hira === 'じ'){
+      if (jiUsingAlt) return {codes: JI_ALT_CODES, matched: pressedCode === JI_ALT_CODES[pos]};
+      if (pos === 0 && pressedCode === 'KeyJ'){
+        jiUsingAlt = true;
+        return {codes: JI_ALT_CODES, matched: true};
+      }
+    }
+    return {codes: primaryCodes, matched: pressedCode === primaryCodes[pos]};
+  }
+
+  // Keys already taught in earlier trainings — not part of today's lesson,
+  // so they're not highlighted on the intro map or shown on the practice
+  // keyboard, but their finger info is still needed for the word phase.
+  var EXTRA_KEYS = [
+    {code:'KeyK', roma:'K', finger:'右手・中指'},
+    {code:'KeyM', roma:'M', finger:'右手・人差し指'},
+    {code:'KeyS', roma:'S', finger:'左手・薬指'},
+    {code:'KeyN', roma:'N', finger:'右手・人差し指'},
+    {code:'KeyR', roma:'R', finger:'左手・人差し指'},
+    {code:'KeyH', roma:'H', finger:'右手・人差し指'}
+  ];
+  EXTRA_KEYS.forEach(function(k){ byCode[k.code] = k; });
+
+  function comboRomaFor(codes){
+    return codes.map(function(c){ return byCode[c].roma.toLowerCase(); }).join('');
+  }
+
+  // ---- combo teaching row: Z + vowel = kana ----
+  var comboRow = document.getElementById('comboRow');
+  KANA.forEach(function(item){
+    var unit = document.createElement('div');
+    unit.className = 'combo-unit';
+
+    var kKey = document.createElement('div');
+    kKey.className = 'key'; kKey.style.width='44px'; kKey.style.height='44px';
+    kKey.style.setProperty('--zone', 'var(' + CONSONANT.zone + ')');
+    var kLabel = document.createElement('span');
+    kLabel.className = 'key-roma-label'; kLabel.style.fontSize='1rem'; kLabel.style.top='5px'; kLabel.style.left='6px';
+    kLabel.textContent = 'Z';
+    kKey.appendChild(kLabel);
+
+    var plus = document.createElement('span');
+    plus.className = 'combo-op'; plus.textContent = '+';
+
+    var vowel = VOWELS[KANA.indexOf(item)];
+    var vKey = document.createElement('div');
+    vKey.className = 'key'; vKey.style.width='44px'; vKey.style.height='44px';
+    vKey.style.setProperty('--zone', 'var(' + vowel.zone + ')');
+    var vLabel = document.createElement('span');
+    vLabel.className = 'key-roma-label'; vLabel.style.fontSize='1rem'; vLabel.style.top='5px'; vLabel.style.left='6px';
+    vLabel.textContent = vowel.roma.toUpperCase();
+    vKey.appendChild(vLabel);
+
+    var eq = document.createElement('span');
+    eq.className = 'combo-op'; eq.textContent = '=';
+
+    var result = document.createElement('span');
+    result.className = 'combo-result';
+    result.textContent = item.hira;
+
+    unit.appendChild(kKey);
+    unit.appendChild(plus);
+    unit.appendChild(vKey);
+    unit.appendChild(eq);
+    unit.appendChild(result);
+    comboRow.appendChild(unit);
+  });
+
+  // ---- full keyboard map ----
+  var FULL_KB_ROWS = [
+    ['Q','W','E','R','T','Y','U','I','O','P'],
+    ['A','S','D','F','G','H','J','K','L'],
+    ['Z','X','C','V','B','N','M']
+  ];
+  function buildFullKeyboard(container){
+    FULL_KB_ROWS.forEach(function(letters, rowIdx){
+      var line = document.createElement('div');
+      line.className = 'kb-line';
+      line.dataset.row = String(rowIdx + 1);
+      letters.forEach(function(letter){
+        var wrap = document.createElement('div');
+        wrap.className = 'fk-key-wrap';
+        var target = byRoma[letter];
+        var key = document.createElement('div');
+        key.className = target
+          ? (target === CONSONANT ? 'fk-key target-key fk-consonant' : 'fk-key target-key')
+          : 'fk-key';
+        key.textContent = letter;
+        if (target){
+          key.style.setProperty('--zone', 'var(' + target.zone + ')');
+          var kana = document.createElement('span');
+          kana.className = 'fk-kana';
+          kana.textContent = target.kisKana;
+          key.appendChild(kana);
+
+          var hira = document.createElement('div');
+          hira.className = target.hira ? 'fk-hira' : 'fk-hira fk-label-small';
+          hira.style.setProperty('--zone', 'var(' + target.zone + ')');
+          hira.textContent = target.hira ? target.hira : '子音';
+          wrap.appendChild(hira);
+        }
+        wrap.appendChild(key);
+        line.appendChild(wrap);
+      });
+      container.appendChild(line);
+    });
+  }
+  buildFullKeyboard(document.getElementById('fullKbIntro'));
+
+  // ---- interactive practice keyboard: Z, then the 5 vowels ----
+  function buildPracticeKeyboard(container){
+    ALL_KEYS.forEach(function(k, i){
+      if (i === 1){
+        var gap = document.createElement('div');
+        gap.className = 'key-gap';
+        container.appendChild(gap);
+      }
+      var unit = document.createElement('div');
+      unit.className = 'key-unit';
+
+      var el = document.createElement('div');
+      el.className = 'key';
+      el.style.setProperty('--zone', 'var(' + k.zone + ')');
+      el.dataset.code = k.code;
+      el.tabIndex = 0;
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', k.roma.toUpperCase() + 'キー（' + k.finger + '）');
+      el.addEventListener('click', function(){ handleAttempt(k.code); });
+      el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); handleAttempt(k.code); } });
+
+      var romaLabel = document.createElement('span');
+      romaLabel.className = 'key-roma-label';
+      romaLabel.textContent = k.roma.toUpperCase();
+      var kanaLabel = document.createElement('span');
+      kanaLabel.className = 'key-kana-label';
+      kanaLabel.textContent = k.kisKana;
+      el.appendChild(romaLabel);
+      el.appendChild(kanaLabel);
+
+      var sub = document.createElement('span');
+      sub.className = 'key-sub';
+      sub.textContent = (k === CONSONANT) ? '子音' : '母音';
+
+      unit.appendChild(el);
+      unit.appendChild(sub);
+      container.appendChild(unit);
+    });
+  }
+  buildPracticeKeyboard(document.getElementById('kbRowPractice'));
+  var practiceKeyEls = {};
+  document.querySelectorAll('#kbRowPractice .key').forEach(function(el){ practiceKeyEls[el.dataset.code] = el; });
+
+  function buildSequence(){
+    var pool = [];
+    KANA.forEach(function(k, i){
+      for (var w=0; w<4; w++) pool.push(i);
+    });
+    for (var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i+1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    for (var i=1; i<pool.length; i++){
+      if (pool[i] === pool[i-1]){
+        var swapWith = (i+1) % pool.length;
+        var tmp = pool[i]; pool[i] = pool[swapWith]; pool[swapWith] = tmp;
+      }
+    }
+    return pool.map(function(i){ return KANA[i]; });
+  }
+
+  // Step 2: real words spelled with ざ行 plus か・さ・な・ま・ら・は行の
+  // すでに学んだ文字（あ行はもちろんOK）。
+  var WORDS = [
+    {kana:'ぞう', meaning:'象'},
+    {kana:'かぜ', meaning:'風'},
+    {kana:'みず', meaning:'水'},
+    {kana:'すず', meaning:'鈴'},
+    {kana:'かず', meaning:'数'},
+    {kana:'なぞ', meaning:'謎'},
+    {kana:'じかん', meaning:'時間'},
+    {kana:'かんじ', meaning:'漢字'},
+    {kana:'れいぞうこ', meaning:'冷蔵庫'},
+    {kana:'ひざ', meaning:'膝'}
+  ];
+  var byMoraCodes = {};
+  VOWELS.forEach(function(v){ byMoraCodes[v.hira] = [v.code]; });
+  KANA.forEach(function(k){ byMoraCodes[k.hira] = k.codes; });
+  // このトレーニングで使う ことば に出てくる、ほかの行の文字。
+  byMoraCodes['か'] = ['KeyK', 'KeyA'];
+  byMoraCodes['み'] = ['KeyM', 'KeyI'];
+  byMoraCodes['す'] = ['KeyS', 'KeyU'];
+  byMoraCodes['な'] = ['KeyN', 'KeyA'];
+  byMoraCodes['ん'] = ['KeyN', 'KeyN'];
+  byMoraCodes['れ'] = ['KeyR', 'KeyE'];
+  byMoraCodes['こ'] = ['KeyK', 'KeyO'];
+  byMoraCodes['ひ'] = ['KeyH', 'KeyI'];
+
+  function buildWordSequence(){
+    var pool = WORDS.slice();
+    for (var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i+1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    return pool;
+  }
+
+  var intro = document.getElementById('intro');
+  var practice = document.getElementById('practice');
+  var result = document.getElementById('result');
+  var targetChar = document.getElementById('targetChar');
+  var targetRoma = document.getElementById('targetRoma');
+  var fingerHint = document.getElementById('fingerHint');
+  var missNote = document.getElementById('missNote');
+  var progressText = document.getElementById('progressText');
+  var progressFill = document.getElementById('progressFill');
+  var targetLabel = document.getElementById('targetLabel');
+  var phaseBanner = document.getElementById('phaseBanner');
+  var wordMeaning = document.getElementById('wordMeaning');
+
+  var sequence, idx, subIdx, startTime, missTotal, charHadMiss, missedChars, running;
+  var phase, wordSeq, wordIdx, charIdx, codeIdx, totalChars;
+  var audioCtx = null;
+
+  function beep(freq, dur){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = 0.08;
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.stop(audioCtx.currentTime + dur);
+    }catch(e){}
+  }
+
+  function clearKeyStates(){
+    Object.keys(practiceKeyEls).forEach(function(code){
+      practiceKeyEls[code].classList.remove('target','correct','wrong');
+    });
+  }
+
+  function renderTargetRoma(k, codes){
+    var roma = comboRomaFor(codes);
+    if (subIdx >= 1){
+      targetRoma.innerHTML = '<span class="roma-done">' + roma.slice(0, subIdx) + '</span>' + roma.slice(subIdx);
+    } else {
+      targetRoma.textContent = roma;
+    }
+  }
+
+  function updateFingerHint(k, codes){
+    var nextKeyInfo = byCode[codes[subIdx]];
+    fingerHint.innerHTML = '<span class="mini-key">' + nextKeyInfo.roma.toUpperCase() + '</span> → ' + nextKeyInfo.finger;
+  }
+
+  function showTarget(){
+    clearKeyStates();
+    var k = sequence[idx];
+    subIdx = 0;
+    jiUsingAlt = false;
+    targetChar.textContent = k.hira;
+    renderTargetRoma(k, k.codes);
+    updateFingerHint(k, k.codes);
+    missNote.innerHTML = '&nbsp;';
+    practiceKeyEls[k.codes[0]].classList.add('target');
+    charHadMiss = false;
+  }
+
+  function updateProgress(){
+    if (phase === 'words'){
+      progressText.textContent = 'ことば ' + wordIdx + ' / ' + wordSeq.length;
+      progressFill.style.width = Math.round(wordIdx/wordSeq.length*100) + '%';
+    } else {
+      progressText.textContent = 'もじ ' + idx + ' / ' + sequence.length;
+      progressFill.style.width = Math.round(idx/sequence.length*100) + '%';
+    }
+  }
+
+  function startPractice(){
+    sequence = buildSequence();
+    idx = 0; missTotal = 0; missedChars = 0; running = true;
+    phase = 'chars';
+    totalChars = 0;
+    wordSeq = null; wordIdx = 0; charIdx = 0; codeIdx = 0;
+    jiUsingAlt = false;
+    targetChar.classList.remove('word-mode');
+    phaseBanner.style.display = 'none';
+    wordMeaning.style.display = 'none';
+    targetLabel.textContent = 'この文字を、ローマ字で打とう';
+    startTime = performance.now();
+    intro.style.display = 'none';
+    result.style.display = 'none';
+    practice.style.display = 'block';
+    updateProgress();
+    showTarget();
+  }
+
+  function handleAttempt(code){
+    if (practice.style.display !== 'block') return;
+    if (phase === 'words'){ handleWordAttempt(code); return; }
+    var k = sequence[idx];
+    if (!k) return; // keypress landed in the gap before the next step
+    var res = resolveExpected(k.hira, k.codes, subIdx, code);
+    var codes = res.codes;
+    var el = practiceKeyEls[code];
+    if (res.matched){
+      if (el){ el.classList.remove('wrong','target'); el.classList.add('correct'); }
+      beep(880, 0.09);
+      subIdx++;
+      totalChars++;
+      if (subIdx >= codes.length){
+        idx++;
+        updateProgress();
+        if (idx >= sequence.length){
+          setTimeout(startWordPhase, 420);
+        } else {
+          setTimeout(showTarget, 160);
+        }
+      } else {
+        renderTargetRoma(k, codes);
+        updateFingerHint(k, codes);
+        var nextEl = practiceKeyEls[codes[subIdx]];
+        if (nextEl) nextEl.classList.add('target');
+      }
+    } else {
+      if (!charHadMiss){ missedChars++; charHadMiss = true; }
+      missTotal++;
+      if (el){ el.classList.remove('correct'); el.classList.add('wrong'); setTimeout(function(){ el.classList.remove('wrong'); }, 260); }
+      beep(180, 0.12);
+      if (subIdx === 0){
+        if (k.hira === 'じ'){
+          missNote.textContent = 'おしい！「じ」は「Z」か「J」から始まるよ';
+        } else {
+          missNote.textContent = 'おしい！「' + k.hira + '」は「Z」から始まるよ';
+        }
+      } else {
+        var vowelInfo = byCode[codes[subIdx]];
+        missNote.textContent = 'おしい！つぎは「' + vowelInfo.roma.toUpperCase() + '」だよ';
+      }
+    }
+  }
+
+  // ---- step 2 (words) ----
+  function wordChars(word){ return word.kana.split(''); }
+
+  function showWordTarget(){
+    clearKeyStates();
+    var word = wordSeq[wordIdx];
+    var chars = wordChars(word);
+    var html = '';
+    chars.forEach(function(c, i){
+      var cls = (i < charIdx) ? 'wc-done' : (i === charIdx ? 'wc-now' : 'wc-todo');
+      html += '<span class="' + cls + '">' + c + '</span>';
+    });
+    targetChar.innerHTML = html;
+
+    var currentCodes = (chars[charIdx] === 'じ' && jiUsingAlt) ? JI_ALT_CODES : byMoraCodes[chars[charIdx]];
+
+    var romaHtml = '';
+    chars.forEach(function(c, i){
+      var codes = (i === charIdx) ? currentCodes : byMoraCodes[c];
+      var r = comboRomaFor(codes);
+      if (i < charIdx){
+        romaHtml += '<span class="roma-done">' + r + '</span>';
+      } else if (i === charIdx){
+        romaHtml += '<span class="roma-done">' + r.slice(0, codeIdx) + '</span>' + r.slice(codeIdx);
+      } else {
+        romaHtml += r;
+      }
+    });
+    targetRoma.innerHTML = romaHtml;
+
+    wordMeaning.textContent = '（' + word.meaning + '）';
+    var nextKeyInfo = byCode[currentCodes[codeIdx]];
+    fingerHint.innerHTML = '<span class="mini-key">' + nextKeyInfo.roma.toUpperCase() + '</span> → ' + nextKeyInfo.finger;
+    missNote.innerHTML = '&nbsp;';
+    if (practiceKeyEls[currentCodes[codeIdx]]) practiceKeyEls[currentCodes[codeIdx]].classList.add('target');
+    charHadMiss = false;
+  }
+
+  function startWordPhase(){
+    phase = 'words';
+    wordSeq = buildWordSequence();
+    wordIdx = 0; charIdx = 0; codeIdx = 0;
+    jiUsingAlt = false;
+    targetChar.classList.add('word-mode');
+    phaseBanner.style.display = '';
+    wordMeaning.style.display = '';
+    targetLabel.textContent = 'この ことばを、ローマ字で うとう';
+    updateProgress();
+    showWordTarget();
+  }
+
+  function handleWordAttempt(code){
+    var word = wordSeq[wordIdx];
+    if (!word) return; // keypress landed in the gap before the result screen
+    var chars = wordChars(word);
+    var hira = chars[charIdx];
+    var primaryKeys = byMoraCodes[hira];
+    var res = resolveExpected(hira, primaryKeys, codeIdx, code);
+    var keys = res.codes;
+    var expectedCode = keys[codeIdx];
+    var el = practiceKeyEls[expectedCode];
+    if (res.matched){
+      if (el){ el.classList.remove('wrong','target'); el.classList.add('correct'); }
+      beep(880, 0.09);
+      codeIdx++;
+      totalChars++;
+      if (codeIdx >= keys.length){
+        charIdx++;
+        codeIdx = 0;
+        jiUsingAlt = false;
+        if (charIdx >= chars.length){
+          wordIdx++;
+          charIdx = 0;
+          updateProgress();
+          beep(1120, 0.12);
+          if (wordIdx >= wordSeq.length){
+            setTimeout(finish, 220);
+          } else {
+            setTimeout(showWordTarget, 320);
+          }
+        } else {
+          setTimeout(showWordTarget, 120);
+        }
+      } else {
+        showWordTarget();
+      }
+    } else {
+      if (!charHadMiss){ missedChars++; charHadMiss = true; }
+      missTotal++;
+      if (el){ el.classList.remove('correct'); el.classList.add('wrong'); setTimeout(function(){ el.classList.remove('wrong'); }, 260); }
+      beep(180, 0.12);
+      if (hira === 'じ' && codeIdx === 0){
+        missNote.textContent = 'おしい！「じ」は「Z」か「J」から始まるよ';
+      } else {
+        var expectedInfo = byCode[expectedCode];
+        missNote.textContent = 'おしい！つぎは「' + expectedInfo.roma.toUpperCase() + '」だよ';
+      }
+    }
+  }
+
+  function getVisibleResultBtns(){
+    return Array.prototype.slice.call(document.querySelectorAll('.result-actions .btn')).filter(function(el){
+      return el.offsetParent !== null;
+    });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (!running){
+      if (intro.style.display !== 'none' && (e.key === ' ' || e.key === 'Enter')){
+        e.preventDefault();
+        document.getElementById('startBtn').click();
+        return;
+      }
+      if (result.style.display !== 'none'){
+        var btns = getVisibleResultBtns();
+        if (btns.length === 0) return;
+        var idxBtn = btns.indexOf(document.activeElement);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+          e.preventDefault();
+          btns[idxBtn === -1 ? 0 : (idxBtn + 1) % btns.length].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+          e.preventDefault();
+          btns[idxBtn === -1 ? btns.length - 1 : (idxBtn - 1 + btns.length) % btns.length].focus();
+        } else if ((e.key === ' ' || e.key === 'Enter') && idxBtn !== -1){
+          e.preventDefault();
+          btns[idxBtn].click();
+        }
+      }
+      return;
+    }
+    if (practice.style.display !== 'block') return;
+    if (byCode[e.code]){
+      e.preventDefault();
+      handleAttempt(e.code);
+    }
+  });
+
+  function finish(){
+    running = false;
+    practice.style.display = 'none';
+    result.style.display = 'block';
+    var elapsed = Math.max((performance.now() - startTime) / 1000, 1);
+    // scored over both steps: the 20 single-key reps plus every key of the
+    // 10 words
+    var typed = Math.max(totalChars, 1);
+    var speed = Math.round(typed / elapsed * 60);
+    var accuracy = Math.round((typed - missedChars) / typed * 100);
+    document.getElementById('statSpeed').innerHTML = speed + '<span style="font-size:0.6em;font-weight:400;"> 文字/分</span>';
+    document.getElementById('statAccuracy').innerHTML = accuracy + '<span style="font-size:0.6em;font-weight:400;">%</span>';
+    var stamp = document.getElementById('stamp');
+    var title = document.getElementById('resultTitle');
+    var msg = document.getElementById('resultMsg');
+    var nextLink = document.getElementById('nextStageLink');
+    if (accuracy >= 70){
+      stamp.className = 'stamp'; stamp.textContent = '合格';
+      title.textContent = 'ざじずぜぞ 合格！';
+      msg.textContent = '「ざ・じ・ず・ぜ・ぞ」も、ことばも うてるようになった。つぎは しゅうりょうテストにチャレンジしよう。';
+      nextLink.style.display = 'inline-flex';
+    } else {
+      stamp.className = 'stamp fail'; stamp.textContent = 'もう一歩';
+      title.textContent = 'もう一歩！';
+      msg.textContent = 'あわてなくて大丈夫。「Z」の次に母音を打つ、じゅんばんの感覚を、もう一度確かめてみよう。';
+      nextLink.style.display = 'none';
+    }
+    var firstBtn = getVisibleResultBtns()[0];
+    if (firstBtn) firstBtn.focus();
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function(){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }catch(e){}
+    startPractice();
+  });
+  document.getElementById('retryBtn').addEventListener('click', function(){
+    result.style.display = 'none';
+    startPractice();
+  });
+})();
+</script>
