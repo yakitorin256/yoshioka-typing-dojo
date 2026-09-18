@@ -104,13 +104,14 @@
   .form-note{min-height:1.3em; font-size:0.82rem; color:var(--bad);}
 
   .table-wrap{overflow-x:auto; margin-top:28px;}
-  .rank-table{width:100%; border-collapse:collapse; font-size:0.88rem; min-width:520px;}
+  .rank-table{width:100%; border-collapse:collapse; font-size:0.88rem; min-width:640px;}
   .rank-table th, .rank-table td{padding:10px 12px; border-bottom:1px solid var(--line); text-align:left;}
   .rank-table th{color:var(--ink-soft); font-size:0.74rem; letter-spacing:0.04em; font-weight:700;}
   .rank-table td.rank{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; color:var(--ink-soft); width:3.5em;}
   .rank-table tr:nth-child(1) td.rank{color:var(--gold-fill);}
   .rank-table td.name{font-weight:700;}
   .rank-table td.pts{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; color:var(--gold-fill); font-variant-numeric:tabular-nums;}
+  .rank-table td.when{font-size:0.8rem; color:var(--ink-soft); white-space:nowrap;}
   .rank-table td.empty{color:var(--ink-soft); text-align:center; padding:30px 10px;}
 
   .admin-block{margin-top:34px; text-align:left; border-top:1px solid var(--line); padding-top:18px;}
@@ -179,18 +180,28 @@ function RB_INIT(){
     return String(g).replace(/生$/, '');
   }
 
+  // "2026/9/12 2:01" — the moment the record was registered (entry.ts).
+  function formatWhen(ts){
+    if (!ts) return '';
+    var d = new Date(ts);
+    if (isNaN(d.getTime())) return '';
+    var mm = d.getMinutes();
+    return d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+(mm < 10 ? '0'+mm : mm);
+  }
+
   function renderTableRows(list){
     if (!list.length){
-      return '<tr><td colspan="6" class="empty">まだ登録がありません。黒帯の昇段試験を受けて、さいしょのランカーになろう。</td></tr>';
+      return '<tr><td colspan="7" class="empty">まだ登録がありません。黒帯の昇段試験を受けて、さいしょのランカーになろう。</td></tr>';
     }
     return list.map(function(e,i){
       return '<tr><td class="rank">'+(i+1)+'位</td><td>'+escapeHtml(displayGrade(e.grade))+' '+escapeHtml(e.cls)+'</td><td class="name">'+escapeHtml(e.name)+'</td>'+
-        '<td class="pts">'+e.points+'</td><td>'+e.speed+'文字/分</td><td>'+e.accuracy+'%</td></tr>';
+        '<td class="pts">'+e.points+'</td><td>'+e.speed+'文字/分</td><td>'+e.accuracy+'%</td>'+
+        '<td class="when">'+escapeHtml(formatWhen(e.ts))+'</td></tr>';
     }).join('');
   }
 
   function renderBodyHtml(loading){
-    var rowsHtml = loading ? '<tr><td colspan="6" class="empty">読みこみちゅう…</td></tr>' : renderTableRows([]);
+    var rowsHtml = loading ? '<tr><td colspan="7" class="empty">読みこみちゅう…</td></tr>' : renderTableRows([]);
 
     var gradeOptions = ['1年','2年','3年','4年','5年','6年'].map(function(g){
       return '<option value="'+g+'">'+g+'</option>';
@@ -229,7 +240,7 @@ function RB_INIT(){
       '<h1>チャレンジポイント ランキング</h1>'+
       '<p class="lead">黒帯の昇段試験の結果を登録して、道場のみんなと競おう。</p>'+
       formHtml+
-      '<div class="table-wrap"><table class="rank-table"><thead><tr><th>順位</th><th>学年・組</th><th>なまえ</th><th>ポイント</th><th>速さ</th><th>正確率</th></tr></thead><tbody id="rankBody">'+rowsHtml+'</tbody></table></div>'+
+      '<div class="table-wrap"><table class="rank-table"><thead><tr><th>順位</th><th>学年・組</th><th>なまえ</th><th>ポイント</th><th>速さ</th><th>正確率</th><th>とうろく日時</th></tr></thead><tbody id="rankBody">'+rowsHtml+'</tbody></table></div>'+
       adminHtml;
   }
 
@@ -313,7 +324,7 @@ function RB_INIT(){
       return '<tr><td colspan="10" class="empty">とうろくはまだありません。</td></tr>';
     }
     return list.map(function(e){
-      var when = e.ts ? new Date(e.ts).toLocaleString('ja-JP') : '';
+      var when = formatWhen(e.ts);
       var current = e.boardRank ? (e.boardRank+'位') : '圏外';
       var pinned = e.rankOverride ? String(e.rankOverride) : '';
       return '<tr data-ts="'+escapeHtml(e.ts||'')+'">'+
@@ -487,7 +498,7 @@ function RB_INIT(){
       updateRows(list);
     }).catch(function(){
       var body = document.getElementById('rankBody');
-      if (body) body.innerHTML = '<tr><td colspan="6" class="empty">ランキングを読みこめませんでした。時間をおいてためしてね。</td></tr>';
+      if (body) body.innerHTML = '<tr><td colspan="7" class="empty">ランキングを読みこめませんでした。時間をおいてためしてね。</td></tr>';
     });
   }
 
