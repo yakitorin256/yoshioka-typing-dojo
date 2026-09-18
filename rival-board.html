@@ -121,9 +121,25 @@
     background:var(--card); color:var(--ink); flex:1; min-width:160px;
   }
   .admin-note{min-height:1.3em; font-size:0.8rem; color:var(--bad); margin-top:6px;}
-  .admin-table{width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:14px; min-width:640px;}
-  .admin-table th, .admin-table td{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left;}
-  .admin-table th{color:var(--ink-soft); font-size:0.7rem; letter-spacing:0.04em;}
+  .admin-table{width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:14px; min-width:980px;}
+  .admin-table th, .admin-table td{padding:8px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle;}
+  .admin-table th{color:var(--ink-soft); font-size:0.7rem; letter-spacing:0.04em; white-space:nowrap;}
+  .admin-table input, .admin-table select{
+    font-size:0.82rem; padding:5px 6px; border-radius:6px; border:1px solid var(--line);
+    background:var(--card); color:var(--ink); max-width:100%;
+  }
+  .admin-table input.f-name{width:9.5em;}
+  .admin-table input.f-num{width:5.2em;}
+  .admin-table td.cur-rank{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; white-space:nowrap;}
+  .admin-table td.when{font-size:0.74rem; color:var(--ink-soft); white-space:nowrap;}
+  .admin-table td.actions{white-space:nowrap;}
+  .admin-table tr.dirty{background:color-mix(in srgb, var(--gold-fill) 14%, transparent);}
+  .admin-help{margin:10px 0 0; font-size:0.76rem; color:var(--ink-soft);}
+  .admin-save-btn{
+    font-size:0.76rem; font-weight:700; color:var(--accent-ink); background:var(--belt-green);
+    border:1px solid var(--belt-green); border-radius:6px; padding:4px 12px; cursor:pointer; margin-right:6px;
+  }
+  .admin-save-btn:disabled{opacity:0.5; cursor:default;}
   .admin-del-btn{
     font-size:0.76rem; font-weight:700; color:var(--bad); background:transparent;
     border:1px solid var(--bad); border-radius:6px; padding:4px 10px; cursor:pointer;
@@ -282,18 +298,37 @@ function RB_INIT(){
 
   var adminPassword = null;
 
+  var GRADE_LIST = ['1年','2年','3年','4年','5年','6年'];
+  var CLASS_LIST = ['1組','2組','3組','4組','ほしの子学級'];
+  var RANK_LIST = [1,2,3,4,5];
+
+  function optionsHtml(values, selected, labelFn){
+    return values.map(function(v){
+      return '<option value="'+escapeHtml(v)+'"'+(String(v) === String(selected) ? ' selected' : '')+'>'+escapeHtml(labelFn ? labelFn(v) : v)+'</option>';
+    }).join('');
+  }
+
   function renderAdminRows(list){
     if (!list.length){
-      return '<tr><td colspan="7" class="empty">とうろくはまだありません。</td></tr>';
+      return '<tr><td colspan="10" class="empty">とうろくはまだありません。</td></tr>';
     }
     return list.map(function(e){
       var when = e.ts ? new Date(e.ts).toLocaleString('ja-JP') : '';
+      var current = e.boardRank ? (e.boardRank+'位') : '圏外';
+      var pinned = e.rankOverride ? String(e.rankOverride) : '';
       return '<tr data-ts="'+escapeHtml(e.ts||'')+'">'+
-        '<td>'+escapeHtml(displayGrade(e.grade))+' '+escapeHtml(e.cls)+'</td>'+
-        '<td>'+escapeHtml(e.name)+'</td>'+
-        '<td>'+e.points+'</td><td>'+e.speed+'文字/分</td><td>'+e.accuracy+'%</td>'+
-        '<td>'+escapeHtml(when)+'</td>'+
-        '<td><button type="button" class="admin-del-btn" data-ts="'+escapeHtml(e.ts||'')+'">削除</button></td>'+
+        '<td class="cur-rank">'+current+'</td>'+
+        '<td><select class="f-rank" aria-label="順位を指定"><option value=""'+(pinned === '' ? ' selected' : '')+'>自動</option>'+
+          optionsHtml(RANK_LIST, pinned, function(r){ return r+'位に固定'; })+'</select></td>'+
+        '<td><select class="f-grade" aria-label="学年">'+optionsHtml(GRADE_LIST, displayGrade(e.grade))+'</select></td>'+
+        '<td><select class="f-cls" aria-label="組・学級">'+optionsHtml(CLASS_LIST, e.cls)+'</select></td>'+
+        '<td><input type="text" class="f-name" maxlength="20" value="'+escapeHtml(e.name)+'" aria-label="なまえ"></td>'+
+        '<td><input type="number" class="f-num f-points" min="0" max="99999" step="1" value="'+escapeHtml(e.points)+'" aria-label="ポイント"></td>'+
+        '<td><input type="number" class="f-num f-speed" min="0" max="9999" step="1" value="'+escapeHtml(e.speed)+'" aria-label="速さ（文字/分）"></td>'+
+        '<td><input type="number" class="f-num f-acc" min="0" max="100" step="1" value="'+escapeHtml(e.accuracy)+'" aria-label="正確率（%）"></td>'+
+        '<td class="when">'+escapeHtml(when)+'</td>'+
+        '<td class="actions"><button type="button" class="admin-save-btn" data-ts="'+escapeHtml(e.ts||'')+'">保存</button>'+
+          '<button type="button" class="admin-del-btn" data-ts="'+escapeHtml(e.ts||'')+'">削除</button></td>'+
       '</tr>';
     }).join('');
   }
@@ -302,18 +337,88 @@ function RB_INIT(){
     var wrap = document.getElementById('adminListWrap');
     if (!wrap) return;
     wrap.innerHTML =
+      '<p class="admin-help">値を書きかえて「保存」を押すと反映されます。「順位を指定」で順位を選ぶと、その順位に固定されます（「自動」に戻すとポイント順）。同じ人（学年・組・なまえ）は、ふつう最高ポイントの1件だけがランキングにのります。</p>'+
       '<div class="table-wrap"><table class="admin-table"><thead><tr>'+
-        '<th>学年・組</th><th>なまえ</th><th>ポイント</th><th>速さ</th><th>正確率</th><th>とうろく日時</th><th></th>'+
+        '<th>いまの順位</th><th>順位を指定</th><th>学年</th><th>組・学級</th><th>なまえ</th><th>ポイント</th><th>速さ(文字/分)</th><th>正確率(%)</th><th>とうろく日時</th><th></th>'+
       '</tr></thead><tbody>'+renderAdminRows(list)+'</tbody></table></div>';
+
+    wrap.querySelectorAll('tbody tr[data-ts]').forEach(function(row){
+      row.querySelectorAll('input, select').forEach(function(el){
+        el.addEventListener('input', function(){ row.classList.add('dirty'); });
+        el.addEventListener('change', function(){ row.classList.add('dirty'); });
+      });
+      row.querySelectorAll('input').forEach(function(el){
+        el.addEventListener('keydown', function(ev){
+          if (ev.key === 'Enter'){ ev.preventDefault(); saveRow(row); }
+        });
+      });
+    });
+    wrap.querySelectorAll('.admin-save-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ saveRow(btn.closest('tr')); });
+    });
     wrap.querySelectorAll('.admin-del-btn').forEach(function(btn){
       btn.addEventListener('click', function(){
         var ts = btn.getAttribute('data-ts');
         var row = btn.closest('tr');
-        var name = row ? row.children[1].textContent : '';
+        var name = row ? row.querySelector('.f-name').value : '';
         if (!window.confirm('「'+name+'」のとうろくを削除します。よろしいですか？')) return;
         btn.disabled = true;
         deleteEntry(ts);
       });
+    });
+  }
+
+  function refreshPublicRows(){
+    fetch(API_URL).then(function(r){ return r.json(); }).then(updateRows).catch(function(){});
+  }
+
+  var SAVE_ERRORS = {
+    invalid_grade: '学年・組・なまえを正しく入力してね。',
+    invalid_cls: '学年・組・なまえを正しく入力してね。',
+    invalid_name: 'なまえを入力してね。',
+    invalid_number: 'ポイントは0〜99999、速さは0〜9999、正確率は0〜100の整数で入力してね。',
+    invalid_rank: '順位は1〜5位から選んでね。',
+    not_found: 'この記録は見つかりませんでした（すでに削除された可能性があります）。'
+  };
+
+  function saveRow(row){
+    if (!row) return;
+    var note = document.getElementById('adminNote');
+    var saveBtn = row.querySelector('.admin-save-btn');
+    var name = row.querySelector('.f-name').value.trim();
+    if (!name){ note.textContent = 'なまえを入力してね。'; return; }
+    var rankValue = row.querySelector('.f-rank').value;
+    var payload = {
+      ts: Number(row.getAttribute('data-ts')),
+      grade: row.querySelector('.f-grade').value,
+      cls: row.querySelector('.f-cls').value,
+      name: name,
+      points: row.querySelector('.f-points').value,
+      speed: row.querySelector('.f-speed').value,
+      accuracy: row.querySelector('.f-acc').value,
+      rank: rankValue === '' ? null : Number(rankValue)
+    };
+    saveBtn.disabled = true;
+    note.textContent = '保存ちゅう…';
+    fetch(API_URL, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json', 'X-Admin-Password': adminPassword},
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      if (!res.ok){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          note.textContent = SAVE_ERRORS[data.error] || '保存に失敗しました。もう一度ためしてね。';
+          saveBtn.disabled = false;
+        });
+      }
+      return res.json().then(function(data){
+        note.textContent = '保存しました。';
+        renderAdminPanel(data.list || []);
+        refreshPublicRows();
+      });
+    }).catch(function(){
+      note.textContent = '保存に失敗しました。通信を確認してもう一度ためしてね。';
+      saveBtn.disabled = false;
     });
   }
 
@@ -331,7 +436,7 @@ function RB_INIT(){
       return res.json().then(function(data){
         note.textContent = '削除しました。';
         renderAdminPanel(data.list || []);
-        fetch(API_URL).then(function(r){ return r.json(); }).then(updateRows).catch(function(){});
+        refreshPublicRows();
       });
     }).catch(function(){
       note.textContent = '削除に失敗しました。通信を確認してもう一度ためしてね。';
