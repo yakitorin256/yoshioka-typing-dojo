@@ -601,6 +601,7 @@
   var sequence, idx, subIdx, startTime, missTotal, charHadMiss, missedChars, running;
   var phase, wordSeq, wordIdx, charIdx, codeIdx, totalChars;
   var audioCtx = null;
+  var nextTargetTimer = null; // 1文字打ち終えたあと、次の文字を出すまでの待ち
 
   function beep(freq, dur){
     try{
@@ -638,6 +639,7 @@
   }
 
   function showTarget(){
+    nextTargetTimer = null;
     clearKeyStates();
     var k = sequence[idx];
     subIdx = 0;
@@ -682,6 +684,11 @@
   function handleAttempt(code){
     if (practice.style.display !== 'block') return;
     if (phase === 'words'){ handleWordAttempt(code); return; }
+    if (nextTargetTimer !== null){
+      // 前の文字を打ち終えた直後にキーが押されたら、次の文字をすぐ出して1打目として数える
+      clearTimeout(nextTargetTimer);
+      showTarget();
+    }
     var k = sequence[idx];
     if (!k) return; // keypress landed in the gap before the next step
     var res = resolveExpected(k.hira, k.codes, subIdx, code);
@@ -698,7 +705,7 @@
         if (idx >= sequence.length){
           setTimeout(startWordPhase, 420);
         } else {
-          setTimeout(showTarget, 160);
+          nextTargetTimer = setTimeout(showTarget, 160);
         }
       } else {
         renderTargetRoma(k, codes);
@@ -728,6 +735,7 @@
   function showWordTarget(){
     clearKeyStates();
     var word = wordSeq[wordIdx];
+    if (!word) return; // 最後の単語を打ち終えたあとに、遅れて届いた表示更新
     var chars = wordChars(word);
     var html = '';
     chars.forEach(function(c, i){
