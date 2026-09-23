@@ -1,0 +1,1047 @@
+<title>拗音（ようおん）の練習 トレーニング</title>
+<meta name="description" content="吉岡小タイピング道場・拗音（ようおん）の練習。小さい「ゃゅょ」がつく音を、子音とあいうえおのあいだに「Y」をはさんで打つしくみを学ぶタイピング練習アプリ">
+<style>
+  :root{
+    --bg:#F7F2E8;
+    --bg-alt:#FBF7EF;
+    --card:#FFFDF9;
+    --ink:#29251F;
+    --ink-soft:#6E6355;
+    --accent:#BE3A34;
+    --accent-dark:#9C2C27;
+    --accent-ink:#FFFDF9;
+    --belt-yellow:#C99A1E;
+    --belt-green:#4C8B5D;
+    --belt-blue:#3A6EA5;
+    --belt-brown:#8B5A2B;
+    --belt-black:#29251F;
+    --belt-intro:#C9695A;
+    --gold-fill:#C99A1E;
+    --line:#DED0B4;
+    --shadow:rgba(60,44,20,0.14);
+    --focus:#2B5FB0;
+    --good:#4C8B5D;
+    --bad:#BE3A34;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+      --ink:#F2EBDB; --ink-soft:#B7A98E;
+      --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+      --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+      --belt-intro:#E08575;
+      --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+      --good:#68AD7F; --bad:#E2564E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1C1712; --bg-alt:#231D16; --card:#2A231A;
+    --ink:#F2EBDB; --ink-soft:#B7A98E;
+    --accent:#E2564E; --accent-dark:#C74138; --accent-ink:#1C1712;
+    --belt-yellow:#DDB13B; --belt-green:#68AD7F; --belt-blue:#6E9FD4; --belt-brown:#B07C46; --belt-black:#F2EBDB;
+    --belt-intro:#E08575;
+    --gold-fill:#DDB13B; --line:#3B3120; --shadow:rgba(0,0,0,0.45); --focus:#8FB8F0;
+    --good:#68AD7F; --bad:#E2564E;
+  }
+
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0; min-height:100vh;
+    background:var(--bg); color:var(--ink);
+    font-family:'Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Meiryo',serif;
+    font-weight:700; text-wrap:balance; margin:0;
+  }
+  .mono{font-family:Consolas,'SF Mono',Menlo,monospace; font-variant-numeric:tabular-nums;}
+  a{color:inherit;}
+  button{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:4px;}
+
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:760px; margin:0 auto; padding:22px 24px 0;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.9rem; color:var(--ink-soft); text-decoration:none;
+    border-bottom:1px dashed var(--ink-soft); padding-bottom:2px;
+  }
+  .back-link:hover{color:var(--accent); border-color:var(--accent);}
+  .stage-badge{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.04em;
+    color:var(--belt-intro); border:1px solid var(--belt-intro);
+    border-radius:999px; padding:5px 14px;
+  }
+
+  main{max-width:760px; margin:0 auto; padding:28px 24px 60px;}
+
+  .panel{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:40px 36px; box-shadow:0 10px 28px var(--shadow);
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.98rem; font-weight:700; letter-spacing:0.1em;
+    color:var(--belt-intro);
+    background:color-mix(in srgb, var(--belt-intro) 14%, transparent);
+    border:1px solid var(--belt-intro);
+    padding:5px 14px; border-radius:2px; margin-bottom:18px;
+  }
+  .panel h1{font-size:1.7rem; margin-bottom:14px;}
+  .panel > p.lead{color:var(--ink-soft); font-size:1rem; max-width:44ch; margin:0 auto 8px;}
+  .ime-note{
+    margin:20px auto 0; max-width:46ch; font-size:0.85rem; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:8px; padding:10px 16px;
+  }
+  .kb-legend{margin:10px auto 0; max-width:42ch; font-size:0.76rem; color:var(--ink-soft);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; margin-top:26px;
+    padding:13px 28px; border-radius:6px; border:1px solid transparent;
+    font-weight:700; font-size:1rem; cursor:pointer;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif;
+    background:var(--belt-intro); color:var(--accent-ink);
+    box-shadow:0 4px 0 color-mix(in srgb, var(--belt-intro) 70%, black);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 6px 0 color-mix(in srgb, var(--belt-intro) 70%, black);}
+  .btn:active{transform:translateY(1px); box-shadow:0 2px 0 color-mix(in srgb, var(--belt-intro) 70%, black);}
+  .btn-quiet{
+    background:transparent; color:var(--ink-soft); box-shadow:none;
+    border:1px solid var(--line); font-family:'Yu Gothic',sans-serif; font-weight:700;
+  }
+  .btn-quiet:hover{border-color:var(--belt-intro); color:var(--belt-intro); transform:none; box-shadow:none;}
+  .key-hint{margin-top:10px; font-size:0.76rem; color:var(--ink-soft); text-align:center;}
+
+  /* ---- rule demo: 子音 + Y + 母音 = 拗音 ---- */
+  .rule-demo{
+    display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center;
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:12px;
+    padding:18px 22px; margin:24px auto 4px;
+  }
+  .combo-op{font-size:1.25rem; color:var(--ink-soft); font-weight:700; line-height:1;}
+  .rule-result{
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700;
+    font-size:2.6rem; color:var(--ink); margin-left:4px;
+  }
+  .rule-caption{font-size:0.82rem; color:var(--ink-soft); margin-top:10px;}
+  .combo-legend{display:flex; gap:20px; justify-content:center; margin-top:14px; font-size:0.76rem; color:var(--ink-soft); flex-wrap:wrap;}
+  .combo-legend span{display:inline-flex; align-items:center; gap:6px;}
+  .combo-dot{width:10px; height:10px; border-radius:3px; display:inline-block;}
+
+  /* ---- 拗音表: 11の子音 × ゃ・ゅ・ょ ---- */
+  .youon-table{border-collapse:collapse; margin:22px auto 0; background:var(--bg-alt);}
+  .youon-table th, .youon-table td{border:1px solid var(--line); padding:7px 12px; text-align:center;}
+  .youon-table thead th{
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-size:1.1rem; color:var(--ink-soft);
+    background:var(--card); font-weight:700;
+  }
+  .youon-table tbody th{
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-size:1.05rem; color:var(--ink-soft);
+    background:var(--card); font-weight:700;
+  }
+  .yt-kana{
+    display:block; font-family:'Hiragino Mincho ProN','Yu Mincho',serif;
+    font-weight:700; font-size:1.45rem; color:var(--ink); line-height:1.15;
+  }
+  .yt-roma{
+    display:block; font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700;
+    font-size:0.68rem; letter-spacing:0.05em; color:var(--belt-intro); margin-top:1px;
+  }
+
+  /* ---- full keyboard map ---- */
+  .full-kb{margin:22px auto 0; display:inline-block;}
+  .kb-line{display:flex; gap:6px; margin-top:6px;}
+  .kb-line:first-child{margin-top:0;}
+  .kb-line[data-row="2"]{margin-left:24px;}
+  .kb-line[data-row="3"]{margin-left:48px;}
+  .fk-key-wrap{position:relative; flex-shrink:0;}
+  .fk-key{
+    width:38px; height:38px; border-radius:7px;
+    display:flex; align-items:center; justify-content:center; position:relative;
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:0.92rem;
+    background:var(--bg-alt); border:1.5px solid var(--line); color:var(--ink-soft);
+  }
+  .fk-key.target-key{
+    background:var(--card); border:2.2px solid var(--zone, var(--line)); color:var(--ink);
+    box-shadow:0 3px 0 color-mix(in srgb, var(--zone, var(--line)) 65%, black);
+  }
+  /* 子音キーは塗りつぶし、母音キーは輪郭だけ、という描き分け */
+  .fk-key.target-key.fk-consonant{
+    background:var(--zone, var(--line)); color:#fff;
+  }
+  .fk-key.target-key.fk-consonant .fk-kana{color:rgba(255,255,255,0.75);}
+  /* 今日の主役は Y。赤い輪で、ひときわ目立たせる */
+  .fk-key.target-key.fk-glue{
+    background:var(--zone, var(--line)); color:#fff;
+  }
+  .fk-key.target-key.fk-glue::after{
+    content:"";
+    position:absolute; inset:-7px;
+    border-radius:50%;
+    border:3px solid #FF3B30;
+    pointer-events:none;
+  }
+  .fk-key.target-key.fk-glue .fk-kana{color:rgba(255,255,255,0.75);}
+  .fk-kana{
+    position:absolute; bottom:1px; right:2px;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:0.5rem;
+    color:var(--ink-soft);
+  }
+  .fk-hira{
+    position:absolute; top:-24px; left:50%; transform:translateX(-50%);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:1.15rem;
+    color:var(--zone, var(--ink)); white-space:nowrap;
+  }
+  .fk-hira.fk-label-small{font-size:0.66rem; font-family:'Yu Gothic',sans-serif; font-weight:700;}
+
+  /* ---- keyboard (practice) ---- */
+  .kb-wrap{overflow-x:auto; margin:28px 0 6px; padding:4px;}
+  .kb-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:0 auto; align-items:flex-start;}
+  .key-unit{display:flex; flex-direction:column; align-items:center; gap:4px;}
+  .key-gap{width:14px;}
+  .key{
+    width:56px; height:56px; border-radius:10px; flex-shrink:0;
+    background:var(--card); border:2.4px solid var(--zone, var(--line));
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 4px 0 color-mix(in srgb, var(--zone, var(--line)) 65%, black);
+    transition:transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .key-roma-label{
+    position:absolute; top:7px; left:9px;
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:1.35rem;
+    color:var(--ink);
+  }
+  .key-kana-label{
+    position:absolute; bottom:5px; right:8px;
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+  .key:hover{transform:translateY(-1px);}
+  .key:active{transform:translateY(3px); box-shadow:0 1px 0 color-mix(in srgb, var(--zone, var(--line)) 65%, black);}
+  .key.target{
+    box-shadow:0 0 0 4px color-mix(in srgb, var(--zone) 35%, transparent), 0 4px 0 color-mix(in srgb, var(--zone) 65%, black);
+    transform:translateY(-3px);
+  }
+  .key.correct{background:color-mix(in srgb, var(--good) 25%, var(--card)); border-color:var(--good); box-shadow:0 4px 0 color-mix(in srgb, var(--good) 65%, black);}
+  .key.wrong{background:color-mix(in srgb, var(--bad) 25%, var(--card)); border-color:var(--bad); box-shadow:0 4px 0 color-mix(in srgb, var(--bad) 65%, black);}
+  .key-sub{font-size:0.68rem; color:var(--ink-soft); letter-spacing:0.04em;}
+  .mini-key{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:1.7em; height:1.7em; border-radius:6px; margin:0 2px;
+    background:var(--card); border:2px solid var(--ink-soft);
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700;
+    color:var(--ink); vertical-align:middle;
+    box-shadow:0 2px 0 color-mix(in srgb, var(--ink-soft) 60%, black);
+  }
+
+  /* ---- practice ---- */
+  #practice{display:none;}
+  .progress-line{display:flex; align-items:center; gap:14px; justify-content:center; margin-bottom:10px;}
+  .progress-line .mono{font-size:0.85rem; color:var(--ink-soft);}
+  .progress-track{width:200px; height:8px; border-radius:999px; background:var(--bg-alt); border:1px solid var(--line); overflow:hidden;}
+  .progress-fill{height:100%; background:var(--belt-intro); border-radius:999px; transition:width 0.25s ease;}
+  .target-label{font-size:0.85rem; color:var(--ink-soft); letter-spacing:0.05em; margin-top:8px;}
+  .target-char{
+    font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP','Meiryo',serif; font-weight:700;
+    font-size:5.2rem; line-height:1; margin:10px 0 0; color:var(--ink);
+    min-height:1.1em;
+  }
+  .target-roma{
+    font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700;
+    font-size:1.8rem; letter-spacing:0.04em; color:var(--ink-soft);
+  }
+  .target-roma .roma-done{color:var(--good);}
+  .finger-hint{font-size:0.92rem; color:var(--ink-soft); margin-top:4px;}
+  .miss-note{min-height:1.4em; font-size:0.85rem; color:var(--bad); margin-top:6px;}
+
+  /* ---- step 2: words built from 拗音 + already-known 文字 ---- */
+  .phase-banner{
+    margin:6px auto 0; max-width:34ch; font-size:0.82rem; font-weight:700;
+    color:var(--belt-intro);
+    background:color-mix(in srgb, var(--belt-intro) 12%, transparent);
+    border:1px solid var(--belt-intro); border-radius:8px; padding:7px 14px;
+  }
+  .target-char.word-mode{font-size:4.4rem; letter-spacing:0.06em;}
+  .target-char .wc-done{color:var(--good);}
+  .target-char .wc-now{
+    color:var(--ink);
+    border-bottom:5px solid var(--belt-intro);
+  }
+  .target-char .wc-todo{color:var(--ink-soft); opacity:0.4;}
+  .word-meaning{font-size:0.9rem; color:var(--ink-soft); margin-top:8px;}
+
+  /* ---- result ---- */
+  #result{display:none;}
+  .stamp{
+    width:96px; height:96px; border-radius:50%; margin:6px auto 18px;
+    display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--good); transform:rotate(-6deg);
+    font-family:'Hiragino Mincho ProN','Yu Mincho',serif; font-weight:700; font-size:1.6rem;
+    color:var(--good);
+  }
+  .stamp.fail{border-color:var(--belt-brown); color:var(--belt-brown);}
+  .stat-row{display:flex; gap:16px; justify-content:center; margin:18px 0 6px; flex-wrap:wrap;}
+  .stat-box{border:1px solid var(--line); border-radius:8px; padding:14px 22px; background:var(--bg-alt); min-width:130px;}
+  .stat-box .mono{font-size:0.72rem; color:var(--ink-soft); display:block; letter-spacing:0.04em;}
+  .stat-box .stat-val{font-family:Consolas,'SF Mono',Menlo,monospace; font-weight:700; font-size:1.7rem; color:var(--ink);}
+  .result-msg{color:var(--ink-soft); margin-top:6px; max-width:42ch; margin-left:auto; margin-right:auto;}
+  .result-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{max-width:760px; margin:0 auto; padding:0 24px 40px; text-align:center;}
+  footer p{font-size:0.78rem; color:var(--ink-soft);}
+
+  @media (max-width:520px){
+    .panel{padding:30px 20px;}
+    .target-char{font-size:3.6rem;}
+    .target-char.word-mode{font-size:2.6rem;}
+    .target-roma{font-size:1.4rem;}
+    .key{width:48px; height:48px;}
+    .key-roma-label{font-size:1.1rem; top:5px; left:7px;}
+    .key-kana-label{font-size:0.68rem; bottom:4px; right:6px;}
+    .kb-row{gap:8px;}
+    .rule-demo{padding:14px 12px; gap:7px;}
+    .rule-result{font-size:2rem;}
+    .youon-table th, .youon-table td{padding:5px 7px;}
+    .yt-kana{font-size:1.15rem;}
+    .yt-roma{font-size:0.58rem;}
+    .fk-key{width:30px; height:30px; font-size:0.76rem;}
+    .fk-key.target-key.fk-glue::after{inset:-5px; border-width:2.5px;}
+    .fk-kana{font-size:0.42rem;}
+    .fk-hira{font-size:0.92rem; top:-19px;}
+    .fk-hira.fk-label-small{font-size:0.56rem;}
+    .kb-line{gap:4px;}
+    .kb-line[data-row="2"]{margin-left:19px;}
+    .kb-line[data-row="3"]{margin-left:38px;}
+  }
+</style>
+
+<div class="topbar">
+  <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
+  <span class="stage-badge">拗音（ようおん）の練習</span>
+</div>
+
+<main>
+  <div class="panel" id="intro">
+    <span class="eyebrow">トレーニング15</span>
+    <h1>拗音（ようおん）の練習</h1>
+    <p class="lead" style="text-align:left;">　「きゃ」「しゅ」「りょ」のように、い段の文字（き・し・ち・に・ひ・み・り・ぎ・じ・び・ぴ）に小さい「ゃ・ゅ・ょ」がついた音を、拗音（ようおん）というよ。</p>
+    <p class="lead" style="text-align:left;">　ローマ字で打つときのきまりは、たったひとつ。い段の子音と、あ・う・お のあいだに「Y」をはさむだけ。「き」は KI、「きゃ」は K<b>Y</b>A。新しく覚えるキーはひとつもなくて、今まで習ったキーの組み合わせだけで打てるよ。</p>
+
+    <div class="rule-demo" id="ruleDemo"></div>
+    <p class="rule-caption">「き」のK と、「あ」のA。そのあいだに Y をはさむと「きゃ」になる</p>
+    <div class="combo-legend">
+      <span><span class="combo-dot" style="background:var(--belt-brown);"></span>い段の子音</span>
+      <span><span class="combo-dot" style="background:var(--belt-green);"></span>Y（拗音をつくるキー）</span>
+      <span><span class="combo-dot" style="background:var(--accent);"></span>母音（あ・う・お）</span>
+    </div>
+
+    <div class="target-label" style="margin-top:26px;">拗音は、ぜんぶで33こ。どれも同じきまりで打てるよ</div>
+    <div class="kb-wrap"><table class="youon-table" id="youonTable"></table></div>
+
+    <div class="target-label" style="margin-top:26px;">キーボード全体の中で、Yのキーの場所をたしかめよう</div>
+    <div class="kb-wrap"><div class="full-kb" id="fullKbIntro"></div></div>
+
+    <p class="kb-legend" style="text-align:left;">　キーの右下の小さい字は、本物のキーボードにも書かれているかな文字だよ。この練習では使わないので、気にしなくてOK。左上のアルファベットだけを見て打とう。</p>
+
+    <p class="ime-note" style="text-align:left;">　はじめる前に、キーボードの入力を「半角英数」にしておこう（日本語入力オフ）。</p>
+    <p class="ime-note" style="text-align:left;">　※「しゃしゅしょ」は「SYA・SYU・SYO」のほかに「SHA・SHU・SHO」、「ちゃちゅちょ」は「TYA・TYU・TYO」のほかに「CHA・CHU・CHO」、「じゃじゅじょ」は「ZYA・ZYU・ZYO」のほかに「JA・JU・JO」と打ってもOK。</p>
+    <button class="btn" id="startBtn">トレーニングをはじめる →</button>
+    <div class="key-hint">クリック、またはスペースキー／Enterキーではじめる</div>
+  </div>
+
+  <div class="panel" id="practice">
+    <div class="progress-line">
+      <span class="mono" id="progressText">もじ 0 / 33</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="phase-banner" id="phaseBanner" style="display:none">ステップ2：拗音を使った ことばを うとう（10もん）</div>
+    <div class="target-label" id="targetLabel">この文字を、ローマ字で打とう</div>
+    <div class="target-char" id="targetChar">きゃ</div>
+    <div class="word-meaning" id="wordMeaning" style="display:none">&nbsp;</div>
+    <div class="target-roma" id="targetRoma">kya</div>
+    <div class="finger-hint" id="fingerHint"><span class="mini-key">K</span> → 右手・中指</div>
+    <div class="miss-note" id="missNote">&nbsp;</div>
+
+    <div class="kb-wrap"><div class="kb-row" id="kbRowPractice"></div></div>
+  </div>
+
+  <div class="panel" id="result">
+    <div class="stamp" id="stamp">合格</div>
+    <h1 id="resultTitle">拗音 合格！</h1>
+    <p class="result-msg" id="resultMsg" style="text-align:left;">　小さい「ゃゅょ」がつく音も、しっかり打てるようになった。</p>
+    <div class="stat-row">
+      <div class="stat-box"><span class="mono">速さ</span><span class="stat-val" id="statSpeed">0<span style="font-size:0.6em;font-weight:400;"> 文字/分</span></span></div>
+      <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
+    </div>
+    <div class="result-actions">
+      <a class="btn" id="nextStageLink" style="display:none" href="youon-exam.html">しゅうりょうテストへ →</a>
+      <button class="btn btn-quiet" id="retryBtn">もう一度練習する</button>
+      <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
+    </div>
+    <div class="key-hint">←→キーで選択、スペース／Enterキーで決定</div>
+  </div>
+</main>
+
+<footer><p>吉岡小タイピング道場</p></footer>
+
+<script>
+(function(){
+  // 拗音は「い段の文字」＋小さい「ゃ・ゅ・ょ」。ローマ字では、い段の子音と
+  // 母音のあいだに Y をはさむだけ（き KI → きゃ KYA）。新しく覚えるキーは
+  // ひとつもなく、これまでのトレーニングで習ったキーだけで打てる。
+  var Y_KEY = {code:'KeyY', roma:'Y', kisKana:'ん', zone:'--belt-green', finger:'右手・人差し指', isGlue:true};
+  var VOWELS = [
+    {code:'KeyA', hira:'ゃ', roma:'a', kisKana:'ち', zone:'--accent', finger:'左手・小指'},
+    {code:'KeyU', hira:'ゅ', roma:'u', kisKana:'な', zone:'--belt-blue', finger:'右手・人差し指'},
+    {code:'KeyO', hira:'ょ', roma:'o', kisKana:'ら', zone:'--gold-fill', finger:'右手・くすり指'}
+  ];
+  var CONSONANTS = [
+    {code:'KeyK', roma:'K', kisKana:'の', zone:'--belt-brown', finger:'右手・中指', base:'き'},
+    {code:'KeyS', roma:'S', kisKana:'と', zone:'--belt-brown', finger:'左手・薬指', base:'し'},
+    {code:'KeyT', roma:'T', kisKana:'か', zone:'--belt-brown', finger:'左手・人差し指', base:'ち'},
+    {code:'KeyN', roma:'N', kisKana:'み', zone:'--belt-brown', finger:'右手・人差し指', base:'に'},
+    {code:'KeyH', roma:'H', kisKana:'く', zone:'--belt-brown', finger:'右手・人差し指', base:'ひ'},
+    {code:'KeyM', roma:'M', kisKana:'も', zone:'--belt-brown', finger:'右手・人差し指', base:'み'},
+    {code:'KeyR', roma:'R', kisKana:'す', zone:'--belt-brown', finger:'左手・人差し指', base:'り'},
+    {code:'KeyG', roma:'G', kisKana:'き', zone:'--belt-brown', finger:'左手・人差し指', base:'ぎ'},
+    {code:'KeyZ', roma:'Z', kisKana:'つ', zone:'--belt-brown', finger:'左手・小指', base:'じ'},
+    {code:'KeyB', roma:'B', kisKana:'こ', zone:'--belt-brown', finger:'左手・人差し指', base:'び'},
+    {code:'KeyP', roma:'P', kisKana:'せ', zone:'--belt-brown', finger:'右手・小指', base:'ぴ'}
+  ];
+  var YOUON_ROWS = [
+    {cons:'KeyK', kana:['きゃ','きゅ','きょ']},
+    {cons:'KeyS', kana:['しゃ','しゅ','しょ']},
+    {cons:'KeyT', kana:['ちゃ','ちゅ','ちょ']},
+    {cons:'KeyN', kana:['にゃ','にゅ','にょ']},
+    {cons:'KeyH', kana:['ひゃ','ひゅ','ひょ']},
+    {cons:'KeyM', kana:['みゃ','みゅ','みょ']},
+    {cons:'KeyR', kana:['りゃ','りゅ','りょ']},
+    {cons:'KeyG', kana:['ぎゃ','ぎゅ','ぎょ']},
+    {cons:'KeyZ', kana:['じゃ','じゅ','じょ']},
+    {cons:'KeyB', kana:['びゃ','びゅ','びょ']},
+    {cons:'KeyP', kana:['ぴゃ','ぴゅ','ぴょ']}
+  ];
+
+  var ALL_KEYS = CONSONANTS.concat([Y_KEY]).concat(VOWELS);
+  var byCode = {};
+  ALL_KEYS.forEach(function(k){ byCode[k.code] = k; });
+  var byRoma = {};
+  ALL_KEYS.forEach(function(k){ byRoma[k.roma.toUpperCase()] = k; });
+
+  var KANA = [];
+  YOUON_ROWS.forEach(function(row){
+    row.kana.forEach(function(hira, i){
+      KANA.push({hira:hira, codes:[row.cons, 'KeyY', VOWELS[i].code]});
+    });
+  });
+
+  // 教える形（SYA・TYA・ZYA…）のほかに、実際のIMEでよく使われるつづりも受け付ける。
+  // 「じゃ」の JA のように打鍵数が変わるものもあるので、コード列ごとまるごと持つ。
+  var ALT_CODES = {
+    'しゃ':[['KeyS','KeyH','KeyA']], 'しゅ':[['KeyS','KeyH','KeyU']], 'しょ':[['KeyS','KeyH','KeyO']],
+    'ちゃ':[['KeyC','KeyH','KeyA']], 'ちゅ':[['KeyC','KeyH','KeyU']], 'ちょ':[['KeyC','KeyH','KeyO']],
+    'じゃ':[['KeyJ','KeyA'],['KeyJ','KeyY','KeyA']],
+    'じゅ':[['KeyJ','KeyU'],['KeyJ','KeyY','KeyU']],
+    'じょ':[['KeyJ','KeyO'],['KeyJ','KeyY','KeyO']],
+    'し':[['KeyS','KeyH','KeyI']]
+  };
+
+  // ことばの中だけに出てくる、すでに習ったキー。キーボード図には出さないが、
+  // 指づかいのヒントを出すために場所を覚えておく。
+  var EXTRA_KEYS = [
+    {code:'KeyI', roma:'i', finger:'右手・中指'},
+    {code:'KeyE', roma:'e', finger:'左手・中指'},
+    {code:'KeyC', roma:'c', finger:'左手・中指'},
+    {code:'KeyJ', roma:'j', finger:'右手・人差し指'}
+  ];
+  EXTRA_KEYS.forEach(function(k){ byCode[k.code] = k; });
+
+  function comboRomaFor(codes){
+    return codes.map(function(c){ return byCode[c].roma.toLowerCase(); }).join('');
+  }
+
+  // ---- 打っているとちゅうの、つづりの選びなおし ----
+  // 「しゃ」を SYA と打ちはじめても SHA と打ちはじめてもいいので、ここまでに
+  // 打てたキー（typedCodes）と前方一致するつづりだけを、生きている候補とみなす。
+  var typedCodes = [];
+  function candidatesFor(hira, primaryCodes){
+    var list = [primaryCodes].concat(ALT_CODES[hira] || []);
+    return list.filter(function(c){
+      if (c.length < typedCodes.length) return false;
+      for (var i = 0; i < typedCodes.length; i++){
+        if (c[i] !== typedCodes[i]) return false;
+      }
+      return true;
+    });
+  }
+  function activeCodes(hira, primaryCodes){
+    var list = candidatesFor(hira, primaryCodes);
+    return list.length ? list[0] : primaryCodes;
+  }
+  function tryPress(hira, primaryCodes, code){
+    var list = candidatesFor(hira, primaryCodes);
+    for (var i = 0; i < list.length; i++){
+      if (list[i][typedCodes.length] === code) return true;
+    }
+    return false;
+  }
+  function spellingHint(hira, primaryCodes){
+    var alts = ALT_CODES[hira];
+    if (!alts) return null;
+    var all = [primaryCodes].concat(alts).map(function(c){ return comboRomaFor(c).toUpperCase(); });
+    return '「' + hira + '」は「' + all.join('」か「') + '」だよ';
+  }
+
+  // 「きょう」は き・ょ・う ではなく きょ・う。拗音は2文字でひとかたまり。
+  var SMALL_YA = 'ゃゅょ';
+  function splitMora(kana){
+    var out = [];
+    for (var i = 0; i < kana.length; i++){
+      if (i + 1 < kana.length && SMALL_YA.indexOf(kana.charAt(i+1)) !== -1){
+        out.push(kana.charAt(i) + kana.charAt(i+1));
+        i++;
+      } else {
+        out.push(kana.charAt(i));
+      }
+    }
+    return out;
+  }
+
+  // ---- rule demo: K + Y + A = きゃ ----
+  function makeDemoKey(keyInfo){
+    var el = document.createElement('div');
+    el.className = 'key';
+    el.style.width = '48px'; el.style.height = '48px';
+    el.style.setProperty('--zone', 'var(' + keyInfo.zone + ')');
+    var label = document.createElement('span');
+    label.className = 'key-roma-label';
+    label.style.fontSize = '1.1rem'; label.style.top = '6px'; label.style.left = '7px';
+    label.textContent = keyInfo.roma.toUpperCase();
+    el.appendChild(label);
+    return el;
+  }
+  (function buildRuleDemo(){
+    var demo = document.getElementById('ruleDemo');
+    var parts = [byCode.KeyK, Y_KEY, byCode.KeyA];
+    parts.forEach(function(k, i){
+      if (i > 0){
+        var op = document.createElement('span');
+        op.className = 'combo-op';
+        op.textContent = '+';
+        demo.appendChild(op);
+      }
+      demo.appendChild(makeDemoKey(k));
+    });
+    var eq = document.createElement('span');
+    eq.className = 'combo-op';
+    eq.textContent = '=';
+    demo.appendChild(eq);
+    var result = document.createElement('span');
+    result.className = 'rule-result';
+    result.textContent = 'きゃ';
+    demo.appendChild(result);
+  })();
+
+  // ---- 拗音表 ----
+  (function buildYouonTable(){
+    var table = document.getElementById('youonTable');
+    var thead = document.createElement('thead');
+    var headRow = document.createElement('tr');
+    headRow.appendChild(document.createElement('th'));
+    ['ゃ','ゅ','ょ'].forEach(function(h){
+      var th = document.createElement('th');
+      th.textContent = h;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    YOUON_ROWS.forEach(function(row){
+      var tr = document.createElement('tr');
+      var th = document.createElement('th');
+      th.textContent = byCode[row.cons].base;
+      tr.appendChild(th);
+      row.kana.forEach(function(hira, i){
+        var td = document.createElement('td');
+        var kana = document.createElement('span');
+        kana.className = 'yt-kana';
+        kana.textContent = hira;
+        var roma = document.createElement('span');
+        roma.className = 'yt-roma';
+        roma.textContent = comboRomaFor([row.cons, 'KeyY', VOWELS[i].code]).toUpperCase();
+        td.appendChild(kana);
+        td.appendChild(roma);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  })();
+
+  // ---- full keyboard map ----
+  var FULL_KB_ROWS = [
+    ['Q','W','E','R','T','Y','U','I','O','P'],
+    ['A','S','D','F','G','H','J','K','L'],
+    ['Z','X','C','V','B','N','M']
+  ];
+  function buildFullKeyboard(container){
+    FULL_KB_ROWS.forEach(function(letters, rowIdx){
+      var line = document.createElement('div');
+      line.className = 'kb-line';
+      line.dataset.row = String(rowIdx + 1);
+      letters.forEach(function(letter){
+        var wrap = document.createElement('div');
+        wrap.className = 'fk-key-wrap';
+        var target = byRoma[letter];
+        var key = document.createElement('div');
+        key.className = target
+          ? (target.isGlue ? 'fk-key target-key fk-glue' : (target.hira ? 'fk-key target-key' : 'fk-key target-key fk-consonant'))
+          : 'fk-key';
+        key.textContent = letter;
+        if (target){
+          key.style.setProperty('--zone', 'var(' + target.zone + ')');
+          var kana = document.createElement('span');
+          kana.className = 'fk-kana';
+          kana.textContent = target.kisKana;
+          key.appendChild(kana);
+
+          var hira = document.createElement('div');
+          hira.className = target.hira ? 'fk-hira' : 'fk-hira fk-label-small';
+          hira.style.setProperty('--zone', 'var(' + target.zone + ')');
+          hira.textContent = target.hira ? target.hira : (target.isGlue ? 'ようおん' : '子音');
+          wrap.appendChild(hira);
+        }
+        wrap.appendChild(key);
+        line.appendChild(wrap);
+      });
+      container.appendChild(line);
+    });
+  }
+  buildFullKeyboard(document.getElementById('fullKbIntro'));
+
+  // ---- interactive practice keyboard: 11の子音 → Y → あ・う・お ----
+  function buildPracticeKeyboard(container){
+    ALL_KEYS.forEach(function(k, i){
+      if (i === CONSONANTS.length || i === CONSONANTS.length + 1){
+        var gap = document.createElement('div');
+        gap.className = 'key-gap';
+        container.appendChild(gap);
+      }
+      var unit = document.createElement('div');
+      unit.className = 'key-unit';
+
+      var el = document.createElement('div');
+      el.className = 'key';
+      el.style.setProperty('--zone', 'var(' + k.zone + ')');
+      el.dataset.code = k.code;
+      el.tabIndex = 0;
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', k.roma.toUpperCase() + 'キー（' + k.finger + '）');
+      el.addEventListener('click', function(){ handleAttempt(k.code); });
+      el.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); handleAttempt(k.code); } });
+
+      var romaLabel = document.createElement('span');
+      romaLabel.className = 'key-roma-label';
+      romaLabel.textContent = k.roma.toUpperCase();
+      var kanaLabel = document.createElement('span');
+      kanaLabel.className = 'key-kana-label';
+      kanaLabel.textContent = k.kisKana;
+      el.appendChild(romaLabel);
+      el.appendChild(kanaLabel);
+
+      var sub = document.createElement('span');
+      sub.className = 'key-sub';
+      sub.textContent = k.isGlue ? 'ようおん' : (k.hira ? '母音' : '子音');
+
+      unit.appendChild(el);
+      unit.appendChild(sub);
+      container.appendChild(unit);
+    });
+  }
+  buildPracticeKeyboard(document.getElementById('kbRowPractice'));
+  var practiceKeyEls = {};
+  document.querySelectorAll('#kbRowPractice .key').forEach(function(el){ practiceKeyEls[el.dataset.code] = el; });
+
+  // 33こぜんぶを1回ずつ。どれも同じきまりなので、数をこなすより
+  // 表をひととおり打ちきることを目標にする。
+  function buildSequence(){
+    var pool = KANA.slice();
+    for (var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i+1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    return pool;
+  }
+
+  // Step 2: 拗音を使った ことば。すでに習った文字だけでできていて、
+  // 促音（小さい「っ」）はまだ習っていないので使っていない。
+  var WORDS = [
+    {kana:'きょう', meaning:'今日'},
+    {kana:'しゃしん', meaning:'写真'},
+    {kana:'きゅうしょく', meaning:'給食'},
+    {kana:'ちゃいろ', meaning:'茶色'},
+    {kana:'じゃがいも', meaning:'じゃが芋'},
+    {kana:'びょういん', meaning:'病院'},
+    {kana:'りょうり', meaning:'料理'},
+    {kana:'ぎゅうにゅう', meaning:'牛乳'},
+    {kana:'にんぎょう', meaning:'人形'},
+    {kana:'しょうがくせい', meaning:'小学生'}
+  ];
+  var byMoraCodes = {};
+  KANA.forEach(function(k){ byMoraCodes[k.hira] = k.codes; });
+  // このトレーニングで使う ことば に出てくる、拗音いがいの文字。
+  byMoraCodes['あ'] = ['KeyA'];
+  byMoraCodes['い'] = ['KeyI'];
+  byMoraCodes['う'] = ['KeyU'];
+  byMoraCodes['お'] = ['KeyO'];
+  byMoraCodes['か'] = ['KeyK','KeyA'];
+  byMoraCodes['く'] = ['KeyK','KeyU'];
+  byMoraCodes['し'] = ['KeyS','KeyI'];
+  byMoraCodes['せ'] = ['KeyS','KeyE'];
+  byMoraCodes['に'] = ['KeyN','KeyI'];
+  byMoraCodes['ん'] = ['KeyN','KeyN'];
+  byMoraCodes['も'] = ['KeyM','KeyO'];
+  byMoraCodes['り'] = ['KeyR','KeyI'];
+  byMoraCodes['ろ'] = ['KeyR','KeyO'];
+  byMoraCodes['が'] = ['KeyG','KeyA'];
+
+  function buildWordSequence(){
+    var pool = WORDS.slice();
+    for (var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i+1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    return pool;
+  }
+
+  var intro = document.getElementById('intro');
+  var practice = document.getElementById('practice');
+  var result = document.getElementById('result');
+  var targetChar = document.getElementById('targetChar');
+  var targetRoma = document.getElementById('targetRoma');
+  var fingerHint = document.getElementById('fingerHint');
+  var missNote = document.getElementById('missNote');
+  var progressText = document.getElementById('progressText');
+  var progressFill = document.getElementById('progressFill');
+  var targetLabel = document.getElementById('targetLabel');
+  var phaseBanner = document.getElementById('phaseBanner');
+  var wordMeaning = document.getElementById('wordMeaning');
+
+  var sequence, idx, startTime, missTotal, charHadMiss, missedChars, running;
+  var phase, wordSeq, wordIdx, charIdx, totalChars;
+  var audioCtx = null;
+  var nextTargetTimer = null; // 1文字打ち終えたあと、次の文字を出すまでの待ち
+
+  function beep(freq, dur){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.value = 0.08;
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.stop(audioCtx.currentTime + dur);
+    }catch(e){}
+  }
+
+  function clearKeyStates(){
+    Object.keys(practiceKeyEls).forEach(function(code){
+      practiceKeyEls[code].classList.remove('target','correct','wrong');
+    });
+  }
+
+  function renderTargetRoma(k){
+    var roma = comboRomaFor(activeCodes(k.hira, k.codes));
+    var done = typedCodes.length;
+    targetRoma.innerHTML = '<span class="roma-done">' + roma.slice(0, done) + '</span>' + roma.slice(done);
+  }
+
+  function updateFingerHint(k){
+    var codes = activeCodes(k.hira, k.codes);
+    var nextKeyInfo = byCode[codes[typedCodes.length]];
+    fingerHint.innerHTML = '<span class="mini-key">' + nextKeyInfo.roma.toUpperCase() + '</span> → ' + nextKeyInfo.finger;
+  }
+
+  function showTarget(){
+    nextTargetTimer = null;
+    clearKeyStates();
+    var k = sequence[idx];
+    typedCodes = [];
+    targetChar.textContent = k.hira;
+    renderTargetRoma(k);
+    updateFingerHint(k);
+    missNote.innerHTML = '&nbsp;';
+    practiceKeyEls[k.codes[0]].classList.add('target');
+    charHadMiss = false;
+  }
+
+  function updateProgress(){
+    if (phase === 'words'){
+      progressText.textContent = 'ことば ' + wordIdx + ' / ' + wordSeq.length;
+      progressFill.style.width = Math.round(wordIdx/wordSeq.length*100) + '%';
+    } else {
+      progressText.textContent = 'もじ ' + idx + ' / ' + sequence.length;
+      progressFill.style.width = Math.round(idx/sequence.length*100) + '%';
+    }
+  }
+
+  function startPractice(){
+    sequence = buildSequence();
+    idx = 0; missTotal = 0; missedChars = 0; running = true;
+    phase = 'chars';
+    totalChars = 0;
+    typedCodes = [];
+    wordSeq = null; wordIdx = 0; charIdx = 0;
+    targetChar.classList.remove('word-mode');
+    phaseBanner.style.display = 'none';
+    wordMeaning.style.display = 'none';
+    targetLabel.textContent = 'この文字を、ローマ字で打とう';
+    startTime = performance.now();
+    intro.style.display = 'none';
+    result.style.display = 'none';
+    practice.style.display = 'block';
+    updateProgress();
+    showTarget();
+  }
+
+  function noteMiss(hira, primaryCodes){
+    if (!charHadMiss){ missedChars++; charHadMiss = true; }
+    missTotal++;
+    beep(180, 0.12);
+    var hint = spellingHint(hira, primaryCodes);
+    if (hint){
+      missNote.textContent = 'おしい！' + hint;
+      return;
+    }
+    var codes = activeCodes(hira, primaryCodes);
+    var expectedInfo = byCode[codes[typedCodes.length]];
+    if (typedCodes.length === 0){
+      missNote.textContent = 'おしい！「' + hira + '」は「' + expectedInfo.roma.toUpperCase() + '」から始まるよ';
+    } else {
+      missNote.textContent = 'おしい！つぎは「' + expectedInfo.roma.toUpperCase() + '」だよ';
+    }
+  }
+
+  function flashWrong(code){
+    var el = practiceKeyEls[code];
+    if (el){ el.classList.remove('correct'); el.classList.add('wrong'); setTimeout(function(){ el.classList.remove('wrong'); }, 260); }
+  }
+
+  function handleAttempt(code){
+    if (practice.style.display !== 'block') return;
+    if (phase === 'words'){ handleWordAttempt(code); return; }
+    if (nextTargetTimer !== null){
+      // 前の文字を打ち終えた直後にキーが押されたら、次の文字をすぐ出して1打目として数える
+      clearTimeout(nextTargetTimer);
+      showTarget();
+    }
+    var k = sequence[idx];
+    if (!k) return; // keypress landed in the gap before the next step
+    if (tryPress(k.hira, k.codes, code)){
+      var el = practiceKeyEls[code];
+      if (el){ el.classList.remove('wrong','target'); el.classList.add('correct'); }
+      beep(880, 0.09);
+      typedCodes.push(code);
+      totalChars++;
+      var codes = activeCodes(k.hira, k.codes);
+      if (typedCodes.length >= codes.length){
+        idx++;
+        updateProgress();
+        if (idx >= sequence.length){
+          setTimeout(startWordPhase, 420);
+        } else {
+          nextTargetTimer = setTimeout(showTarget, 160);
+        }
+      } else {
+        renderTargetRoma(k);
+        updateFingerHint(k);
+        var nextEl = practiceKeyEls[codes[typedCodes.length]];
+        if (nextEl) nextEl.classList.add('target');
+      }
+    } else {
+      flashWrong(code);
+      noteMiss(k.hira, k.codes);
+    }
+  }
+
+  // ---- step 2 (words) ----
+  function wordChars(word){ return splitMora(word.kana); }
+
+  function showWordTarget(){
+    clearKeyStates();
+    var word = wordSeq[wordIdx];
+    if (!word) return; // 最後の単語を打ち終えたあとに、遅れて届いた表示更新
+    var chars = wordChars(word);
+    var html = '';
+    chars.forEach(function(c, i){
+      var cls = (i < charIdx) ? 'wc-done' : (i === charIdx ? 'wc-now' : 'wc-todo');
+      html += '<span class="' + cls + '">' + c + '</span>';
+    });
+    targetChar.innerHTML = html;
+
+    var romaHtml = '';
+    chars.forEach(function(c, i){
+      var codes = (i === charIdx) ? activeCodes(c, byMoraCodes[c]) : byMoraCodes[c];
+      var r = comboRomaFor(codes);
+      if (i < charIdx){
+        romaHtml += '<span class="roma-done">' + r + '</span>';
+      } else if (i === charIdx){
+        var done = typedCodes.length;
+        romaHtml += '<span class="roma-done">' + r.slice(0, done) + '</span>' + r.slice(done);
+      } else {
+        romaHtml += r;
+      }
+    });
+    targetRoma.innerHTML = romaHtml;
+
+    wordMeaning.textContent = '（' + word.meaning + '）';
+    var curCodes = activeCodes(chars[charIdx], byMoraCodes[chars[charIdx]]);
+    var nextKeyInfo = byCode[curCodes[typedCodes.length]];
+    fingerHint.innerHTML = '<span class="mini-key">' + nextKeyInfo.roma.toUpperCase() + '</span> → ' + nextKeyInfo.finger;
+    missNote.innerHTML = '&nbsp;';
+    var targetEl = practiceKeyEls[curCodes[typedCodes.length]];
+    if (targetEl) targetEl.classList.add('target');
+  }
+
+  function startWordPhase(){
+    phase = 'words';
+    wordSeq = buildWordSequence();
+    wordIdx = 0; charIdx = 0; typedCodes = []; charHadMiss = false;
+    targetChar.classList.add('word-mode');
+    phaseBanner.style.display = '';
+    wordMeaning.style.display = '';
+    targetLabel.textContent = 'この ことばを、ローマ字で うとう';
+    updateProgress();
+    showWordTarget();
+  }
+
+  function handleWordAttempt(code){
+    var word = wordSeq[wordIdx];
+    if (!word) return; // keypress landed in the gap before the result screen
+    var chars = wordChars(word);
+    var hira = chars[charIdx];
+    var primary = byMoraCodes[hira];
+    if (tryPress(hira, primary, code)){
+      var el = practiceKeyEls[code];
+      if (el){ el.classList.remove('wrong','target'); el.classList.add('correct'); }
+      beep(880, 0.09);
+      typedCodes.push(code);
+      totalChars++;
+      if (typedCodes.length >= activeCodes(hira, primary).length){
+        charIdx++;
+        typedCodes = [];
+        charHadMiss = false;
+        if (charIdx >= chars.length){
+          wordIdx++;
+          charIdx = 0;
+          updateProgress();
+          beep(1120, 0.12);
+          if (wordIdx >= wordSeq.length){
+            setTimeout(finish, 220);
+          } else {
+            setTimeout(showWordTarget, 320);
+          }
+        } else {
+          setTimeout(showWordTarget, 120);
+        }
+      } else {
+        showWordTarget();
+      }
+    } else {
+      flashWrong(code);
+      noteMiss(hira, primary);
+    }
+  }
+
+  function getVisibleResultBtns(){
+    return Array.prototype.slice.call(document.querySelectorAll('.result-actions .btn')).filter(function(el){
+      return el.offsetParent !== null;
+    });
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (!running){
+      if (intro.style.display !== 'none' && (e.key === ' ' || e.key === 'Enter')){
+        e.preventDefault();
+        document.getElementById('startBtn').click();
+        return;
+      }
+      if (result.style.display !== 'none'){
+        var btns = getVisibleResultBtns();
+        if (btns.length === 0) return;
+        var idxBtn = btns.indexOf(document.activeElement);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+          e.preventDefault();
+          btns[idxBtn === -1 ? 0 : (idxBtn + 1) % btns.length].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+          e.preventDefault();
+          btns[idxBtn === -1 ? btns.length - 1 : (idxBtn - 1 + btns.length) % btns.length].focus();
+        } else if ((e.key === ' ' || e.key === 'Enter') && idxBtn !== -1){
+          e.preventDefault();
+          btns[idxBtn].click();
+        }
+      }
+      return;
+    }
+    if (practice.style.display !== 'block') return;
+    if (byCode[e.code]){
+      e.preventDefault();
+      handleAttempt(e.code);
+    }
+  });
+
+  function finish(){
+    running = false;
+    practice.style.display = 'none';
+    result.style.display = 'block';
+    var elapsed = Math.max((performance.now() - startTime) / 1000, 1);
+    var typed = Math.max(totalChars, 1);
+    var speed = Math.round(typed / elapsed * 60);
+    var accuracy = Math.round((typed - missedChars) / typed * 100);
+    document.getElementById('statSpeed').innerHTML = speed + '<span style="font-size:0.6em;font-weight:400;"> 文字/分</span>';
+    document.getElementById('statAccuracy').innerHTML = accuracy + '<span style="font-size:0.6em;font-weight:400;">%</span>';
+    var stamp = document.getElementById('stamp');
+    var title = document.getElementById('resultTitle');
+    var msg = document.getElementById('resultMsg');
+    var nextLink = document.getElementById('nextStageLink');
+    if (accuracy >= 70){
+      stamp.className = 'stamp'; stamp.textContent = '合格';
+      title.textContent = '拗音 合格！';
+      msg.textContent = '　33この拗音も、ことばも うてるようになった。つぎは しゅうりょうテストにチャレンジしよう。';
+      nextLink.style.display = 'inline-flex';
+    } else {
+      stamp.className = 'stamp fail'; stamp.textContent = 'もう一歩';
+      title.textContent = 'もう一歩！';
+      msg.textContent = '　あわてなくて大丈夫。い段の子音 → Y → あ・う・お、というじゅんばんを、もう一度確かめてみよう。';
+      nextLink.style.display = 'none';
+    }
+    var firstBtn = getVisibleResultBtns()[0];
+    if (firstBtn) firstBtn.focus();
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function(){
+    try{
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }catch(e){}
+    startPractice();
+  });
+  document.getElementById('retryBtn').addEventListener('click', function(){
+    result.style.display = 'none';
+    startPractice();
+  });
+})();
+</script>
