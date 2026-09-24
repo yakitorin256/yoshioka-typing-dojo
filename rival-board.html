@@ -311,7 +311,10 @@ function RB_INIT(){
 
   var GRADE_LIST = ['1年','2年','3年','4年','5年','6年'];
   var CLASS_LIST = ['1組','2組','3組','4組','ほしの子学級'];
-  var RANK_LIST = [1,2,3,4,5];
+  // ボードに出る人数。netlify/functions/rival-board.mjs の BOARD_SIZE と同じ値にすること。
+  var BOARD_SIZE = 15;
+  var RANK_LIST = [];
+  for (var r = 1; r <= BOARD_SIZE; r++) RANK_LIST.push(r);
 
   function optionsHtml(values, selected, labelFn){
     return values.map(function(v){
@@ -388,7 +391,7 @@ function RB_INIT(){
     invalid_cls: '学年・組・なまえを正しく入力してね。',
     invalid_name: 'なまえを入力してね。',
     invalid_number: 'ポイントは0〜99999、速さは0〜9999、正確率は0〜100の整数で入力してね。',
-    invalid_rank: '順位は1〜5位から選んでね。',
+    invalid_rank: '順位は1〜' + BOARD_SIZE + '位から選んでね。',
     not_found: 'この記録は見つかりませんでした（すでに削除された可能性があります）。'
   };
 

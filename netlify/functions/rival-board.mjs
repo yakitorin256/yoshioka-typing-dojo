@@ -1,6 +1,7 @@
 import { getStore } from "@netlify/blobs";
 
-const BOARD_SIZE = 5;
+// ボードに出る人数。rival-board.html の BOARD_SIZE と同じ値にすること。
+const BOARD_SIZE = 15;
 const MAX_STORED = 1000; // hard cap so the blob can't grow without bound
 const GRADES = ["1年", "2年", "3年", "4年", "5年", "6年"];
 const CLASSES = ["1組", "2組", "3組", "4組", "ほしの子学級"];
