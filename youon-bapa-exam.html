@@ -1,5 +1,5 @@
-<title>くだものキャッチ ガ・ザ・ダ行の拗音 しゅうりょうテスト</title>
-<meta name="description" content="吉岡小タイピング道場・ガ・ザ・ダ行の拗音（ようおん）しゅうりょうテスト。あいうえおから、ぎゃ・じゃ・ぢゃ の拗音までの総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
+<title>くだものキャッチ バ・パ行の拗音 しゅうりょうテスト</title>
+<meta name="description" content="吉岡小タイピング道場・バ・パ行の拗音（ようおん）しゅうりょうテスト。あいうえおからひらがなの音すべての総まとめ。文字が書かれたくだものが地面に落ちる前に正しくローマ字で打ってキャラクターがキャッチする、くだものキャッチタイピングゲーム">
 <style>
   :root{
     --bg:#F7F2E8;
@@ -183,14 +183,14 @@
 
 <div class="topbar">
   <a class="back-link" href="index.html">← 吉岡小タイピング道場 にもどる</a>
-  <span class="stage-badge">ガ・ザ・ダ行の拗音 しゅうりょうテスト</span>
+  <span class="stage-badge">バ・パ行の拗音 しゅうりょうテスト</span>
 </div>
 
 <main>
   <div class="panel" id="intro">
-    <span class="eyebrow">ガ・ザ・ダ行の拗音 しゅうりょうテスト</span>
-    <h1>くだものキャッチ　ガ・ザ・ダ行の拗音 しゅうりょうテスト</h1>
-    <p class="lead" style="text-align:left;">　「あいうえお」から「わ・を・ん」、濁音・半濁音、そして が行・ざ行・だ行の拗音（ようおん）までの総まとめ。ぜんぶで30問、クリアしたら バ・パ行の拗音 にすすめるよ。</p>
+    <span class="eyebrow">バ・パ行の拗音 しゅうりょうテスト</span>
+    <h1>くだものキャッチ　バ・パ行の拗音 しゅうりょうテスト</h1>
+    <p class="lead" style="text-align:left;">　「あいうえお」から「わ・を・ん」、濁音・半濁音、そして拗音（ようおん）まで、ひらがなの音ぜんぶの総まとめ。ぜんぶで30問、クリアしたら白帯にすすめるよ。</p>
     <ol class="rule-list">
       <li><span class="rule-num">1</span>単音10問と、ことば20問。あわせて30問。</li>
       <li><span class="rule-num">2</span>文字が書かれたくだものが、上から落ちてくる。</li>
@@ -221,13 +221,13 @@
   <div class="panel" id="result">
     <div class="stamp" id="stamp">合格</div>
     <h1 id="resultTitle">しゅうりょう合格！</h1>
-    <p class="result-msg" id="resultMsg">30問ぜんぶクリア！つぎは「バ・パ行の拗音」の練習にすすもう。</p>
+    <p class="result-msg" id="resultMsg">30問ぜんぶクリア！つぎは白帯「ホームポジションの間」にチャレンジしよう。</p>
     <div class="stat-row" id="statRow">
       <div class="stat-box"><span class="mono">かかった時間</span><span class="stat-val" id="statTime">0<span style="font-size:0.6em;font-weight:400;"> 秒</span></span></div>
       <div class="stat-box"><span class="mono">正確率</span><span class="stat-val" id="statAccuracy">0<span style="font-size:0.6em;font-weight:400;">%</span></span></div>
     </div>
     <div class="result-actions">
-      <a class="btn" id="nextStageLink" style="display:none" href="youon-bapa-practice.html">バ・パ行の拗音の練習へ →</a>
+      <a class="btn" id="nextStageLink" style="display:none" href="home-position-practice.html">白帯にチャレンジする →</a>
       <button class="btn btn-quiet" id="retryBtn">もう一度ちょうせんする</button>
       <a class="btn btn-quiet" href="index.html">段位表にもどる</a>
     </div>
@@ -267,7 +267,9 @@
     'りゃ':['KeyR','KeyY','KeyA'], 'りゅ':['KeyR','KeyY','KeyU'], 'りょ':['KeyR','KeyY','KeyO'],
     'ぎゃ':['KeyG','KeyY','KeyA'], 'ぎゅ':['KeyG','KeyY','KeyU'], 'ぎょ':['KeyG','KeyY','KeyO'],
     'じゃ':['KeyZ','KeyY','KeyA'], 'じゅ':['KeyZ','KeyY','KeyU'], 'じょ':['KeyZ','KeyY','KeyO'],
-    'ぢゃ':['KeyD','KeyY','KeyA'], 'ぢゅ':['KeyD','KeyY','KeyU'], 'ぢょ':['KeyD','KeyY','KeyO']
+    'ぢゃ':['KeyD','KeyY','KeyA'], 'ぢゅ':['KeyD','KeyY','KeyU'], 'ぢょ':['KeyD','KeyY','KeyO'],
+    'びゃ':['KeyB','KeyY','KeyA'], 'びゅ':['KeyB','KeyY','KeyU'], 'びょ':['KeyB','KeyY','KeyO'],
+    'ぴゃ':['KeyP','KeyY','KeyA'], 'ぴゅ':['KeyP','KeyY','KeyU'], 'ぴょ':['KeyP','KeyY','KeyO']
   };
   var byCode = {
     KeyA:{roma:'a'}, KeyI:{roma:'i'}, KeyU:{roma:'u'}, KeyE:{roma:'e'}, KeyO:{roma:'o'},
@@ -291,21 +293,21 @@
     'じょ':[['KeyJ','KeyO'],['KeyJ','KeyY','KeyO']]
   };
 
-  // 今回のテストで新しく加わる が・ざ・だ行の拗音。単音10問のうち半分はここから
+  // 今回のテストで新しく加わる ば行・ぱ行の拗音。単音10問のうち半分はここから
   // 出して、習ったばかりの音がかならず試されるようにする。
-  var YOUON_POOL = ['ぎゃ','ぎゅ','ぎょ','じゃ','じゅ','じょ','ぢゃ','ぢゅ','ぢょ'];
-  var BASE_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん','が','ぎ','ぐ','げ','ご','ざ','じ','ず','ぜ','ぞ','だ','ぢ','づ','で','ど','ば','び','ぶ','べ','ぼ','ぱ','ぴ','ぷ','ぺ','ぽ','きゃ','きゅ','きょ','しゃ','しゅ','しょ','ちゃ','ちゅ','ちょ','にゃ','にゅ','にょ','ひゃ','ひゅ','ひょ','みゃ','みゅ','みょ','りゃ','りゅ','りょ'];
+  var YOUON_POOL = ['びゃ','びゅ','びょ','ぴゃ','ぴゅ','ぴょ'];
+  var BASE_POOL = ['あ','い','う','え','お','か','き','く','け','こ','さ','し','す','せ','そ','た','ち','つ','て','と','な','に','ぬ','ね','の','は','ひ','ふ','へ','ほ','ま','み','む','め','も','や','ゆ','よ','ら','り','る','れ','ろ','わ','を','ん','が','ぎ','ぐ','げ','ご','ざ','じ','ず','ぜ','ぞ','だ','ぢ','づ','で','ど','ば','び','ぶ','べ','ぼ','ぱ','ぴ','ぷ','ぺ','ぽ','きゃ','きゅ','きょ','しゃ','しゅ','しょ','ちゃ','ちゅ','ちょ','にゃ','にゅ','にょ','ひゃ','ひゅ','ひょ','みゃ','みゅ','みょ','りゃ','りゅ','りょ','ぎゃ','ぎゅ','ぎょ','じゃ','じゅ','じょ','ぢゃ','ぢゅ','ぢょ'];
   var WORDS = [
     {kana:'じゃがいも', meaning:'じゃが芋'},
     {kana:'ぎゅうにゅう', meaning:'牛乳'},
-    {kana:'きんぎょ', meaning:'金魚'},
-    {kana:'にんぎょう', meaning:'人形'},
+    {kana:'びょういん', meaning:'病院'},
+    {kana:'びょうどう', meaning:'平等'},
     {kana:'じゅぎょう', meaning:'授業'},
     {kana:'ぎょうざ', meaning:'餃子'},
-    {kana:'じょうず', meaning:'上手'},
-    {kana:'にんじゃ', meaning:'忍者'},
-    {kana:'ぎゃくてん', meaning:'逆転'},
-    {kana:'じゅんばん', meaning:'順番'},
+    {kana:'さんびゃく', meaning:'三百'},
+    {kana:'びょうき', meaning:'病気'},
+    {kana:'びゅうびゅう', meaning:'風が びゅうびゅう ふく'},
+    {kana:'ぴょんぴょん', meaning:'ぴょんぴょん とぶ'},
     {kana:'きょう', meaning:'今日'},
     {kana:'しゃしん', meaning:'写真'},
     {kana:'きゅうしょく', meaning:'給食'},
@@ -732,18 +734,18 @@
     }
   }
 
-  // catcher: a farmer mouse in a kerchief, holding a woven basket, sliding
-  // left-right to line up under the falling fruit — the 11th forest-animal
-  // friend, and a nod to ちゅうちゅう, itself a 拗音
+  // catcher: a farmer frog in a kerchief, holding a woven basket, sliding
+  // left-right to line up under the falling fruit — the 12th forest-animal
+  // friend, and a nod to ぴょんぴょん, itself a 拗音
   function drawCatcher(missed){
     ctx.save();
     ctx.translate(catcherX, GROUND_Y + 4);
 
-    var furColor = missed ? '#A39C94' : '#A9A3B1';
-    var furShade = missed ? '#857E77' : '#857F8E';
-    var bellyColor = missed ? '#DAD5CC' : '#F1ECE6';
-    var pinkColor = missed ? '#B9A69B' : '#F2A7B0';
-    var outline = '#3A3440';
+    var skinColor = missed ? '#9AA98C' : '#7FB069';
+    var skinShade = missed ? '#78876C' : '#5C8A4A';
+    var bellyColor = missed ? '#DAD8C6' : '#F3EFC9';
+    var pinkColor = missed ? '#B9A69B' : '#F0A9A0';
+    var outline = '#2E3A22';
     var basketColor = missed ? '#6B5138' : '#8B5A2B';
     var basketShade = missed ? '#5A4128' : '#734723';
     var basketRim = missed ? '#3A2C1C' : '#5A3B1E';
@@ -756,135 +758,121 @@
     ctx.ellipse(0, 3, 25, 5.5, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // long curly tail, drawn first so the body sits in front of it
-    ctx.strokeStyle = pinkColor;
-    ctx.lineWidth = 2.4;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(12, -12);
-    ctx.bezierCurveTo(32, -10, 36, -30, 28, -38);
-    ctx.bezierCurveTo(22, -44, 30, -52, 36, -48);
-    ctx.stroke();
-    ctx.lineCap = 'butt';
-
-    // little pink feet
-    ctx.fillStyle = pinkColor;
+    // webbed hind feet
+    ctx.fillStyle = skinColor;
     ctx.strokeStyle = outline;
-    ctx.lineWidth = 1.1;
-    [-10, 10].forEach(function(fx){
+    ctx.lineWidth = 1.2;
+    [-12, 12].forEach(function(fx){
       ctx.beginPath();
-      ctx.ellipse(fx, -2.5, 7, 3.6, 0, 0, Math.PI * 2);
+      ctx.ellipse(fx, -3, 9.5, 4.6, 0, 0, Math.PI * 2);
       ctx.fill(); ctx.stroke();
+    });
+    ctx.strokeStyle = skinShade;
+    ctx.lineWidth = 1;
+    [-12, 12].forEach(function(fx){
+      ctx.beginPath(); ctx.moveTo(fx - 3.2, -5); ctx.lineTo(fx - 3.2, -1); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(fx + 3.2, -5); ctx.lineTo(fx + 3.2, -1); ctx.stroke();
     });
 
     // body
-    ctx.fillStyle = furColor;
+    ctx.fillStyle = skinColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1.4;
     ctx.beginPath();
-    ctx.ellipse(0, -24, 17, 21, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -27, 20, 23, 0, 0, Math.PI * 2);
     ctx.fill(); ctx.stroke();
 
     // pale belly
     ctx.fillStyle = bellyColor;
     ctx.beginPath();
-    ctx.ellipse(0, -20, 11, 14, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -21, 12.5, 14, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    // darker speckles across the back
+    ctx.fillStyle = skinShade;
+    ctx.beginPath(); ctx.ellipse(-15, -36, 3.2, 2.2, -0.3, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(15, -36, 3.2, 2.2, 0.3, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(0, -40, 3, 2, 0, 0, Math.PI * 2); ctx.fill();
 
     // kerchief around the neck
     ctx.fillStyle = kerchiefColor;
     ctx.strokeStyle = kerchiefShade;
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.moveTo(-11, -41);
-    ctx.lineTo(11, -41);
-    ctx.lineTo(2, -30);
-    ctx.lineTo(-2, -30);
+    ctx.moveTo(-12, -43);
+    ctx.lineTo(12, -43);
+    ctx.lineTo(2, -31);
+    ctx.lineTo(-2, -31);
     ctx.closePath();
     ctx.fill(); ctx.stroke();
     ctx.beginPath();
-    ctx.ellipse(0, -42, 4.6, 3.2, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -44, 5, 3.4, 0, 0, Math.PI * 2);
     ctx.fill(); ctx.stroke();
 
-    // the mouse's signature: big round ears, drawn behind the head
-    [-13, 13].forEach(function(ex){
-      ctx.fillStyle = furColor;
-      ctx.strokeStyle = outline;
-      ctx.lineWidth = 1.3;
-      ctx.beginPath(); ctx.arc(ex, -66, 9.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = pinkColor;
-      ctx.beginPath(); ctx.arc(ex, -66, 6, 0, Math.PI * 2); ctx.fill();
-    });
-
-    // head
-    ctx.fillStyle = furColor;
+    // head: a wide, low dome
+    ctx.fillStyle = skinColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1.4;
     ctx.beginPath();
-    ctx.ellipse(0, -53, 14, 12.5, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -51, 17.5, 14, 0, 0, Math.PI * 2);
     ctx.fill(); ctx.stroke();
 
-    // a lighter tuft on top of the head
-    ctx.fillStyle = furShade;
-    ctx.beginPath(); ctx.ellipse(0, -63, 3.2, 1.8, 0, 0, Math.PI * 2); ctx.fill();
-
-    // muzzle, nose and whiskers
-    ctx.fillStyle = bellyColor;
-    ctx.beginPath();
-    ctx.ellipse(0, -48.5, 7, 5, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = pinkColor;
-    ctx.strokeStyle = outline;
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.arc(0, -51, 2.2, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.lineWidth = 0.8;
-    [-1, 1].forEach(function(side){
-      ctx.beginPath(); ctx.moveTo(side * 5, -49.5); ctx.lineTo(side * 15, -51.5); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(side * 5, -48); ctx.lineTo(side * 15, -46.5); ctx.stroke();
+    // the frog's signature: eyes bulging up out of the head
+    [-9.5, 9.5].forEach(function(ex){
+      ctx.fillStyle = skinColor;
+      ctx.strokeStyle = outline;
+      ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.arc(ex, -63, 7.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     });
 
     if (missed){
       // eyes squeezed shut, mouth turned down
       ctx.strokeStyle = outline;
-      ctx.lineWidth = 1.5;
-      [-5.5, 5.5].forEach(function(ex){
-        ctx.beginPath(); ctx.arc(ex, -55, 2.6, Math.PI * 1.15, Math.PI * 1.85); ctx.stroke();
+      ctx.lineWidth = 1.6;
+      [-9.5, 9.5].forEach(function(ex){
+        ctx.beginPath(); ctx.arc(ex, -61.5, 4, Math.PI * 1.15, Math.PI * 1.85); ctx.stroke();
       });
-      ctx.lineWidth = 1.3;
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.arc(0, -43.5, 2.6, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.arc(0, -42, 5, Math.PI * 1.15, Math.PI * 1.85);
       ctx.stroke();
     } else {
-      // bright round eyes
-      [-5.5, 5.5].forEach(function(ex){
-        ctx.fillStyle = '#231E18';
-        ctx.beginPath(); ctx.arc(ex, -56, 2.4, 0, Math.PI * 2); ctx.fill();
+      // wide eyes with a bright glint
+      [-9.5, 9.5].forEach(function(ex){
         ctx.fillStyle = '#FFFDF6';
-        ctx.beginPath(); ctx.arc(ex + 0.9, -56.9, 0.9, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(ex, -63.5, 4.6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#231E18';
+        ctx.beginPath(); ctx.arc(ex, -63, 2.6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#FFFDF6';
+        ctx.beginPath(); ctx.arc(ex + 1.3, -64.6, 1.1, 0, Math.PI * 2); ctx.fill();
       });
       // rosy cheeks
-      ctx.fillStyle = 'rgba(240,120,130,0.3)';
-      ctx.beginPath(); ctx.ellipse(-9.5, -50, 2.8, 1.9, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(9.5, -50, 2.8, 1.9, 0, 0, Math.PI * 2); ctx.fill();
-      // little smile with two front teeth
+      ctx.fillStyle = 'rgba(240,120,110,0.3)';
+      ctx.beginPath(); ctx.ellipse(-12.5, -47, 3.2, 2.2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(12.5, -47, 3.2, 2.2, 0, 0, Math.PI * 2); ctx.fill();
+      // the big wide frog grin
       ctx.strokeStyle = outline;
-      ctx.lineWidth = 1.2;
-      ctx.beginPath(); ctx.arc(-1.6, -47.5, 1.8, 0.1 * Math.PI, 0.9 * Math.PI); ctx.stroke();
-      ctx.beginPath(); ctx.arc(1.6, -47.5, 1.8, 0.1 * Math.PI, 0.9 * Math.PI); ctx.stroke();
-      ctx.fillStyle = '#FFFDF6';
-      ctx.lineWidth = 0.7;
-      ctx.beginPath(); ctx.rect(-1.4, -45.9, 2.8, 2.4); ctx.fill(); ctx.stroke();
+      ctx.lineWidth = 1.7;
+      ctx.beginPath();
+      ctx.arc(0, -52, 11.5, 0.16 * Math.PI, 0.84 * Math.PI);
+      ctx.stroke();
+      // nostrils
+      ctx.fillStyle = outline;
+      ctx.beginPath(); ctx.arc(-3.2, -57.5, 0.8, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(3.2, -57.5, 0.8, 0, Math.PI * 2); ctx.fill();
     }
 
-    // arms holding the basket, with little pink paws
-    ctx.fillStyle = furColor;
+    // arms holding the basket, with webbed hands
+    ctx.fillStyle = skinColor;
     ctx.strokeStyle = outline;
     ctx.lineWidth = 1.2;
-    ctx.beginPath(); ctx.ellipse(-16, -9, 5, 10, 0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(16, -9, 5, 10, -0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(-18, -9, 6, 11, 0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(18, -9, 6, 11, -0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(-20, 0, 4.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(20, 0, 4.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.fillStyle = pinkColor;
-    ctx.beginPath(); ctx.arc(-19, 0, 3.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(19, 0, 3.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(-20, 0, 1.9, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(20, 0, 1.9, 0, Math.PI * 2); ctx.fill();
 
     // basket, with a gentle bob while waiting
     var bob = missed ? 0 : Math.sin(Date.now() / 180) * 1.4;
@@ -1207,7 +1195,7 @@
       fanfare();
       stamp.className = 'stamp'; stamp.textContent = '合格';
       title.textContent = 'しゅうりょう合格！';
-      msg.textContent = '30問ぜんぶクリア！ぎゃ・じゃ・ぢゃ の拗音が身についたね。つぎは「びゃ・ぴゃ」のバ・パ行の拗音にすすもう。';
+      msg.textContent = '30問ぜんぶクリア！あいうえおから濁音・半濁音、そして拗音まで、ひらがなの音がぜんぶ打てるようになったね。つぎは白帯「ホームポジションの間」にチャレンジしよう。';
       nextLink.style.display = 'inline-flex';
       statRow.style.display = 'flex';
     } else {
