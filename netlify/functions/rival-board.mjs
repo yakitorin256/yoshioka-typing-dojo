@@ -3,7 +3,9 @@ import { getStore } from "@netlify/blobs";
 // ボードに出る人数。rival-board.html の BOARD_SIZE と同じ値にすること。
 const BOARD_SIZE = 15;
 const MAX_STORED = 1000; // hard cap so the blob can't grow without bound
-const GRADES = ["1年", "2年", "3年", "4年", "5年", "6年"];
+// 先生は学年の代わりに「先生」を選び、組・学級は持たない（cls は空文字）。
+const TEACHER = "先生";
+const GRADES = ["1年", "2年", "3年", "4年", "5年", "6年", TEACHER];
 const CLASSES = ["1組", "2組", "3組", "4組", "ほしの子学級"];
 
 // Mirrors encodeScore()/checksum36() in exam-practice.html — the exam
@@ -139,13 +141,13 @@ export default async (req) => {
     }
 
     const grade = String(body.grade || "").trim();
-    const cls = String(body.cls || "").trim();
+    const cls = grade === TEACHER ? "" : String(body.cls || "").trim();
     const name = String(body.name || "").trim().slice(0, 20);
 
     if (!GRADES.includes(grade)) {
       return Response.json({ error: "invalid_grade" }, { status: 400 });
     }
-    if (!CLASSES.includes(cls)) {
+    if (grade !== TEACHER && !CLASSES.includes(cls)) {
       return Response.json({ error: "invalid_cls" }, { status: 400 });
     }
     if (!name) {
@@ -225,8 +227,12 @@ export default async (req) => {
       }
       next.grade = grade;
     }
-    if (body.cls !== undefined) {
-      const cls = String(body.cls).trim();
+    const effectiveGrade = next.grade !== undefined ? next.grade : entry.grade;
+    if (effectiveGrade === TEACHER) {
+      next.cls = "";
+    } else if (body.cls !== undefined || entry.grade === TEACHER) {
+      // 先生から児童の学年に変えるときは、組・学級も選びなおしてもらう
+      const cls = String(body.cls ?? "").trim();
       if (!CLASSES.includes(cls)) {
         return Response.json({ error: "invalid_cls" }, { status: 400 });
       }

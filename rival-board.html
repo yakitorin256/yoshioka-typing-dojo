@@ -177,7 +177,14 @@ function RB_INIT(){
 
   // Older entries were stored as "6年生"; show them the same as new "6年" entries.
   function displayGrade(g){
-    return String(g).replace(/生$/, '');
+    return String(g).replace(/^(\d年)生$/, '$1');
+  }
+
+  var TEACHER = '先生';
+
+  function gradeClassLabel(e){
+    var g = displayGrade(e.grade);
+    return (g === TEACHER || !e.cls) ? g : (g + ' ' + e.cls);
   }
 
   // "2026/9/12 2:01" — the moment the record was registered (entry.ts).
@@ -194,7 +201,7 @@ function RB_INIT(){
       return '<tr><td colspan="7" class="empty">まだ登録がありません。黒帯の昇段試験を受けて、さいしょのランカーになろう。</td></tr>';
     }
     return list.map(function(e,i){
-      return '<tr><td class="rank">'+(i+1)+'位</td><td>'+escapeHtml(displayGrade(e.grade))+' '+escapeHtml(e.cls)+'</td><td class="name">'+escapeHtml(e.name)+'</td>'+
+      return '<tr><td class="rank">'+(i+1)+'位</td><td>'+escapeHtml(gradeClassLabel(e))+'</td><td class="name">'+escapeHtml(e.name)+'</td>'+
         '<td class="pts">'+e.points+'</td><td>'+e.speed+'文字/分</td><td>'+e.accuracy+'%</td>'+
         '<td class="when">'+escapeHtml(formatWhen(e.ts))+'</td></tr>';
     }).join('');
@@ -203,7 +210,7 @@ function RB_INIT(){
   function renderBodyHtml(loading){
     var rowsHtml = loading ? '<tr><td colspan="7" class="empty">読みこみちゅう…</td></tr>' : renderTableRows([]);
 
-    var gradeOptions = ['1年','2年','3年','4年','5年','6年'].map(function(g){
+    var gradeOptions = ['1年','2年','3年','4年','5年','6年',TEACHER].map(function(g){
       return '<option value="'+g+'">'+g+'</option>';
     }).join('');
     var clsOptions = ['1組','2組','3組','4組','ほしの子学級'].map(function(c){
@@ -214,7 +221,7 @@ function RB_INIT(){
         '<span class="mono">黒帯の昇段試験の結果画面に出た「とうろくコード」を入力しよう</span>'+
         '<form id="registerForm">'+
           '<label>学年<select name="grade" required><option value="">えらぶ</option>'+gradeOptions+'</select></label>'+
-          '<label>組・学級<select name="cls" required><option value="">えらぶ</option>'+clsOptions+'</select></label>'+
+          '<label id="clsLabel">組・学級<select name="cls" required><option value="">えらぶ</option>'+clsOptions+'</select></label>'+
           '<label>ニックネーム＋名前<input name="name" maxlength="20" required></label>'+
           '<p class="name-note">直接本名を書き込むことのないようにしてくださいね。ふざけすぎたものや見た人を不快にさせるものはランキングにはのせません。</p>'+
           '<label>とうろくコード<input name="code" maxlength="20" placeholder="れい：3K2P1-9F" required style="font-family:Consolas,\'SF Mono\',Menlo,monospace;"></label>'+
@@ -259,6 +266,17 @@ function RB_INIT(){
   function wireForm(){
     var form = document.getElementById('registerForm');
     if (!form) return;
+    var gradeSelect = form.querySelector('select[name="grade"]');
+    var clsSelect = form.querySelector('select[name="cls"]');
+    var clsLabel = document.getElementById('clsLabel');
+    function syncClassField(){
+      var isTeacher = gradeSelect.value === TEACHER;
+      clsLabel.style.display = isTeacher ? 'none' : '';
+      clsSelect.required = !isTeacher;
+      if (isTeacher) clsSelect.value = '';
+    }
+    gradeSelect.addEventListener('change', syncClassField);
+    form.addEventListener('reset', function(){ setTimeout(syncClassField, 0); });
     form.addEventListener('submit', function(ev){
       ev.preventDefault();
       var fd = new FormData(form);
@@ -267,7 +285,8 @@ function RB_INIT(){
       var name = (fd.get('name')||'').toString().trim();
       var code = (fd.get('code')||'').toString().trim();
       var note = document.getElementById('formNote');
-      if (!grade || !cls || !name || !code){
+      if (grade === TEACHER) cls = '';
+      if (!grade || (grade !== TEACHER && !cls) || !name || !code){
         note.textContent = '学年・組・なまえ・とうろくコードをすべて入力してね。';
         return;
       }
@@ -309,7 +328,7 @@ function RB_INIT(){
 
   var adminPassword = null;
 
-  var GRADE_LIST = ['1年','2年','3年','4年','5年','6年'];
+  var GRADE_LIST = ['1年','2年','3年','4年','5年','6年',TEACHER];
   var CLASS_LIST = ['1組','2組','3組','4組','ほしの子学級'];
   // ボードに出る人数。netlify/functions/rival-board.mjs の BOARD_SIZE と同じ値にすること。
   var BOARD_SIZE = 15;
@@ -335,7 +354,8 @@ function RB_INIT(){
         '<td><select class="f-rank" aria-label="順位を指定"><option value=""'+(pinned === '' ? ' selected' : '')+'>自動</option>'+
           optionsHtml(RANK_LIST, pinned, function(r){ return r+'位に固定'; })+'</select></td>'+
         '<td><select class="f-grade" aria-label="学年">'+optionsHtml(GRADE_LIST, displayGrade(e.grade))+'</select></td>'+
-        '<td><select class="f-cls" aria-label="組・学級">'+optionsHtml(CLASS_LIST, e.cls)+'</select></td>'+
+        '<td><select class="f-cls" aria-label="組・学級"'+(displayGrade(e.grade) === TEACHER ? ' disabled' : '')+'>'+
+          '<option value=""'+(e.cls ? '' : ' selected')+'>—</option>'+optionsHtml(CLASS_LIST, e.cls)+'</select></td>'+
         '<td><input type="text" class="f-name" maxlength="20" value="'+escapeHtml(e.name)+'" aria-label="なまえ"></td>'+
         '<td><input type="number" class="f-num f-points" min="0" max="99999" step="1" value="'+escapeHtml(e.points)+'" aria-label="ポイント"></td>'+
         '<td><input type="number" class="f-num f-speed" min="0" max="9999" step="1" value="'+escapeHtml(e.speed)+'" aria-label="速さ（文字/分）"></td>'+
@@ -357,6 +377,13 @@ function RB_INIT(){
       '</tr></thead><tbody>'+renderAdminRows(list)+'</tbody></table></div>';
 
     wrap.querySelectorAll('tbody tr[data-ts]').forEach(function(row){
+      var gradeSel = row.querySelector('.f-grade');
+      var clsSel = row.querySelector('.f-cls');
+      gradeSel.addEventListener('change', function(){
+        var isTeacher = gradeSel.value === TEACHER;
+        clsSel.disabled = isTeacher;
+        if (isTeacher) clsSel.value = '';
+      });
       row.querySelectorAll('input, select').forEach(function(el){
         el.addEventListener('input', function(){ row.classList.add('dirty'); });
         el.addEventListener('change', function(){ row.classList.add('dirty'); });
@@ -388,7 +415,7 @@ function RB_INIT(){
 
   var SAVE_ERRORS = {
     invalid_grade: '学年・組・なまえを正しく入力してね。',
-    invalid_cls: '学年・組・なまえを正しく入力してね。',
+    invalid_cls: '組・学級をえらんでね（先生いがい）。',
     invalid_name: 'なまえを入力してね。',
     invalid_number: 'ポイントは0〜99999、速さは0〜9999、正確率は0〜100の整数で入力してね。',
     invalid_rank: '順位は1〜' + BOARD_SIZE + '位から選んでね。',
@@ -405,7 +432,7 @@ function RB_INIT(){
     var payload = {
       ts: Number(row.getAttribute('data-ts')),
       grade: row.querySelector('.f-grade').value,
-      cls: row.querySelector('.f-cls').value,
+      cls: row.querySelector('.f-grade').value === TEACHER ? '' : row.querySelector('.f-cls').value,
       name: name,
       points: row.querySelector('.f-points').value,
       speed: row.querySelector('.f-speed').value,
